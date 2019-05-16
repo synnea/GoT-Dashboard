@@ -20,6 +20,8 @@
   top: 0;
 }
 
+/* Styles for the landing page */
+
 .lp-container {
   padding-top: 25h;
   margin-top: 0 !important;
@@ -58,6 +60,8 @@ article {
   color: #D3F3EE;
 }
 
+
+/* Animista classes and keyframes */ 
 .rotate-scale-up {
 	-webkit-animation: rotate-scale-up 0.65s linear both;
 	        animation: rotate-scale-up 0.65s linear both;
