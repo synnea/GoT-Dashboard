@@ -11,7 +11,7 @@
 }
 
 .navbar {
-  height: 20vh;
+  height: 15vh;
 }
 
 .navbar-container {
@@ -65,16 +65,11 @@ article {
 
 .btn-start {
   font-family: 'MedievalSharp', cursive;
-  font-size: 1.2em;
+  font-size: 1.4em;
 }
 
-.jumbotron-style {
+.jumbotron {
   background-color: #D3F3EE;
-}
-
-.alt-jumbotron {
-  background-color: #000;
-  color: #D3F3EE;
 }
 
 
