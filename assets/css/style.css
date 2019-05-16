@@ -47,8 +47,13 @@ article {
   font-size: 1.2em;
 }
 
-.jumbotron {
+.jumbotron-style {
   background-color: #D3F3EE;
+}
+
+.alt-jumbotron {
+  background-color: #000;
+  color: #D3F3EE;
 }
 
 .rotate-scale-up {
