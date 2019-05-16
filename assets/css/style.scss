@@ -5,16 +5,15 @@ $blue: #7FB7BE;
 $frost: #D3F3EE;
 $yellow: #DACC3E;
 
-navbar {
+#navbar {
     background-color: $frost;
 }
 
-/* font mixins */
-@mixin tabText() {
-    font-family: 'MedievalSharp', cursive;
-    font-size: 1.2em;
-}
 
-.nav-item {
-    @include tabText();
-}
+
+
+ 
+
+    
+
+

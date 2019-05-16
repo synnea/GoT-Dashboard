@@ -1,10 +1,48 @@
-/* color palette */
-navbar {
-  background-color: #D3F3EE;
+
+#navbar {
+  background-color: #D3F3EE !important;
 }
 
-/* font mixins */
 .nav-item {
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1.4em;
+}
+
+.navbar {
+  height: 20vh;
+}
+
+.navbar-container {
+  margin-bottom: 0;
+  padding: 0;
+  top: 0;
+}
+
+.lp-container {
+  padding-top: 25h;
+  margin-top: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-container {
+  height:100vh;
+  padding-top: 35vh;
+  margin-top: 0 !important;
+  background: url(/assets/img/bg-img.jpg) no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+
+article {
+  margin-top: 0 !important;
+}
+
+.btn-start {
   font-family: 'MedievalSharp', cursive;
   font-size: 1.2em;
 }
