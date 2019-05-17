@@ -5,9 +5,17 @@ $(document).ready(function(){
 
     $("#winter-btn").addClass("flicker-in-1");
 
-    // Hide all sections apart from the main one
+    // Hide all sections apart from the main one.
 
     $(function () {
-		$(".gen-dash, .exoplanets, .terminology, .methodology, .resources").hide();
+        $(".gen-dash, .death-dash, .pop-dash, .chara-select").hide();
+    });
+
+    $(function() {
+        $("#navGen").on("click", function(){
+            $(".main").hide();
+            $(".gen-dash").fadeIn(500);
+        });
+    });
         
 });
