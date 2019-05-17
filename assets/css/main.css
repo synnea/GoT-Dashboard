@@ -51,11 +51,11 @@
 
 .nav-item {
   font-family: 'MedievalSharp', cursive;
-  font-size: 1.1em;
+  font-size: 1.2em;
 }
 
 .navbar {
-  height: 15vh;
+  height: 10vh;
 }
 
 .navbar-container {
@@ -120,6 +120,7 @@ article {
 #winter-btn {
   max-width: 50%;
   height: 15vh;
+  border: 2px solid;
 }
 
 .winter-pic {
