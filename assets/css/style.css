@@ -6,8 +6,6 @@
 }
 
 
-element.style {
-}
 .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active,
  .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
   color: #7FB7BE !important;
@@ -50,7 +48,7 @@ element.style {
   height:100vh;
   padding-top: 35vh;
   margin-top: 0 !important;
-  background: url(assets/img/bg-img.jpg) no-repeat center center scroll;
+  background: url("../img/bg-img.jpg") no-repeat center center scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -64,7 +62,7 @@ element.style {
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 article {
