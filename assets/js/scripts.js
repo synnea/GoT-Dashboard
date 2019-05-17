@@ -18,7 +18,6 @@ $(document).ready(function(){
 
     $(function() {
         $("#navGen").on("click", function(){
-            $("#navGenLink").css('color','#7FB7BE');
             $(".main").hide();
             $(".gen-dash").fadeIn(500);
         });
