@@ -20,6 +20,7 @@ $(document).ready(function(){
 
     $(function() {
         $("#navHome").on("click", function(){
+            $(".gen-dash, .death-dash, .pop-dash, .chara-select").hide();
             $(".main").fadeIn(500);
         });
     });
