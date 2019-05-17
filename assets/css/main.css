@@ -69,17 +69,17 @@ article {
   margin-top: 0 !important;
 }
 
-.btn-start {
-  font-family: 'MedievalSharp', cursive;
-  font-size: 1.4em;
+.winter-btn {
+  max-width: 50%;
+  height: 15vh;
 }
 
-.btn {
-  color: #7FB7BE !important;
+.winter-pic {
+  max-width: 50%;
 }
 
 .jumbotron {
-  background-color: rgb(26,22,22);
+  background-color: #7FB7BE;
 }
 
 
@@ -291,6 +291,7 @@ article {
   }
 }
 
+/* Rotate Scale Up keyframes */
 
 .rotate-scale-up {
 	-webkit-animation: rotate-scale-up 0.65s linear both;
