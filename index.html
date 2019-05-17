@@ -54,32 +54,41 @@
 
 
                 <ul class="navbar-nav nav-fill w-100" id="menuButtons">
-
                     <li class="active nav-item mr-2">
-                        <a class="nav-link hvr-bounce-in" href="#about">Winter is Coming</a>
+                        <i class="fas fa-home"></i>
+                    </li>
+                    <li class="active nav-item mr-2">
+                        <a class="nav-link hvr-bounce-in gen-dash" href="#gen-dash">Winter is Coming</a>
                     </li>
 
                     <li class="active nav-item mr-2">
-                        <a class="nav-link hvr-bounce-in" href="#u-events">Valar Morghulis</a>
+                        <a class="nav-link hvr-bounce-in gen-dash" href="#gen-dash">Winter is Coming</a>
                     </li>
 
                     <li class="active nav-item mr-2">
-                        <a class="nav-link hvr-bounce-in" href="#p-events">For the Throne</a>
+                        <a class="nav-link hvr-bounce-in death-dash" href="#death-dash">Valar Morghulis</a>
                     </li>
 
                     <li class="active nav-item mr-2">
-                        <a class="nav-link  hvr-bounce-in" href="#contact">Character Select</a>
+                        <a class="nav-link hvr-bounce-in pop-dash" href="#pop-dash">For the Throne</a>
+                    </li>
+
+                    <li class="active nav-item mr-2">
+                        <a class="nav-link  hvr-bounce-in char-select" href="#char-select">Character Select</a>
                     </li>
                 </ul>
             </div>
 
         </nav>
+    </div>
 
         <!--- End Navbar-->
 
         <!-- Begin Landing Page -->
 
-        <section class="container-fluid mt-1 main-container">
+        <section id="main"></section>
+
+        <div class="container-fluid mt-1 main-container">
 
             <div class="img-overlay">&nbsp;</div>
 
@@ -112,7 +121,10 @@
 
                         <!-- Begin Button-->
 
-                        <button type="button" class="btn winter-btn btn-outline-primary hvr-bounce-in mx-auto d-block"><img src="assets/img/winteriscoming.png" class="img-fluid winter-pic rounded mx-auto d-block" alt="linktofirstdashboard"/></button>
+                        <button type="button" class="btn winter-btn btn-outline-primary hvr-bounce-in mx-auto d-block"
+                            id="winter-btn"><img src="assets/img/winteriscoming.png"
+                                class="img-fluid winter-pic rounded mx-auto d-block"
+                                alt="linktofirstdashboard" /></button>
 
                     </div>
                 </div>
@@ -120,8 +132,8 @@
 
             <!-- End Jumbotron -->
 
+    
         </section>
-
 
     </div>
 </body>
