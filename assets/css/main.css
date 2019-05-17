@@ -69,6 +69,12 @@ article {
   margin-top: 0 !important;
 }
 
+/* Button Styles */
+
+.btn-outline-primary {
+  color: #7FB7BE !important;
+  border-color: #D3F3EE !important;
+}
 .winter-btn {
   max-width: 50%;
   height: 15vh;
