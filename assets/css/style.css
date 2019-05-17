@@ -50,7 +50,7 @@ element.style {
   height:100vh;
   padding-top: 35vh;
   margin-top: 0 !important;
-  background: url(/assets/img/bg-img.jpg) no-repeat center center scroll;
+  background: url(assets/img/bg-img.jpg) no-repeat center center scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
