@@ -17,5 +17,11 @@ $(document).ready(function(){
             $(".gen-dash").fadeIn(500);
         });
     });
+
+    $(function() {
+        $("#navHome").on("click", function(){
+            $(".main").fadeIn(500);
+        });
+    });
         
 });

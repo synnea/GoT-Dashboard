@@ -6,6 +6,9 @@
   cursor: pointer;
 }
 
+.home-img {
+  width: 15vh;
+}
 
 .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active,
  .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
@@ -14,7 +17,7 @@
 
 .nav-item {
   font-family: 'MedievalSharp', cursive;
-  font-size: 1.4em;
+  font-size: 1.1em;
 }
 
 .navbar {
