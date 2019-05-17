@@ -8,6 +8,6 @@ $(document).ready(function(){
     // Hide all sections apart from the main one
 
     $(function () {
-		$(".statistics, .exoplanets, .terminology, .methodology, .resources").hide();
+		$(".gen-dash, .exoplanets, .terminology, .methodology, .resources").hide();
         
 });
