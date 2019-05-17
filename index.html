@@ -1,105 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>A Dashboard of Ice and Fire</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        type="text/css" />
 
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.min.css" />
     <link href="https://fonts.googleapis.com/css?family=MedievalSharp" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css"
+        type="text/css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
 
     <style>
         div {
             clear: left;
         }
     </style>
-    
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js">
+    </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
     <script type="text/javascript" src="assets/js/jQuery.js"></script>
 
 
 </head>
+
 <body>
-   <!-- Begin Navbar -->
+    <!-- Begin Navbar -->
 
-   <div class="container-fluid navbar-container">
-    <nav class="navbar navbar-light bg-light navbar-expand-sm" id="navbar">
-
-
-        <!-- Dropdown Button -->
-
-        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="container-fluid navbar-container">
+        <nav class="navbar navbar-light bg-light navbar-expand-sm" id="navbar">
 
 
+            <!-- Dropdown Button -->
 
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"><span
+                    class="navbar-toggler-icon"></span></button>
 
-            <!-- Navbar Menu Items -->
 
 
-            <ul class="navbar-nav nav-fill w-100" id="menuButtons">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
-                <li class="active nav-item mr-2">
-                    <a class="nav-link hvr-bounce-in" href="#about">Winter is Coming</a>
-                </li>
+                <!-- Navbar Menu Items -->
 
-                <li class="active nav-item mr-2">
-                    <a class="nav-link hvr-bounce-in" href="#u-events">Valar Morghulis</a>
-                </li>
 
-                <li class="active nav-item mr-2">
-                    <a class="nav-link hvr-bounce-in" href="#p-events">For the Throne!</a>
-                </li>
+                <ul class="navbar-nav nav-fill w-100" id="menuButtons">
 
-                <li class="active nav-item mr-2">
-                    <a class="nav-link  hvr-bounce-in" href="#contact">Character Select</a>
-                </li>
-            </ul>
-        </div>
+                    <li class="active nav-item mr-2">
+                        <a class="nav-link hvr-bounce-in" href="#about">Winter is Coming</a>
+                    </li>
 
-    </nav>
+                    <li class="active nav-item mr-2">
+                        <a class="nav-link hvr-bounce-in" href="#u-events">Valar Morghulis</a>
+                    </li>
 
-    <!--- End Navbar-->
+                    <li class="active nav-item mr-2">
+                        <a class="nav-link hvr-bounce-in" href="#p-events">For the Throne!</a>
+                    </li>
 
-    <!-- Begin Landing Page -->
+                    <li class="active nav-item mr-2">
+                        <a class="nav-link  hvr-bounce-in" href="#contact">Character Select</a>
+                    </li>
+                </ul>
+            </div>
 
-<section class="container-fluid mt-1 main-container">
+        </nav>
 
-        <div class="img-overlay">&nbsp;</div>
+        <!--- End Navbar-->
 
-    <div class="row">
-        <div class="col-sm-12">
-            <img src="assets/img/dashboard.png" class="img-fluid db-img rounded mx-auto pb-5 d-block" alt="dashboard-logo">
-        </div>
-    </div>
+        <!-- Begin Landing Page -->
 
-    <article class="container-fluid mt-3 lp-container">
+        <section class="container-fluid mt-1 main-container">
 
-        <div class="row">
-            <div class="col-12">
+            <div class="img-overlay">&nbsp;</div>
 
-        
-                <!-- Begin Jumbotron -->
-                <div class="jumbotron rotate-scale-up" id="jumbo">
-                    <button class="btn btn-start btn-lg" data-toggle="modal" data-target="#signUpModal"><span class="modal-text hvr-bounce-in">Winter is coming!</span></button>
+        <!-- The following code adds elements for the snow falling effectto bind to -->
+
+            <div class="winter-is-coming">
+
+                <div class="snow snow--near"></div>
+                <div class="snow snow--near snow--alt"></div>
+
+                <div class="snow snow--mid"></div>
+                <div class="snow snow--mid snow--alt"></div>
+
+                <div class="snow snow--far"></div>
+                <div class="snow snow--far snow--alt"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <img src="assets/img/dashboard.png" class="img-fluid db-img rounded mx-auto pb-5 d-block"
+                        alt="dashboard-logo">
                 </div>
             </div>
-        </div>
-    </article>
 
-        <!-- End Jumbotron -->
+            <article class="container-fluid mt-3 lp-container">
 
-</section>
+                <div class="row">
+                    <div class="col-12">
 
 
-</div>
+                        <!-- Begin Jumbotron -->
+                        <div class="jumbotron rotate-scale-up" id="jumbo">
+                            <button class="btn btn-start btn-lg" data-toggle="modal" data-target="#signUpModal"><span
+                                    class="modal-text hvr-bounce-in">Winter is coming!</span></button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- End Jumbotron -->
+
+        </section>
+
+
+    </div>
 </body>
+
 </html>
