@@ -2,8 +2,16 @@
 /* Navbar Styling */
 
 #navbar {
-  background-color: #D3F3EE !important;
+  background-color: rgb(26,22,22) !important;
 }
+
+
+element.style {
+}
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active,
+ .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+  color: #7FB7BE !important;
+ }
 
 .nav-item {
   font-family: 'MedievalSharp', cursive;
@@ -68,8 +76,12 @@ article {
   font-size: 1.4em;
 }
 
+.btn {
+  color: #7FB7BE !important;
+}
+
 .jumbotron {
-  background-color: #D3F3EE;
+  background-color: rgb(26,22,22);
 }
 
 
