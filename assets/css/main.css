@@ -10,11 +10,57 @@
   width: 15vh;
 }
 
+/*
+
 .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active,
  .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
   color: #7FB7BE !important;
  }
 
+ .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active,
+ .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+  color: #6E403A !important;
+ }
+
+ */
+
+ /* Links in the navbar are targeted by ID due to override strong Bootstrap presets and use the IDs with jQuery */
+
+ #navGenLink {
+   color: #6E403A !important;
+ }
+
+
+ #navGenLink:active {
+   color: #7FB7BE !important;
+ }
+
+ #navDeathLink {
+  color: #6E403A !important;
+}
+
+
+#navDeathLink:active {
+  color: #7FB7BE !important;
+}
+
+#navPopLink {
+  color: #6E403A !important;
+}
+
+
+#navPopLink:active {
+  color: #7FB7BE !important;
+}
+
+#navCharaLink {
+  color: #6E403A !important;
+}
+
+
+#navCharaLink:active {
+  color: #7FB7BE !important;
+}
 
 
 .nav-item {
@@ -30,6 +76,13 @@
   margin-bottom: 0;
   padding: 0;
   top: 0;
+}
+
+.selected {
+  color: #6E403A !important;
+  background-color: #7FB7BE;
+  transition: all .3s ease-in-out;
+
 }
 
 /* Styles for the landing page */
