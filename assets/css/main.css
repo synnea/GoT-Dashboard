@@ -88,6 +88,10 @@
   -o-background-size: cover;
   background-size: cover;
 }
+
+@media (max-width:780px) {
+  
+}
 .main-container {
   position: relative;
   height:100vh;
