@@ -16,6 +16,8 @@ $(document).ready(function(){
         $(".gen-dash, .death-dash, .pop-dash, .chara-select").hide();
     });
 
+    // Upon clicking upon the first tab, hide the landing page and show the first dashboard.
+
     $(function() {
         $("#navGen").on("click", function(){
             $(".main").hide();
@@ -23,12 +25,16 @@ $(document).ready(function(){
         });
     });
 
+    // The "Home" button takes the user back to the landing page.
+
     $(function() {
         $("#navHome").on("click", function(){
             $(".gen-dash, .death-dash, .pop-dash, .chara-select").hide();
             $(".main").fadeIn(500);
         });
     });
+
+     // The CTA button takes the user to the first dashboard.
 
     $(function() {
         $("#winter-btn").on("click", function(){
