@@ -44,14 +44,4 @@ $(document).ready(function () {
         });
     });
 
-    // ---------------------------------- GENERAL DASHBOARD ------------------------------------
-
-    // the following queue function loads the data and holds back the graph making function until the loading has finished
-
-    queue()
-        .defer(d3.json, "data/got_json.json")
-        .await(makeGraphs);
-
-    function makeGraphs(error, gotData) {}
-
 });
