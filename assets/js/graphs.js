@@ -5,10 +5,6 @@ queue()
 function makeGraphs(error, gotData) {
     var ndx = crossfilter(gotData);
     
-    gotData.forEach(function(d){
-        d.viewers = parseInt(d.viewers);
-    })
-    
     show_total_viewership_by_season(ndx);
     show_avg_viewership_by_season(ndx);
     
