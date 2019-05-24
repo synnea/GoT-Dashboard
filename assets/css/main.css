@@ -17,7 +17,6 @@
    color: #6E403A !important;
  }
 
-
  #navGenLink:active {
    color: #7FB7BE !important;
  }
@@ -88,6 +87,10 @@
   -o-background-size: cover;
   background-size: cover;
 }
+
+@media (max-width:780px) {
+  
+}
 .main-container {
   position: relative;
   height:100vh;
@@ -129,6 +132,10 @@ article {
 
 .jumbotron {
   background-color: #7FB7BE;
+}
+
+body {
+  color: #fff !important;
 }
 
 

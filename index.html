@@ -23,12 +23,11 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js">
-    </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.2/d3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter2/1.4.6/crossfilter.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dc/3.0.12/dc.js"></script>
     <script type="text/javascript" src="assets/js/scripts.js"></script>
+    <script type="text/javascript" src="assets/js/graphs.js"></script>
 
 
 </head>
@@ -56,7 +55,8 @@
                 <ul class="navbar-nav nav-fill w-100" id="menuButtons">
 
                     <li class="active nav-item mr-2" id="navHome">
-                        <div class="nav-link hvr-bounce-in"><img src="assets/img/home.png" class="img-fluid home-img" alt="home-icon"></div>
+                        <div class="nav-link hvr-bounce-in"><img src="assets/img/home.png" class="img-fluid home-img"
+                                alt="home-icon"></div>
                     </li>
 
                     <li class="active nav-item mr-2 mt-0 mb-0" id="navGen">
@@ -121,8 +121,7 @@
 
                             <!-- Begin Button-->
 
-                            <button type="button"
-                                class="btn btn-outline-primary hvr-bounce-in mx-auto d-block"
+                            <button type="button" class="btn btn-outline-primary hvr-bounce-in mx-auto d-block"
                                 id="winter-btn"><img src="assets/img/winteriscoming.png"
                                     class="img-fluid winter-pic rounded mx-auto d-block"
                                     alt="linktofirstdashboard" /></button>
@@ -142,7 +141,21 @@
 
         <section class="gen-dash">
 
-            <h1>Hello</h1>
+            <h1>General Statistics</h1>
+
+            <div id="numSeasons">
+                NumSeasons
+            </div>
+
+            <div id="numEps">
+                NumEps
+
+            </div>
+
+            <div>
+                <h3>Viewership by Season</h3>
+                <div id="viewsSeason"></div>
+            </div>
 
         </section>
 
