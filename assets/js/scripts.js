@@ -21,6 +21,7 @@ $(document).ready(function () {
         $("#navGen").on("click", function () {
             $(".main").hide();
             $(".gen-dash").fadeIn(500);
+            $(".content-container").removeClass("background").addClass("background-alt");
         });
     });
 
@@ -30,6 +31,7 @@ $(document).ready(function () {
         $("#navHome").on("click", function () {
             $(".gen-dash, .death-dash, .pop-dash, .chara-select").hide();
             $(".main").fadeIn(500);
+            $(".content-container").removeClass("background-alt").addClass("background");
         });
     });
 

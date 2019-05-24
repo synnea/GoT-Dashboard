@@ -80,12 +80,16 @@
   justify-content: center;
 }
 
-.content-container {
+.background {
   background: url("../img/bg-img.jpg") no-repeat center center scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+.background-alt {
+  background-color: #fff;
 }
 
 @media (max-width:780px) {
@@ -135,7 +139,13 @@ article {
 }
 
 body {
-  color: #fff !important;
+  color: #000 !important;
+}
+
+/* ------------- GEN DASHBOARD ------------------ */
+
+h1 {
+  font-family: 'MedievalSharp', cursive;
 }
 
 
