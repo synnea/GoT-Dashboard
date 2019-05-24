@@ -1,4 +1,4 @@
-﻿Season,Episode Number,Number in Season,Episode Name,Director,Writer,Original Air Date,US viewers (million),Runtime (mins),IMDB Description,IMDB votes,Imdb Rating,Notable Death Count
+Season,Episode Number,Number in Season,Episode Name,Director,Writer,Original Air Date,US viewers (million),Runtime (mins),IMDB Description,IMDB votes,Imdb Rating,Notable Death Count
 1,1,1,Winter Is Coming,Tim Van Patten,David Benioff & D. B. Weiss,"April 17, 2011",2.22,62,"Jon Arryn, the Hand of the King, is dead. King Robert Baratheon plans to ask his oldest friend, Eddard Stark, to take Jon's place. Across the sea, Viserys Targaryen plans to wed his sister to a nomadic warlord in exchange for an army.",27685,9,4
 1,2,2,The Kingsroad,Tim Van Patten,David Benioff & D. B. Weiss,"April 24, 2011",2.2,56,"While Bran recovers from his fall, Ned takes only his daughters to King's Landing. Jon Snow goes with his uncle Benjen to the Wall. Tyrion joins them.",21256,8.8,3
 1,3,3,Lord Snow,Brian Kirk,David Benioff & D. B. Weiss,"May 1, 2011",2.44,58,Lord Stark and his daughters arrive at King's Landing to discover the intrigues of the king's realm.,20090,8.7,0
@@ -66,3 +66,9 @@
 7,65,5,Eastwatch,Matt Shakman,Dave Hill,"August 13, 2017",10.72,59,Darnerys demands loyalty from the surviving Lannister soldiers; Jon heeds Bran's warning about White Walkers on the move; Cersei vows to vanquish anyone or anything that stands in her way.,29870,9,2
 7,66,6,Beyond the Wall,Alan Taylor,David Benioff & D. B. Weiss,"August 20, 2017",10.24,70,Jon and his team go beyond the wall to capture a wight. Daenerys has to make a tough decision.,44284,9.2,3
 7,67,7,The Dragon and the Wolf,Jeremy Podeswa,David Benioff & D. B. Weiss,"August 27, 2017",12.07,80,"Everyone meets in King's Landing to discuss the fate of the realm. In Winterfell, Sansa confronts Arya. Sam reaches Winterfell, where he and Bran discover a shocking secret about Jon Snow.",42505,9.6,1
+8,68,1,Winterfell,David Nutter,Dave Hill,"April 14, 2019",11.76,54,,101052,7.8,1
+8,69,2,A Knight of the Seven Kingdoms,David Nutter,Bryan Cogman,"April 21, 2019",10.29,58,,98040,8.1,0
+8,70,3,The Long Night,Miguel Sapochnik,David Benioff & D.B. Weiss,"April 28, 2019",12.02,82,,175507,7.7,7
+8,71,4,The Last of the Starks,David Nutter,David Benioff & D.B. Weiss,"May 5, 2019",11.8,78,,128305,5.7,2
+8,72,5,The Bells,Miguel Sapochnik,David Benioff & D.B. Weiss,"May 12, 2019",12.48,79,,148334,6.3,7
+8,73,6,The Iron Throne,David Benioff & D.B. Weiss,David Benioff & D.B. Weiss,"May 19, 2019",13.6,79,,154346,4.4,1
