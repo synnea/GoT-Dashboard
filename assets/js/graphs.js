@@ -21,10 +21,35 @@ $(document).ready(function () {
     function chartBuilder(gotData) {
 
         var ndx = crossfilter(gotData);
-        var allData = ndx.groupAll(); // allData groups all 'ndx' items for the ??DATACOUNT??
 
-        console.log(ndx);
+        show_num_eps(ndx);
+        show_num_seasons(ndx);
+
+        dc.renderAll();
 
     }
+
+//----------------------NUMBER OF EPISODES FUNCTION -------------
+
+    function show_num_eps(ndx) {
+
+        var allData = ndx.groupAll();
+
+        dc.dataCount("#numEps") 
+            .crossfilter(ndx)
+            .groupAll(allData);
+
+    }
+
+//----------------------NUMBER OF SEASONS  FUNCTION -------------
+
+    function show_num_seasons(ndx) {
+        dim = ndx.dimension(dc.pluck('Season'));
+        groupSeason = dim.group();
+
+        dc.numberDisplay("#numSeasons")
+            .group(groupSeason);
+    }
+
 
 })
