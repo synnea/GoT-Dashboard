@@ -7,7 +7,7 @@ function makeGraphs(error, gotData) {
     
     
     show_total_viewership_by_season(ndx);
-    // show_avg_viewership_by_season(ndx);
+    show_avg_viewership_by_season(ndx);
     
     dc.renderAll();
 }
@@ -63,3 +63,30 @@ function show_total_viewership_by_season(ndx) {
         .renderLabel(true)
         .yAxis().ticks(4);
 }
+
+function show_avg_viewership_by_season(ndx) {
+
+    var seasonDim = ndx.dimension(dc.pluck('Season'));
+    var avg_views_group = reduceAvg(seasonDim, 'US viewers (million)');
+ 
+    dc.barChart('#avgViewsSeason')
+        .width(500)
+        .height(300)
+        .margins({top: 10, right: 60, bottom: 30, left: 50})
+        .dimension(seasonDim)
+        .group(avg_views_group)
+        .transitionDuration(500)
+        .valueAccessor(function(d) {
+            return d.average / 100;
+        })
+        .x(d3.scale.ordinal())
+        .y(d3.scale.linear()
+            .domain([0, 85]))
+        .xUnits(dc.units.ordinal)
+        .xAxisLabel("Season")
+        .yAxisLabel("Viewership (in million)")
+        .renderLabel(true)
+        .yAxis().ticks(4);
+ }
+ 
+ 
