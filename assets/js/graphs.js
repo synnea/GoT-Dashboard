@@ -22,12 +22,17 @@ $(document).ready(function () {
 
         var ndx = crossfilter(gotData);
 
+        gotData.forEach(function(d){
+            d.Season = String(d.Season);
+        })
+
         show_num_eps(ndx);
         show_num_seasons(ndx);
+        // show_viewers_per_season(ndx);
 
         dc.renderAll();
 
-    }
+    
 
 //----------------------NUMBER OF EPISODES FUNCTION -------------
 
@@ -37,7 +42,7 @@ $(document).ready(function () {
 
         dc.dataCount("#numEps") 
             .crossfilter(ndx)
-            .groupAll(allData);
+            .group(allData);
 
     }
 
@@ -51,5 +56,14 @@ $(document).ready(function () {
             .group(groupSeason);
     }
 
+    /*
+//-------------------------VIEWERSHIP PER SEASON --------------
 
+    function viewers_per_season(ndx) {
+        seasonDimension = ndx.dimension(dc.pluck('Season'));
+
+    }
+    */
+
+    }
 })
