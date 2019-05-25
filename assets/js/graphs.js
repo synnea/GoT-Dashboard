@@ -4,13 +4,26 @@ queue()
 
 function makeGraphs(error, gotData) {
     var ndx = crossfilter(gotData);
+    var seasonDim = ndx.dimension(dc.pluck('season'));
 
     show_total_viewership_by_season(ndx);
     show_avg_viewership_by_season(ndx);
     show_num_eps(ndx);
+    show_num_seasons(ndx);
 
     dc.renderAll();
 }
+
+// The following function enables the printing of crossfilter data. This function was used extensively to look inside crossfilter groups.
+
+function print_filter(filter) {
+    var f=eval(filter);
+    if (typeof(f.length) != "undefined") {}else{}
+    if (typeof(f.top) != "undefined") {f=f.top(Infinity);}else{}
+    if (typeof(f.dimension) != "undefined") {f=f.dimension(function(d) { return "";}).top(Infinity);}else{}
+    console.log(filter+"("+f.length+") = "+JSON.stringify(f).replace("[","[\n\t").replace(/}\,/g,"},\n\t").replace("]","\n]"));
+}
+
 // Individual Graph Functions
 
 function show_total_viewership_by_season(ndx) {
@@ -103,11 +116,32 @@ function show_avg_viewership_by_season(ndx) {
 
 function show_num_eps(ndx) {
 
-    var allData = ndx.groupAll();
+    var numEpGroup = ndx.groupAll();
 
     dc.numberDisplay("#numEps")
-        .group(allData)
+        .group(numEpGroup)
         .valueAccessor(function (d) {
             return d;
     })
 };
+
+function show_num_seasons(ndx) {
+
+    var seasonDim = ndx.dimension(dc.pluck('season'));
+    var numSeasonGroup = seasonDim.group();
+   
+    // this function, generated with the reductio.js library counts the number of unique seasons
+
+        var reducer = reductio()
+            .exception(function(d) { return d.season; })
+            .exceptionCount(true)
+        
+        reducer(numSeasonGroup);
+
+    dc.numberDisplay("#numSeasons")
+        .group(numSeasonGroup)
+        .formatNumber(d3.format(".1"))
+        .valueAccessor(function (d) {
+            return d.key;
+    })
+}
