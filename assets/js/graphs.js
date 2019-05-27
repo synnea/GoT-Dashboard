@@ -5,20 +5,7 @@ queue()
 function makeGraphs(error, gotData) {
     var ndx = crossfilter(gotData);
 
-   gotData.forEach(function(d){
-     var airDate = new Date(d.airdate);
-     console.log(airDate);
-    });
-
-    show_total_viewership_by_season(ndx);
-    show_avg_viewership_by_season(ndx);
-    show_num_eps(ndx);
-    show_num_seasons(ndx);
-
-    dc.renderAll();
-}
-
-// The following function enables the printing of crossfilter data. This function was used extensively to look inside crossfilter groups.
+    // The following function enables the printing of crossfilter data. This function was used extensively to look inside crossfilter groups.
 
 function print_filter(filter) {
     var f=eval(filter);
@@ -27,6 +14,25 @@ function print_filter(filter) {
     if (typeof(f.dimension) != "undefined") {f=f.dimension(function(d) { return "";}).top(Infinity);}else{}
     console.log(filter+"("+f.length+") = "+JSON.stringify(f).replace("[","[\n\t").replace(/}\,/g,"},\n\t").replace("]","\n]"));
 }
+// Convert airdates to a valid date data type
+
+
+
+gotData.forEach(function(d){
+    var airDates = new Date(d.airdate);
+    d.airdate = airDates;
+});
+
+    show_total_viewership_by_season(ndx);
+    show_avg_viewership_by_season(ndx);
+    show_num_eps(ndx);
+    show_num_seasons(ndx);
+    show_viewership_over_time(ndx);
+
+    dc.renderAll();
+}
+
+
 
 // Individual Graph Functions
 
@@ -148,4 +154,32 @@ function show_num_seasons(ndx) {
         .valueAccessor(function (d) {
             return d.key;
     })
+}
+
+function show_viewership_over_time(ndx) {
+    var dateDim = ndx.dimension(dc.pluck('airdate'));
+    var viewGroup = dateDim.group().reduceSum(dc.pluck('viewers'));
+
+    var minDate = dateDim.bottom(1)[0].airdate;
+    var maxDate = dateDim.top(1)[0].airdate;
+
+    dc.lineChart('#viewsOverTime')
+    .width(500)
+    .height(300)
+    .margins({
+        top: 10,
+        right: 60,
+        bottom: 30,
+        left: 50
+    })
+    .dimension(dateDim)
+    .group(viewGroup)
+    .transitionDuration(500)
+    .x(d3.time.scale().domain([minDate,maxDate]))
+    .xUnits(d3.time.month)
+    .y(d3.scale.linear()
+        .domain([0, 30]))
+    .xAxisLabel("Time")
+    .yAxisLabel("Viewership (in million)")
+    .yAxis().ticks(4);
 }
