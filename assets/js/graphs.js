@@ -4,7 +4,11 @@ queue()
 
 function makeGraphs(error, gotData) {
     var ndx = crossfilter(gotData);
-    var seasonDim = ndx.dimension(dc.pluck('season'));
+
+   gotData.forEach(function(d){
+     var airDate = new Date(d.airdate);
+     console.log(airDate);
+    });
 
     show_total_viewership_by_season(ndx);
     show_avg_viewership_by_season(ndx);
