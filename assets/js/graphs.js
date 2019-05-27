@@ -157,11 +157,29 @@ function show_num_seasons(ndx) {
 }
 
 function show_viewership_over_time(ndx) {
-    var dateDim = ndx.dimension(dc.pluck('airdate'));
-    var viewGroup = dateDim.group().reduceSum(dc.pluck('viewers'));
 
-    var minDate = dateDim.bottom(1)[0].airdate;
-    var maxDate = dateDim.top(1)[0].airdate;
+
+    var dateDim = ndx.dimension(dc.pluck('airdate'));
+
+    
+    function views_by_season1(ndx) {
+        return function(d) {
+            if (d.season === 1) {
+                return +d.viewers;
+            } else {
+                return 0;
+            }
+        }
+    }
+
+   
+    var season1Views = dateDim.group().reduceSum(views_by_season1);
+    //var viewGroup = dateDim.group().reduceSum(dc.pluck('viewers'));
+
+    var minDate = new Date("2011-04-17");
+    var maxDate = new Date("2011-06-19");
+    //var minDate = dateDim.bottom(1)[0].airdate;
+    //var maxDate = dateDim.top(1)[0].airdate;
 
     dc.lineChart('#viewsOverTime')
     .width(500)
@@ -173,7 +191,7 @@ function show_viewership_over_time(ndx) {
         left: 50
     })
     .dimension(dateDim)
-    .group(viewGroup)
+    .group(season1Views)
     .transitionDuration(500)
     .x(d3.time.scale().domain([minDate,maxDate]))
     .xUnits(d3.time.month)
