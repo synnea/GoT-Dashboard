@@ -25,17 +25,12 @@ gotData.forEach(function(d){
     d.airdate = airDates;
 });
 
-gotMonData.forEach(function(d){
-    var airDates = new Date(d.airdate);
-    d.airdate = airDates;
-});
-
-
     show_total_viewership_by_season(ndx);
     show_avg_viewership_by_season(ndx);
     show_num_eps(ndx);
     show_num_seasons(ndx);
     show_viewership_over_time(ndx);
+    show_season_selector(ndx);
 
     dc.renderAll();
 }
@@ -163,6 +158,17 @@ function show_num_seasons(ndx) {
             return d.key;
     })
 }
+
+function show_season_selector(ndx) {
+    var seasonDim = ndx.dimension(dc.pluck('season'));
+    var seasonGroup = seasonDim.group();
+    
+    dc.selectMenu("#seasonSelector")
+        .dimension(seasonDim)
+        .group(seasonGroup)
+        .promptText('Season Selector');
+}
+
 
 function show_viewership_over_time(ndx) {
 
