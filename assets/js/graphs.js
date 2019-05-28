@@ -170,7 +170,7 @@ function show_viewership_over_time(ndx_monthly) {
 
     // Function that removes blank values so the line chart doesn't nosedive
 
-    function remove_blanks(group, value_to_remove) {
+   function remove_blanks(group, value_to_remove) {
         // Filter out specified values from passed group
         return {
             all: function() {
@@ -181,32 +181,45 @@ function show_viewership_over_time(ndx_monthly) {
         };
     }
 
-
-    var dateDim = ndx_monthly.dimension(function (d) {return d.airdate; });
+   
 
     function views_by_season(season) {
+        return function (d) {
         if (d.season === season) {
             return +d.viewers;
         }else {
             return 0;
     }
-    
+}
 };
 
+    var dateDim = ndx_monthly.dimension(function (d) {return d.airdate; });
+
+    var minDate = dateDim.bottom(1)[0].airdate;
+    var maxDate = dateDim.top(1)[0].airdate;
 
 
-var S1Views = dateDim.group().views_by_season(1);
-var S2Views = dateDim.group().views_by_season(2);
-var S3Views = dateDim.group().views_by_season(3);
-var S4Views = dateDim.group().views_by_season(4);
-var S5Views = dateDim.group().views_by_season(5);
-var S6Views = dateDim.group().views_by_season(6);
-var S7Views = dateDim.group().views_by_season(7);
-var S8Views = dateDim.group().views_by_season(8);
+var S1Views = dateDim.group().reduceSum(views_by_season(1));
+var S2Views = dateDim.group().reduceSum(views_by_season(2));
+var S3Views = dateDim.group().reduceSum(views_by_season(3));
+var S4Views = dateDim.group().reduceSum(views_by_season(4));
+var S5Views = dateDim.group().reduceSum(views_by_season(5));
+var S6Views = dateDim.group().reduceSum(views_by_season(6));
+var S7Views = dateDim.group().reduceSum(views_by_season(7));
+var S8Views = dateDim.group().reduceSum(views_by_season(8));
+
+S1Group = remove_blanks(S1Views);
+S2Group = remove_blanks(S2Views);
+S3Group = remove_blanks(S3Views);
+S4Group = remove_blanks(S4Views);
+S5Group = remove_blanks(S5Views);
+S6Group = remove_blanks(S6Views);
+S7Group = remove_blanks(S7Views);
+S8Group = remove_blanks(S8Views);
 
 var compositeChart = dc.compositeChart('#viewsOverTime');
 compositeChart
-    .width(990)
+    .width(1100)
     .height(500)
     .dimension(dateDim)
     .x(d3.time.scale().domain([minDate, maxDate]))
@@ -215,21 +228,28 @@ compositeChart
     .renderHorizontalGridLines(true)
     .compose([
         dc.lineChart(compositeChart)
-            .group(S1Views, 'Season 1'),
+            .group(S1Group, 'Season 1')
+            .colors('green'),
         dc.lineChart(compositeChart)
-            .group(S2Views, 'Season 2'),
+            .colors('red')
+            .group(S2Group, 'Season 2'),
             dc.lineChart(compositeChart)
-            .group(S3Views, 'Season 3'),
+            .colors('blue')
+            .group(S3Group, 'Season 3'),
             dc.lineChart(compositeChart)
-            .group(S4Views, 'Season 4'),
+            .colors('black')
+            .group(S4Group, 'Season 4'),
             dc.lineChart(compositeChart)
-            .group(S5Views, 'Season 5'),
+            .colors('yellow')
+            .group(S5Group, 'Season 5'),
             dc.lineChart(compositeChart)
-            .group(S6Views, 'Season 6'),
+            .colors('orange')
+            .group(S6Group, 'Season 6'),
             dc.lineChart(compositeChart)
-            .group(S7Views, 'Season 7'),
+            .colors('grey')
+            .group(S7Group, 'Season 7'),
             dc.lineChart(compositeChart)
-            .group(S8Views, 'Season 8'),
+            .group(S8Group, 'Season 8'),
     ])
     .brushOn(false)
     .render();
