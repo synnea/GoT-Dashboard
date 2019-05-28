@@ -37,7 +37,7 @@ gotMonData.forEach(function(d){
     show_avg_viewership_by_season(ndx);
     show_num_eps(ndx);
     show_num_seasons(ndx);
-    show_viewership_over_time(ndx_monthly);
+    show_viewership_over_time(ndx);
 
     dc.renderAll();
 }
@@ -166,7 +166,7 @@ function show_num_seasons(ndx) {
     })
 }
 
-function show_viewership_over_time(ndx_monthly) {
+function show_viewership_over_time(ndx) {
 
     // Function that removes blank values so the line chart doesn't nosedive
 
@@ -193,7 +193,7 @@ function show_viewership_over_time(ndx_monthly) {
 }
 };
 
-    var dateDim = ndx_monthly.dimension(function (d) {return d.airdate; });
+    var dateDim = ndx.dimension(function (d) {return d.airdate; });
 
     var minDate = dateDim.bottom(1)[0].airdate;
     var maxDate = dateDim.top(1)[0].airdate;
@@ -208,20 +208,21 @@ var S6Views = dateDim.group().reduceSum(views_by_season(6));
 var S7Views = dateDim.group().reduceSum(views_by_season(7));
 var S8Views = dateDim.group().reduceSum(views_by_season(8));
 
-S1Group = remove_blanks(S1Views);
-S2Group = remove_blanks(S2Views);
-S3Group = remove_blanks(S3Views);
-S4Group = remove_blanks(S4Views);
-S5Group = remove_blanks(S5Views);
-S6Group = remove_blanks(S6Views);
-S7Group = remove_blanks(S7Views);
-S8Group = remove_blanks(S8Views);
+S1Group = remove_blanks(S1Views, 0);
+S2Group = remove_blanks(S2Views, 0);
+S3Group = remove_blanks(S3Views, 0);
+S4Group = remove_blanks(S4Views, 0);
+S5Group = remove_blanks(S5Views, 0);
+S6Group = remove_blanks(S6Views, 0);
+S7Group = remove_blanks(S7Views, 0);
+S8Group = remove_blanks(S8Views, 0);
 
 var compositeChart = dc.compositeChart('#viewsOverTime');
 compositeChart
     .width(1100)
     .height(500)
     .dimension(dateDim)
+    .mouseZoomable(true)
     .x(d3.time.scale().domain([minDate, maxDate]))
     .xAxisLabel("Time")
     .yAxisLabel("Viewership (in million)")
@@ -251,6 +252,6 @@ compositeChart
             dc.lineChart(compositeChart)
             .group(S8Group, 'Season 8'),
     ])
-    .brushOn(false)
+    .brushOn(true)
     .render();
 }
