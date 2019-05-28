@@ -226,7 +226,7 @@ S8Group = remove_blanks(S8Views, 0);
 
 var compositeChart = dc.compositeChart('#viewsOverTime');
 compositeChart
-    .width(1100)
+    .width(1200)
     .height(500)
     .dimension(dateDim)
     .x(d3.time.scale().domain([minDate, maxDate]))
