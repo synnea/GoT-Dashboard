@@ -1,11 +1,9 @@
 queue()
     .defer(d3.json, "data/got_json.json")
-    .defer(d3.json, "data/got_monthly.json")
     .await(makeGraphs);
 
-function makeGraphs(error, gotData, gotMonData) {
+function makeGraphs(error, gotData) {
     var ndx = crossfilter(gotData);
-    var ndx_monthly = crossfilter(gotMonData);
 
     // The following function enables the printing of crossfilter data. This function was used extensively to look inside crossfilter groups.
 
