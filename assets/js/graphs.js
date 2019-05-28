@@ -14,6 +14,8 @@ function print_filter(filter) {
     if (typeof(f.dimension) != "undefined") {f=f.dimension(function(d) { return "";}).top(Infinity);}else{}
     console.log(filter+"("+f.length+") = "+JSON.stringify(f).replace("[","[\n\t").replace(/}\,/g,"},\n\t").replace("]","\n]"));
 }
+
+
 // Convert airdates to a valid date data type
 
 
@@ -158,6 +160,19 @@ function show_num_seasons(ndx) {
 
 function show_viewership_over_time(ndx) {
 
+    // Function that removes blank values so the line chart doesn't nosedive
+
+    function remove_blanks(group, value_to_remove) {
+        // Filter out specified values from passed group
+        return {
+            all: function() {
+                return group.all().filter(function(d) {
+                    return d.key !== value_to_remove;
+                });
+            }
+        };
+    }
+
 
     var dateDim = ndx.dimension(function (d) {return d.airdate; });
 
@@ -169,15 +184,18 @@ function show_viewership_over_time(ndx) {
         }
     });
 
-    //var viewGroup = dateDim.group().reduceSum(dc.pluck('viewers'));
+    var season1Group = remove_blanks(season1Views, "");
 
+
+
+    //var viewGroup = dateDim.group().reduceSum(dc.pluck('viewers'));
 
     var minDate = dateDim.bottom(1)[0].airdate;
     var maxDate = dateDim.top(1)[0].airdate;
 
     dc.lineChart('#viewsOverTime')
-    .width(600)
-    .height(400)
+    .width(800)
+    .height(400) 
     .margins({
         top: 10,
         right: 60,
@@ -185,7 +203,7 @@ function show_viewership_over_time(ndx) {
         left: 50
     })
     .dimension(dateDim)
-    .group(season1Views)
+    .group(season1Group)
     .transitionDuration(500)
     .x(d3.time.scale().domain([minDate,maxDate]))
     .xUnits(d3.time.month)
