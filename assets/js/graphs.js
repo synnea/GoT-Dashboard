@@ -166,7 +166,10 @@ function show_season_selector(ndx) {
     dc.selectMenu("#seasonSelector")
         .dimension(seasonDim)
         .group(seasonGroup)
-        .promptText('Season Selector');
+        .promptText('Season Selector')
+        .title(function (d){
+            return 'Season ' + d.key + ': ' + d.value + ' Episodes';
+        });
 }
 
 
@@ -226,11 +229,11 @@ compositeChart
     .width(1100)
     .height(500)
     .dimension(dateDim)
-    .mouseZoomable(true)
     .x(d3.time.scale().domain([minDate, maxDate]))
     .xAxisLabel("Time")
     .yAxisLabel("Viewership (in million)")
     .renderHorizontalGridLines(true)
+    .mouseZoomable(true)
     .compose([
         dc.lineChart(compositeChart)
             .group(S1Group, 'Season 1')
