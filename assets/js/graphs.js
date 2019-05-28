@@ -1,9 +1,11 @@
 queue()
     .defer(d3.json, "data/got_json.json")
+    .defer(d3.json, "data/got_monthly.json")
     .await(makeGraphs);
 
-function makeGraphs(error, gotData) {
+function makeGraphs(error, gotData, gotMonData) {
     var ndx = crossfilter(gotData);
+    var ndx_monthly = crossfilter(gotMonData);
 
     // The following function enables the printing of crossfilter data. This function was used extensively to look inside crossfilter groups.
 
@@ -25,11 +27,17 @@ gotData.forEach(function(d){
     d.airdate = airDates;
 });
 
+gotMonData.forEach(function(d){
+    var airDates = new Date(d.airdate);
+    d.airdate = airDates;
+});
+
+
     show_total_viewership_by_season(ndx);
     show_avg_viewership_by_season(ndx);
     show_num_eps(ndx);
     show_num_seasons(ndx);
-    show_viewership_over_time(ndx);
+    show_viewership_over_time(ndx_monthly);
 
     dc.renderAll();
 }
@@ -158,7 +166,7 @@ function show_num_seasons(ndx) {
     })
 }
 
-function show_viewership_over_time(ndx) {
+function show_viewership_over_time(ndx_monthly) {
 
     // Function that removes blank values so the line chart doesn't nosedive
 
@@ -167,14 +175,14 @@ function show_viewership_over_time(ndx) {
         return {
             all: function() {
                 return group.all().filter(function(d) {
-                    return d.key !== value_to_remove;
+                    return d.value !== value_to_remove;
                 });
             }
         };
     }
 
 
-    var dateDim = ndx.dimension(function (d) {return d.airdate; });
+    var dateDim = ndx_monthly.dimension(function (d) {return d.airdate; });
 
     var season1Views = dateDim.group().reduceSum(function(d) {
         if (d.season === 1) {
@@ -206,7 +214,7 @@ function show_viewership_over_time(ndx) {
     .group(season1Group)
     .transitionDuration(500)
     .x(d3.time.scale().domain([minDate,maxDate]))
-    .xUnits(d3.time.month)
+    .xUnits(d3.time.day)
     .y(d3.scale.linear()
         .domain([0, 20]))
     .xAxisLabel("Time")
