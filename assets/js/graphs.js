@@ -159,31 +159,25 @@ function show_num_seasons(ndx) {
 function show_viewership_over_time(ndx) {
 
 
-    var dateDim = ndx.dimension(dc.pluck('airdate'));
+    var dateDim = ndx.dimension(function (d) {return d.airdate; });
 
-    
-    function views_by_season1(ndx) {
-        return function(d) {
-            if (d.season === 1) {
-                return +d.viewers;
-            } else {
-                return 0;
-            }
+    var season1Views = dateDim.group().reduceSum(function(d) {
+        if (d.season === 1) {
+            return +d.viewers;
+        } else {
+            return 0;
         }
-    }
+    });
 
-   
-    var season1Views = dateDim.group().reduceSum(views_by_season1);
     //var viewGroup = dateDim.group().reduceSum(dc.pluck('viewers'));
 
-    var minDate = new Date("2011-04-17");
-    var maxDate = new Date("2011-06-19");
-    //var minDate = dateDim.bottom(1)[0].airdate;
-    //var maxDate = dateDim.top(1)[0].airdate;
+
+    var minDate = dateDim.bottom(1)[0].airdate;
+    var maxDate = dateDim.top(1)[0].airdate;
 
     dc.lineChart('#viewsOverTime')
-    .width(500)
-    .height(300)
+    .width(600)
+    .height(400)
     .margins({
         top: 10,
         right: 60,
@@ -196,7 +190,7 @@ function show_viewership_over_time(ndx) {
     .x(d3.time.scale().domain([minDate,maxDate]))
     .xUnits(d3.time.month)
     .y(d3.scale.linear()
-        .domain([0, 30]))
+        .domain([0, 20]))
     .xAxisLabel("Time")
     .yAxisLabel("Viewership (in million)")
     .yAxis().ticks(4);
