@@ -184,40 +184,53 @@ function show_viewership_over_time(ndx_monthly) {
 
     var dateDim = ndx_monthly.dimension(function (d) {return d.airdate; });
 
-    var season1Views = dateDim.group().reduceSum(function(d) {
-        if (d.season === 1) {
+    function views_by_season(season) {
+        if (d.season === season) {
             return +d.viewers;
-        } else {
+        }else {
             return 0;
-        }
-    });
-
-    var season1Group = remove_blanks(season1Views, "");
-
+    }
+    
+};
 
 
-    //var viewGroup = dateDim.group().reduceSum(dc.pluck('viewers'));
 
-    var minDate = dateDim.bottom(1)[0].airdate;
-    var maxDate = dateDim.top(1)[0].airdate;
+var S1Views = dateDim.group().views_by_season(1);
+var S2Views = dateDim.group().views_by_season(2);
+var S3Views = dateDim.group().views_by_season(3);
+var S4Views = dateDim.group().views_by_season(4);
+var S5Views = dateDim.group().views_by_season(5);
+var S6Views = dateDim.group().views_by_season(6);
+var S7Views = dateDim.group().views_by_season(7);
+var S8Views = dateDim.group().views_by_season(8);
 
-    dc.lineChart('#viewsOverTime')
-    .width(800)
-    .height(400) 
-    .margins({
-        top: 10,
-        right: 60,
-        bottom: 30,
-        left: 50
-    })
+var compositeChart = dc.compositeChart('#viewsOverTime');
+compositeChart
+    .width(990)
+    .height(500)
     .dimension(dateDim)
-    .group(season1Group)
-    .transitionDuration(500)
-    .x(d3.time.scale().domain([minDate,maxDate]))
-    .xUnits(d3.time.day)
-    .y(d3.scale.linear()
-        .domain([0, 20]))
+    .x(d3.time.scale().domain([minDate, maxDate]))
     .xAxisLabel("Time")
     .yAxisLabel("Viewership (in million)")
-    .yAxis().ticks(4);
+    .renderHorizontalGridLines(true)
+    .compose([
+        dc.lineChart(compositeChart)
+            .group(S1Views, 'Season 1'),
+        dc.lineChart(compositeChart)
+            .group(S2Views, 'Season 2'),
+            dc.lineChart(compositeChart)
+            .group(S3Views, 'Season 3'),
+            dc.lineChart(compositeChart)
+            .group(S4Views, 'Season 4'),
+            dc.lineChart(compositeChart)
+            .group(S5Views, 'Season 5'),
+            dc.lineChart(compositeChart)
+            .group(S6Views, 'Season 6'),
+            dc.lineChart(compositeChart)
+            .group(S7Views, 'Season 7'),
+            dc.lineChart(compositeChart)
+            .group(S8Views, 'Season 8'),
+    ])
+    .brushOn(false)
+    .render();
 }
