@@ -5,14 +5,14 @@ $(document).ready(function () {
     // On load, activate the animation on the main button.
 
     $("#winter-btn").addClass("flicker-in-1").on("click", function () {
-        $(".gen-dash, .death-dash, .pop-dash, .chara-select").hide();
+        $(".dashboard-container").hide();
         $(".main").fadeIn(500);
     });
 
     // Hide all sections apart from the main one.
 
     $(function () {
-        $(".gen-dash, .death-dash, .pop-dash, .chara-select").hide();
+        $(".dashboard-container").hide();
     });
 
     // Upon clicking upon the first tab, hide the landing page and show the first dashboard.
@@ -20,7 +20,7 @@ $(document).ready(function () {
     $(function () {
         $("#navGen").on("click", function () {
             $(".main").hide();
-            $(".gen-dash").fadeIn(500);
+            $(".dashboard-container").fadeIn(500);
             $(".content-container").removeClass("background").addClass("background-alt");
         });
     });
@@ -29,9 +29,19 @@ $(document).ready(function () {
 
     $(function () {
         $("#navHome").on("click", function () {
-            $(".gen-dash, .death-dash, .pop-dash, .chara-select").hide();
+            $(".dashboard-container").hide();
             $(".main").fadeIn(500);
             $(".content-container").removeClass("background-alt").addClass("background");
+        });
+    });
+
+    //Upon click the second tab, show the second part of the dashboard.
+
+    $(function () {
+        $("#navDeathLink").on("click", function () {
+            $(".main").hide();
+            $(".dashboard-container").fadeIn(500);
+            $(".content-container").removeClass("background").addClass("background-alt");
         });
     });
 
@@ -42,7 +52,12 @@ $(document).ready(function () {
     $(function () {
         $("#winter-btn").on("click", function () {
             $(".main").hide();
-            $(".gen-dash").fadeIn(500);
+            $(".dashboard-container").fadeIn(500);
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top
+               }, 900, 'swing', function () {
+                window.location.hash = target;
+               });
         });
     });
 
