@@ -2,13 +2,6 @@ $(document).ready(function () {
 
     // ------------------------------------- NAVBAR -------------------------------------
 
-    // On load, activate the animation on the main button.
-
-    $("#winter-btn").addClass("flicker-in-1").on("click", function () {
-        $(".dashboard-container").hide();
-        $(".main").fadeIn(500);
-    });
-
     // Hide all sections apart from the main one.
 
     $(function () {
@@ -35,15 +28,6 @@ $(document).ready(function () {
         });
     });
 
-    //Upon click the second tab, show the second part of the dashboard.
-
-    $(function () {
-        $("#navDeathLink").on("click", function () {
-            $(".main").hide();
-            $(".dashboard-container").fadeIn(500);
-            $(".content-container").removeClass("background").addClass("background-alt");
-        });
-    });
 
     // ------------------------------------ LANDING PAGE ---------------------------------------
 
@@ -51,15 +35,11 @@ $(document).ready(function () {
 
     $(function () {
         $("#winter-btn").on("click", function () {
-            $(".main").hide();
-            $(".dashboard-container").fadeIn(500);
-            $('html, body').stop().animate({
-                'scrollTop': $target.offset().top
-               }, 900, 'swing', function () {
-                window.location.hash = target;
-               });
+                $(".main").hide();
+                $(".dashboard-container").fadeIn(500);
+                $(".content-container").removeClass("background").addClass("background-alt");
+            });
         });
-    });
 
     // ------------------------------------ SMOOTH SCROLLING ---------------------------------------
 
