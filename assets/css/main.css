@@ -149,6 +149,7 @@ html, body {
 
 h1 {
   font-family: 'MedievalSharp', cursive;
+  font-size: 3em;
 }
 
 .db-img-db {
@@ -174,7 +175,7 @@ font-size: 0.8em;
 
 .arrow-container {
   margin-top: 15vh;
-  margin-bottom: 10vh;
+  margin-bottom: 15vh;
 }
 
 .arrow,
@@ -211,8 +212,11 @@ font-size: 0.8em;
 }
 
 
+/* -----------------------------------------------------DEATH DASHBOARD-------------------------------------------- */
 
-
+.death-container {
+  margin-top: 20vh;
+}
 
 /* Animista classes and keyframes */ 
 
