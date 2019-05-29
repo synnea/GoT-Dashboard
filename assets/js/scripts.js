@@ -56,4 +56,10 @@ $(document).ready(function () {
         });
        });
 
+       $('#resetTotalViews').click(function() {
+        dc.filterAll();
+        dc.renderAll();
+    }); 
+
+
 });

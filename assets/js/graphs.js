@@ -31,6 +31,8 @@ gotData.forEach(function(d){
     show_num_seasons(ndx);
     show_viewership_over_time(ndx);
     show_season_selector(ndx);
+    show_num_deaths(ndx);
+    show_avg_number_of_deaths(ndx);
 
     dc.renderAll();
 }
@@ -43,8 +45,12 @@ function show_total_viewership_by_season(ndx) {
 
     var seasonDim = ndx.dimension(dc.pluck('season'));
     var total_viewership_per_season = seasonDim.group().reduceSum(dc.pluck('viewers'));
+    var barchartTotalViews = dc.barChart('#viewsSeason');
 
-    dc.barChart('#viewsSeason')
+
+
+
+    barchartTotalViews
         .width(500)
         .height(300)
         .margins({
@@ -67,6 +73,7 @@ function show_total_viewership_by_season(ndx) {
         })
         .renderLabel(true)
         .yAxis().ticks(4);
+
 }
 
 function show_avg_viewership_by_season(ndx) {
@@ -104,6 +111,7 @@ function show_avg_viewership_by_season(ndx) {
 
 
     );
+
 
     dc.barChart('#avgViewsSeason')
         .width(500)
@@ -267,5 +275,81 @@ compositeChart
             .group(S8Group, 'Season 8'),
     ])
     .brushOn(true)
+    .elasticX(true)
     .render();
+}
+
+function show_num_deaths(ndx) {
+
+    deathDim = ndx.dimension(dc.pluck('deaths'));
+    deathGroup = deathDim.groupAll().reduceSum(dc.pluck('deaths'));
+
+    dc.numberDisplay("#numDeaths")
+        .group(deathGroup)
+        .valueAccessor(function (d) {
+            return d;
+    })
+}
+
+function show_avg_number_of_deaths(ndx) {
+
+    var seasonDim = ndx.dimension(dc.pluck('season'));
+    var avg_death_group = epDim.group().reduce(
+
+        // Add a Fact
+        function (p, v) {
+            p.count++;
+            p.total += v.deaths;
+            p.average = p.total / p.count;
+            return p;
+        },
+        // Remove a Fact
+        function (p, v) {
+            p.count--;
+            if (p.count == 0) {
+                p.total = 0;
+                p.average = 0;
+            } else {
+                p.total -= v.deaths;
+                p.average = p.total / p.count;
+            }
+            return p;
+        },
+        // Initialise the Reducer
+        function () {
+            return {
+                count: 0,
+                total: 0,
+                average: 0
+            };
+        }
+
+    );
+
+    dc.barChart('#avgDeathsSeason')
+    .width(500)
+    .height(300)
+    .margins({
+        top: 10,
+        right: 60,
+        bottom: 30,
+        left: 50
+    })
+    .dimension(seasonDim)
+    .group(avg_death_group)
+    .title(function (d){
+        return 'Season ' + d.key + ' had an average of ' + d.value + ' notable deaths';
+    })
+    .transitionDuration(500)
+    .valueAccessor(function (d) {
+        return d.value.average;
+    })
+    .x(d3.scale.ordinal())
+    .y(d3.scale.linear()
+        .domain([0, 15]))
+    .xUnits(dc.units.ordinal)
+    .xAxisLabel("Season")
+    .yAxisLabel("Deaths")
+    .renderLabel(true)
+    .yAxis().ticks(4);
 }
