@@ -13,8 +13,8 @@ $(document).ready(function () {
     $(function () {
         $("#navGen").on("click", function () {
             $(".main").hide();
-            $(".dashboard-container").fadeIn(500);
-            $(".content-container").removeClass("background").addClass("background-alt");
+            $(".dashboard-container").fadeIn(300);
+             $(".content-container").removeClass("background").addClass("background-alt");
         });
     });
 

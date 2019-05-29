@@ -89,7 +89,7 @@
 }
 
 .background-alt {
-  background-color: #fff;
+  background-color:r(245, 245, 245, 0.904)gba;
 }
 
 @media (max-width:780px) {
@@ -179,7 +179,11 @@ font-size: 0.8em;
 }
 
 #gen-header {
-  padding-top: 15vh;
+  padding-top: 10vh;
+}
+
+.dashboard-container {
+  margin-top: 0;
 }
 
 /* -----------------------------------------------------Arrow -------------------------------------------- */

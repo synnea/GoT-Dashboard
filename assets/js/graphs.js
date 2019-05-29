@@ -25,6 +25,8 @@ gotData.forEach(function(d){
     d.airdate = airDates;
 });
 
+
+
     show_total_viewership_by_season(ndx);
     show_avg_viewership_by_season(ndx);
     show_num_eps(ndx);
@@ -34,6 +36,7 @@ gotData.forEach(function(d){
     show_num_deaths(ndx);
     show_number_of_deaths_per_season(ndx);
     show_avg_deaths_per_ep_per_season(ndx);
+    show_deaths_over_time(ndx);
 
     dc.renderAll();
 }
@@ -192,7 +195,7 @@ function show_viewership_over_time(ndx) {
 
     // Function that removes blank values so the line chart doesn't nosedive
 
-   function remove_blanks(group, value_to_remove) {
+    function remove_blanks(group, value_to_remove) {
         // Filter out specified values from passed group
         return {
             all: function() {
@@ -383,3 +386,12 @@ function show_avg_deaths_per_ep_per_season(ndx) {
         .yAxis().ticks(4);
 }
 
+function show_deaths_over_time(ndx) {
+
+    var dateDim = ndx.dimension(function (d) {return d.airdate; });
+    var deathGroup = dateDim.group().reduceSum(dc.pluck('deaths'));
+
+    var minDate = dateDim.bottom(1)[0].airdate;
+    var maxDate = dateDim.top(1)[0].airdate;
+
+}
