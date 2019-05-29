@@ -294,39 +294,9 @@ function show_num_deaths(ndx) {
 function show_avg_number_of_deaths(ndx) {
 
     var seasonDim = ndx.dimension(dc.pluck('season'));
-    var avg_death_group = epDim.group().reduce(
+    var num_death_group = seasonDim.group().reduceSum(dc.pluck('deaths'));
 
-        // Add a Fact
-        function (p, v) {
-            p.count++;
-            p.total += v.deaths;
-            p.average = p.total / p.count;
-            return p;
-        },
-        // Remove a Fact
-        function (p, v) {
-            p.count--;
-            if (p.count == 0) {
-                p.total = 0;
-                p.average = 0;
-            } else {
-                p.total -= v.deaths;
-                p.average = p.total / p.count;
-            }
-            return p;
-        },
-        // Initialise the Reducer
-        function () {
-            return {
-                count: 0,
-                total: 0,
-                average: 0
-            };
-        }
-
-    );
-
-    dc.barChart('#avgDeathsSeason')
+    dc.barChart('#numDeathsSeason')
     .width(500)
     .height(300)
     .margins({
@@ -336,17 +306,14 @@ function show_avg_number_of_deaths(ndx) {
         left: 50
     })
     .dimension(seasonDim)
-    .group(avg_death_group)
+    .group(num_death_group)
     .title(function (d){
-        return 'Season ' + d.key + ' had an average of ' + d.value + ' notable deaths';
+        return 'Season ' + d.key + ' had an total of ' + d.value + ' notable deaths';
     })
     .transitionDuration(500)
-    .valueAccessor(function (d) {
-        return d.value.average;
-    })
     .x(d3.scale.ordinal())
     .y(d3.scale.linear()
-        .domain([0, 15]))
+        .domain([0, 50]))
     .xUnits(dc.units.ordinal)
     .xAxisLabel("Season")
     .yAxisLabel("Deaths")
