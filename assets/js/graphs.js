@@ -1,5 +1,6 @@
 queue()
     .defer(d3.json, "data/got_json.json")
+    .await(remove_blanks)
     .await(makeGraphs);
 
 function makeGraphs(error, gotData) {
@@ -41,9 +42,23 @@ gotData.forEach(function(d){
     dc.renderAll();
 }
 
+// ----------------- HELPER FUNCTIONS ----------------------
+
+//  Function that removes blank values so the line chart doesn't nosedive
+
+function remove_blanks(group, value_to_remove) {
+    // Filter out specified values from passed group
+    return {
+        all: function() {
+            return group.all().filter(function(d) {
+                return d.value !== value_to_remove;
+            });
+        }
+    };
+}
 
 
-// Individual Graph Functions
+// ------------------ INDIVIDUAL GRAPH FUNCTIONS ----------------
 
 function show_total_viewership_by_season(ndx) {
 
@@ -193,20 +208,6 @@ function show_season_selector(ndx) {
 
 function show_viewership_over_time(ndx) {
 
-    // Function that removes blank values so the line chart doesn't nosedive
-
-    function remove_blanks(group, value_to_remove) {
-        // Filter out specified values from passed group
-        return {
-            all: function() {
-                return group.all().filter(function(d) {
-                    return d.value !== value_to_remove;
-                });
-            }
-        };
-    }
-
-   
 
     function views_by_season(season) {
         return function (d) {
@@ -244,7 +245,7 @@ S8Group = remove_blanks(S8Views, 0);
 
 var compositeChart = dc.compositeChart('#viewsOverTime');
 compositeChart
-    .width(1200)
+    .width(1000)
     .height(500)
     .dimension(dateDim)
     .x(d3.time.scale().domain([minDate, maxDate]))
@@ -267,7 +268,7 @@ compositeChart
             .colors('black')
             .group(S4Group, 'Season 4'),
             dc.lineChart(compositeChart)
-            .colors('yellow')
+            .colors('indigo')
             .group(S5Group, 'Season 5'),
             dc.lineChart(compositeChart)
             .colors('orange')
@@ -390,8 +391,21 @@ function show_deaths_over_time(ndx) {
 
     var dateDim = ndx.dimension(function (d) {return d.airdate; });
     var deathGroup = dateDim.group().reduceSum(dc.pluck('deaths'));
+    var cleanDeathGroup = remove_blanks(deathGroup, 0);
 
     var minDate = dateDim.bottom(1)[0].airdate;
     var maxDate = dateDim.top(1)[0].airdate;
+
+    dc.lineChart("#deathsOverTime")
+    .width(1000)
+    .height(300)
+    .margins({top: 10, right: 50, bottom: 30, left: 50})
+    .dimension(dateDim)
+    .group(deathGroup)
+    .transitionDuration(500)
+    .x(d3.time.scale().domain([minDate,maxDate]))
+    .xAxisLabel("Time")
+    .yAxis().ticks(4);
+
 
 }

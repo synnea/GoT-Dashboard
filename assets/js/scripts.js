@@ -14,7 +14,7 @@ $(document).ready(function () {
         $("#navGen").on("click", function () {
             $(".main").hide();
             $(".dashboard-container").fadeIn(300);
-             $(".content-container").removeClass("background").addClass("background-alt");
+           $(".content-container").removeClass("background").addClass("background-alt");
         });
     });
 
