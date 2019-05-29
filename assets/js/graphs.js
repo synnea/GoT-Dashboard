@@ -240,6 +240,7 @@ compositeChart
     .yAxisLabel("Viewership (in million)")
     .renderHorizontalGridLines(true)
     .mouseZoomable(true)
+    .legend(dc.legend().x(80).y(20).itemHeight(13).gap(5))
     .compose([
         dc.lineChart(compositeChart)
             .group(S1Group, 'Season 1')
