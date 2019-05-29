@@ -105,7 +105,8 @@
 
                             <!-- Begin Button-->
 
-                            <button type="button" class="btn btn-outline-primary flicker-in-1 hvr-bounce-in mx-auto d-block"
+                            <button type="button"
+                                class="btn btn-outline-primary flicker-in-1 hvr-bounce-in mx-auto d-block"
                                 id="winter-btn"><img src="assets/img/seethestats.png"
                                     class="img-fluid winter-pic rounded mx-auto d-block"
                                     alt="linktofirstdashboard" /></button>
@@ -125,25 +126,31 @@
 
         <div class="dashboard-container">
             <section class="gen-dash">
-                <div class="gen-container">
-                    <div class="row justify-content-center mt-5">
-                        <div class="col-sm-12">
-                            <img src="assets/img/dashboard.png" class="img-fluid db-img-db rounded mx-auto d-block"
-                                alt="dashboard-logo">
-                        </div>
-                    </div>
 
-                    <div class="row justify-content-center">
-                        <div class="col-xs-12-sm-6 mt-1">
-                            <a href="#death-dash" class="btn btn-dark death-btn hvr-bounce-in btn-lg active" role="button"
-                                aria-pressed="true"><i class="fas fa-skull-crossbones"></i> Skip to stats on deaths</a>
-                        </div>
-                        <div class="col-xs-12-sm-6 mt-1">
+                <div class="row justify-content-center mt-5">
+                    <div class="col-sm-12">
+                        <img src="assets/img/dashboard.png" class="img-fluid db-img-db rounded mx-auto d-block"
+                            alt="dashboard-logo">
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-xs-12-sm-6 mt-1">
+                        <a href="#death-dash" class="btn btn-dark death-btn hvr-bounce-in btn-lg active" role="button"
+                            aria-pressed="true"><i class="fas fa-skull-crossbones"></i> Skip to stats
+                            on deaths</a>
+                    </div>
+                    <div class="col-xs-12-sm-6 mt-1">
                         <a href="#pop-dash" class="btn btn-dark pop-btn hvr-bounce-in btn-lg active" role="button"
                             aria-pressed="true"><i class="fas fa-star-half-alt"></i> Skip to stats on IMDB
                             ratings</a>
                     </div>
                 </div>
+
+                <div class="arrow-container">
+                <div class="arrow"></div>
+            </div>
+
 
                 <div class="row justify-content-center my-4">
                     <div class="col-md-offset-5">
@@ -204,31 +211,32 @@
 
 
 
+
+
+
+
+            </section>
+
+            <!--- Begin Death Dashboard section -->
+
+            <section id="death-dash">
+                <div class="death-container">
+
+                    <h1>Valar Morghulis</h1>
+
+                </div>
+
+            </section>
+
+            <!--- Begin Popularity Dashboard section -->
+
+            <section id="pop-dash">
+
+            </section>
+
+            <!--- End dashboard container -->
+
         </div>
-
-
-
-        </section>
-
-        <!--- Begin Death Dashboard section -->
-
-        <section id="death-dash">
-            <div class="death-container">
-
-                <h1>Valar Morghulis</h1>
-
-            </div>
-
-        </section>
-
-        <!--- Begin Popularity Dashboard section -->
-
-        <section id="pop-dash">
-
-        </section>
-
-        <!--- End dashboard container -->
-
     </div>
 
 
