@@ -203,6 +203,14 @@ function show_season_selector(ndx) {
         .title(function (d){
             return 'Season ' + d.key + ': ' + d.value + ' Episodes';
         });
+
+        dc.selectMenu("#seasonSelector-deaths")
+        .dimension(seasonDim)
+        .group(seasonGroup)
+        .promptText('Season Selector')
+        .title(function (d){
+            return 'Season ' + d.key + ': ' + d.value + ' Episodes';
+        });
 }
 
 
@@ -246,7 +254,7 @@ S8Group = remove_blanks(S8Views, 0);
 var compositeChart = dc.compositeChart('#viewsOverTime');
 compositeChart
     .width(1000)
-    .height(500)
+    .height(400)
     .dimension(dateDim)
     .x(d3.time.scale().domain([minDate, maxDate]))
     .xAxisLabel("Time")
@@ -390,22 +398,76 @@ function show_avg_deaths_per_ep_per_season(ndx) {
 function show_deaths_over_time(ndx) {
 
     var dateDim = ndx.dimension(function (d) {return d.airdate; });
-    var deathGroup = dateDim.group().reduceSum(dc.pluck('deaths'));
-    var cleanDeathGroup = remove_blanks(deathGroup, 0);
+    
+    function deaths_by_season(season) {
+        return function (d) {
+        if (d.season === season) {
+            return +d.deaths;
+        }else {
+            return 0;
+    }
+}
+};
 
     var minDate = dateDim.bottom(1)[0].airdate;
     var maxDate = dateDim.top(1)[0].airdate;
 
-    dc.lineChart("#deathsOverTime")
+ var S1Deaths = dateDim.group().reduceSum(deaths_by_season(1));
+var S2Deaths = dateDim.group().reduceSum(deaths_by_season(2));
+var S3Deaths = dateDim.group().reduceSum(deaths_by_season(3));
+var S4Deaths = dateDim.group().reduceSum(deaths_by_season(4));
+var S5Deaths = dateDim.group().reduceSum(deaths_by_season(5));
+var S6Deaths = dateDim.group().reduceSum(deaths_by_season(6));
+var S7Deaths = dateDim.group().reduceSum(deaths_by_season(7));
+var S8Deaths = dateDim.group().reduceSum(deaths_by_season(8));
+
+S1Group = remove_blanks(S1Deaths, 0);
+S2Group = remove_blanks(S2Deaths, 0);
+S3Group = remove_blanks(S3Deaths, 0);
+S4Group = remove_blanks(S4Deaths, 0);
+S5Group = remove_blanks(S5Deaths, 0);
+S6Group = remove_blanks(S6Deaths, 0);
+S7Group = remove_blanks(S7Deaths, 0);
+S8Group = remove_blanks(S8Deaths, 0);
+
+var compositeChart = dc.compositeChart('#deathsOverTime');
+compositeChart
     .width(1000)
-    .height(300)
-    .margins({top: 10, right: 50, bottom: 30, left: 50})
+    .height(400)
     .dimension(dateDim)
-    .group(deathGroup)
-    .transitionDuration(500)
-    .x(d3.time.scale().domain([minDate,maxDate]))
+    .x(d3.time.scale().domain([minDate, maxDate]))
     .xAxisLabel("Time")
-    .yAxis().ticks(4);
-
-
+    .yAxisLabel("Deaths")
+    .renderHorizontalGridLines(true)
+    .mouseZoomable(true)
+    .legend(dc.legend().x(80).y(20).itemHeight(13).gap(5))
+    .compose([
+        dc.lineChart(compositeChart)
+            .group(S1Group, 'Season 1')
+            .colors('green'),
+        dc.lineChart(compositeChart)
+            .colors('red')
+            .group(S2Group, 'Season 2'),
+            dc.lineChart(compositeChart)
+            .colors('blue')
+            .group(S3Group, 'Season 3'),
+            dc.lineChart(compositeChart)
+            .colors('black')
+            .group(S4Group, 'Season 4'),
+            dc.lineChart(compositeChart)
+            .colors('indigo')
+            .group(S5Group, 'Season 5'),
+            dc.lineChart(compositeChart)
+            .colors('orange')
+            .group(S6Group, 'Season 6'),
+            dc.lineChart(compositeChart)
+            .colors('grey')
+            .group(S7Group, 'Season 7'),
+            dc.lineChart(compositeChart)
+            .group(S8Group, 'Season 8'),
+    ])
+    .brushOn(true)
+    .elasticX(true)
+    .render();
 }
+
