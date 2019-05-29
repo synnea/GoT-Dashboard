@@ -32,7 +32,8 @@ gotData.forEach(function(d){
     show_viewership_over_time(ndx);
     show_season_selector(ndx);
     show_num_deaths(ndx);
-    show_avg_number_of_deaths(ndx);
+    show_number_of_deaths_per_season(ndx);
+    show_avg_deaths_per_ep_per_season(ndx);
 
     dc.renderAll();
 }
@@ -291,7 +292,7 @@ function show_num_deaths(ndx) {
     })
 }
 
-function show_avg_number_of_deaths(ndx) {
+function show_number_of_deaths_per_season(ndx) {
 
     var seasonDim = ndx.dimension(dc.pluck('season'));
     var num_death_group = seasonDim.group().reduceSum(dc.pluck('deaths'));
@@ -320,3 +321,65 @@ function show_avg_number_of_deaths(ndx) {
     .renderLabel(true)
     .yAxis().ticks(4);
 }
+
+
+function show_avg_deaths_per_ep_per_season(ndx) {
+    var seasonDim = ndx.dimension(dc.pluck('season'));
+    var avg_death_group = seasonDim.group().reduce(
+
+        // Add a Fact
+        function (p, v) {
+            p.count++;
+            p.total += v.deaths;
+            p.average = p.total / p.count;
+            return p;
+        },
+        // Remove a Fact
+        function (p, v) {
+            p.count--;
+            if (p.count == 0) {
+                p.total = 0;
+                p.average = 0;
+            } else {
+                p.total -= v.deaths;
+                p.average = p.total / p.count;
+            }
+            return p;
+        },
+        // Initialise the Reducer
+        function () {
+            return {
+                count: 0,
+                total: 0,
+                average: 0
+            };
+        }
+        );
+        dc.barChart('#avgNumDeathsSeason')
+        .width(500)
+        .height(300)
+        .margins({
+            top: 10,
+            right: 60,
+            bottom: 30,
+            left: 50
+        })
+        .dimension(seasonDim)
+        .group(avg_death_group)
+        .title(function (d){
+            return 'Season ' + d.key + ' had an average of ' + d.value + ' of deaths per episode';
+        })
+        .transitionDuration(500)
+        .valueAccessor(function (d) {
+            return d.value.average;
+        })
+        .x(d3.scale.ordinal())
+        .y(d3.scale.linear()
+            .domain([0, 5]))
+        .xUnits(dc.units.ordinal)
+        .xAxisLabel("Season")
+        .yAxisLabel("Deaths")
+        .renderLabel(true)
+        .yAxis().ticks(4);
+}
+
