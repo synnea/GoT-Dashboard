@@ -66,7 +66,7 @@
 
 /* -----------------------------------------------------LANDING PAGE-------------------------------------------- */
 
-.db-img {
+.db-img-lp {
   max-width: 70%;
   margin-bottom: 10vh;
 }
@@ -146,6 +146,17 @@ body {
 
 h1 {
   font-family: 'MedievalSharp', cursive;
+}
+
+.db-img-db {
+  max-width: 70%;
+  margin-bottom: 10vh;
+  margin-top: 10vh;
+}
+
+.btn-secondary {
+font-size: 1em;
+margin-left: 10vw;
 }
 
 

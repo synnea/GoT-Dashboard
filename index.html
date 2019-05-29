@@ -11,7 +11,8 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.min.css" />
     <link href="https://fonts.googleapis.com/css?family=MedievalSharp" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css"
         type="text/css" />
     <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
@@ -89,23 +90,9 @@
 
                 <div class="img-overlay">&nbsp;</div>
 
-                <!-- The following code adds elements for the snow falling effectto bind to -->
-
-                <div class="winter-is-coming">
-
-                    <div class="snow snow--near"></div>
-                    <div class="snow snow--near snow--alt"></div>
-
-                    <div class="snow snow--mid"></div>
-                    <div class="snow snow--mid snow--alt"></div>
-
-                    <div class="snow snow--far"></div>
-                    <div class="snow snow--far snow--alt"></div>
-                </div>
-
                 <div class="row">
                     <div class="col-sm-12">
-                        <img src="assets/img/dashboard.png" class="img-fluid db-img rounded mx-auto pb-5 d-block"
+                        <img src="assets/img/dashboard.png" class="img-fluid db-img-lp rounded mx-auto pb-5 d-block"
                             alt="dashboard-logo">
                     </div>
                 </div>
@@ -139,99 +126,118 @@
         <div class="dashboard-container">
             <section class="gen-dash">
                 <div class="gen-container">
-                    <div class="row justify-content-center my-4">
-                        <div class="col-md-offset-5">
-                            <h1>General Statistics</h1>
-                        </div>
-                        <i class="fas fa-skull-crossbones"></i> <p>See stats on <a href="#death-dash">deaths</p></a>
-                        <i class="fas fa-star-half-alt"></i><p>See stats on <a href="#pop-dash">IMDB ratings</p></a>
-                    </div>
-
-                    <div class="row justify-content-center my-4">
-
-
-                        <div id="numSeasons">
-                            # of Seasons:
-                        </div>
-
-
-
-                        <div id="numEps">
-                            # of Episodes:
-                        </div>
-
-                    </div>
-
-                    <div class="row justify-content-center my-4">
-                        <div>
-                            <h3>Total Viewership by Season</h3>
-                            <div id="viewsSeason"></div>
-                        </div>
-
-                        <div>
-                            <h3>Average Viewership by Season</h3>
-                            <div id="avgViewsSeason"></div>
-                        </div>
-                    </div>
-
-                    <div class="row justify-content-center my-4 mx-2">
-
-                        <div class="col-md-offset-5 d-block">
-                            <h3 class="compChartHeader">Viewership over Time</h3>
+                    <div class="row justify-content-center mt-5">
+                        <div class="col-sm-12">
+                            <img src="assets/img/dashboard.png" class="img-fluid db-img-db rounded mx-auto d-block"
+                                alt="dashboard-logo">
                         </div>
                     </div>
 
                     <div class="row justify-content-center my-4">
-                        <div class="col-md-offset-5 d-block">
-                            <div id="seasonSelector"></div>
-
+                        <div class="col-sm-6-offset-2">
+                            <a href="#death-dash" class="btn btn-secondary hvr-bounce-in btn-lg active" role="button"
+                                aria-pressed="true"><i class="fas fa-skull-crossbones"></i>Skip to stats on deaths</a>
                         </div>
+                        <div class="col-sm-6-offset-2">
+                        <a href="#pop-dash" class="btn btn-secondary hvr-bounce-in btn-lg active" role="button"
+                            aria-pressed="true"><i class="fas fa-star-half-alt"></i>Skip to stats on IMDB
+                            ratings</a>
                     </div>
+                </div>
 
-                    <div class="row justify-content-center my-4 ">
-
-                        <div id="viewsOverTime"></div>
+                <div class="row justify-content-center my-4">
+                    <div class="col-md-offset-5">
+                        <h1>General Statistics</h1>
                     </div>
-
-
-
-
-
-
                 </div>
 
 
 
-            </section>
+                <div class="row justify-content-center my-4">
 
-            <!--- Begin Death Dashboard section -->
 
-            <section id="death-dash">
-                <div class="death-container">
+                    <div id="numSeasons">
+                        # of Seasons:
+                    </div>
 
-                    <h1>Valar Morghulis</h1>
+
+
+                    <div id="numEps">
+                        # of Episodes:
+                    </div>
 
                 </div>
 
-            </section>
+                <div class="row justify-content-center my-4">
+                    <div>
+                        <h3>Total Viewership by Season</h3>
+                        <div id="viewsSeason"></div>
+                    </div>
 
-            <!--- Begin Popularity Dashboard section -->
+                    <div>
+                        <h3>Average Viewership by Season</h3>
+                        <div id="avgViewsSeason"></div>
+                    </div>
+                </div>
 
-            <section id="pop-dash">
+                <div class="row justify-content-center my-4 mx-2">
 
-            </section>
+                    <div class="col-md-offset-5 d-block">
+                        <h3 class="compChartHeader">Viewership over Time</h3>
+                    </div>
+                </div>
 
-            <!--- End dashboard container -->
+                <div class="row justify-content-center my-4">
+                    <div class="col-md-offset-5 d-block">
+                        <div id="seasonSelector"></div>
+
+                    </div>
+                </div>
+
+                <div class="row justify-content-center my-4 ">
+
+                    <div id="viewsOverTime"></div>
+                </div>
+
+
+
+
+
 
         </div>
 
 
 
-        <!--- Begin Character Select section -->
+        </section>
 
-        <section class="chara-select">
+        <!--- Begin Death Dashboard section -->
+
+        <section id="death-dash">
+            <div class="death-container">
+
+                <h1>Valar Morghulis</h1>
+
+            </div>
 
         </section>
+
+        <!--- Begin Popularity Dashboard section -->
+
+        <section id="pop-dash">
+
+        </section>
+
+        <!--- End dashboard container -->
+
+    </div>
+
+
+
+    <!--- Begin Character Select section -->
+
+    <section class="chara-select">
+
+    </section>
     </div>
 
 </body>
