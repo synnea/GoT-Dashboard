@@ -138,8 +138,11 @@ article {
   background-color: #7FB7BE;
 }
 
-body {
+html, body {
   color: #000 !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    height: auto!important;
 }
 
 /* -----------------------------------------------------GEN DASHBOARD-------------------------------------------- */
@@ -156,8 +159,16 @@ h1 {
 
 .btn-secondary {
 font-size: 1em;
-margin-left: 10vw;
 }
+
+.death-btn {
+  margin-right: 2vw;
+}
+
+.pop-btn {
+  margin-left: 2vw;
+}
+
 
 
 /* Animista classes and keyframes */ 
