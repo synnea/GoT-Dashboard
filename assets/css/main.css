@@ -145,6 +145,10 @@ html, body {
     height: auto!important;
 }
 
+body {
+  margin-top: 5vh;
+}
+
 /* -----------------------------------------------------GEN DASHBOARD-------------------------------------------- */
 
 h1 {
@@ -170,12 +174,15 @@ font-size: 0.8em;
   margin-left: 2vw;
 }
 
+.db-logo {
+  margin-top: 10vh;
+}
 
 /* -----------------------------------------------------Arrow -------------------------------------------- */
 
 .arrow-container {
   margin-top: 15vh;
-  margin-bottom: 15vh;
+  margin-bottom: 25vh;
 }
 
 .arrow,
