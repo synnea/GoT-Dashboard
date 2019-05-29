@@ -62,6 +62,9 @@ function show_total_viewership_by_season(ndx) {
         .xUnits(dc.units.ordinal)
         .xAxisLabel("Season")
         .yAxisLabel("Viewership (in millions)")
+        .title(function (d){
+            return 'Season ' + d.key + ' had a total of ' + d.value + ' million viewers';
+        })
         .renderLabel(true)
         .yAxis().ticks(4);
 }
@@ -113,6 +116,9 @@ function show_avg_viewership_by_season(ndx) {
         })
         .dimension(seasonDim)
         .group(avg_views_group)
+        .title(function (d){
+            return 'Season ' + d.key + ' had an average of ' + d.value + ' million viewers';
+        })
         .transitionDuration(500)
         .valueAccessor(function (d) {
             return d.value.average;
