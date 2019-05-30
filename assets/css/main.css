@@ -10,7 +10,6 @@
   width: 15vh;
 }
 
-
  /* Links in the navbar are targeted by ID due to override strong Bootstrap presets and use the IDs with jQuery */
 
  #navGenLink {
@@ -21,23 +20,6 @@
    color: #7FB7BE !important;
  }
 
- #navDeathLink {
-  color: #6E403A !important;
-}
-
-
-#navDeathLink:active {
-  color: #7FB7BE !important;
-}
-
-#navPopLink {
-  color: #6E403A !important;
-}
-
-
-#navPopLink:active {
-  color: #7FB7BE !important;
-}
 
 #navCharaLink {
   color: #6E403A !important;
@@ -61,6 +43,11 @@
   margin-bottom: 0;
   padding: 0;
   top: 0;
+}
+
+#resetLink {
+font-size: 1.3em !important;
+color: #fff !important;
 }
 
 
@@ -226,9 +213,6 @@ font-size: 0.8em;
   animation-name: arrow;
 }
 
-.reset-btn-views {
-  margin-left: 15rem;
-}
 
 /* -----------------------------------------------------DEATH DASHBOARD-------------------------------------------- */
 
