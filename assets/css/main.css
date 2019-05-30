@@ -226,6 +226,9 @@ font-size: 0.8em;
   animation-name: arrow;
 }
 
+.reset-btn-views {
+  margin-left: 15rem;
+}
 
 /* -----------------------------------------------------DEATH DASHBOARD-------------------------------------------- */
 
