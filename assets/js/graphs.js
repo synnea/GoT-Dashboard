@@ -38,11 +38,12 @@ gotData.forEach(function(d){
     show_number_of_deaths_per_season(ndx);
     show_avg_deaths_per_ep_per_season(ndx);
     show_deaths_over_time(ndx);
+    show_percentage_of_deaths_per_season(ndx);
 
     dc.renderAll();
 }
 
-// ----------------- HELPER FUNCTIONS ----------------------
+// ----------------- HELPER FUNCTION ----------------------
 
 //  Function that removes blank values so the line chart doesn't nosedive
 
@@ -265,7 +266,7 @@ compositeChart
     .compose([
         dc.lineChart(compositeChart)
             .group(S1Group, 'Season 1')
-            .colors('green'),
+            .colors('#6c6cff'),
         dc.lineChart(compositeChart)
             .colors('red')
             .group(S2Group, 'Season 2'),
@@ -285,6 +286,7 @@ compositeChart
             .colors('grey')
             .group(S7Group, 'Season 7'),
             dc.lineChart(compositeChart)
+            .colors('172A3A')
             .group(S8Group, 'Season 8'),
     ])
     .brushOn(true)
@@ -395,6 +397,7 @@ function show_avg_deaths_per_ep_per_season(ndx) {
         .yAxis().ticks(4);
 }
 
+
 function show_deaths_over_time(ndx) {
 
     var dateDim = ndx.dimension(function (d) {return d.airdate; });
@@ -470,4 +473,30 @@ compositeChart
     .elasticX(true)
     .render();
 }
+
+function show_percentage_of_deaths_per_season(ndx) {
+
+    var seasonDim = ndx.dimension(dc.pluck('season'));
+    var num_death_group = seasonDim.group().reduceSum(dc.pluck('deaths'));
+
+    var seasonColors = d3.scale.ordinal()
+    .range(['#6c6cff', 'blue', 'red','black', 'indigo', 'orange', 'grey', '#172A3A']);
+
+    dc.pieChart("#deathPercentage")
+    .height(300)
+    .radius(250)
+    .transitionDuration(500)
+    .colorAccessor(function(d) {
+        return d.key;
+    })
+    .colors(seasonColors)
+    .dimension(seasonDim)
+    .on('pretransition', function(chart) {
+        chart.selectAll('text.pie-slice').text(function(d) {
+            return dc.utils.printSingleValue((d.endAngle - d.startAngle) / (2*Math.PI) * 100) + '%';
+        })
+    })
+    .group(num_death_group);
+}
+
 
