@@ -486,6 +486,9 @@ function show_percentage_of_deaths_per_season(ndx) {
     .height(300)
     .radius(250)
     .transitionDuration(500)
+    .title(function (d){
+        return 'Season ' + d.key + ' accounted for approximately ' +   (d.value/230*100) + "% of total deaths"
+    })
     .colorAccessor(function(d) {
         return d.key;
     })
@@ -493,7 +496,7 @@ function show_percentage_of_deaths_per_season(ndx) {
     .dimension(seasonDim)
     .on('pretransition', function(chart) {
         chart.selectAll('text.pie-slice').text(function(d) {
-            return dc.utils.printSingleValue((d.endAngle - d.startAngle) / (2*Math.PI) * 100) + '%';
+            return dc.utils.printSingleValue((d.endAngle - d.startAngle) / ( 2*Math.PI)*100) + "%";
         })
     })
     .group(num_death_group);
