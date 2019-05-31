@@ -459,7 +459,8 @@ function show_top_deathly_episodes(ndx) {
             left: 50
         })
         .transitionDuration(500)
-        .renderTitleLabel(true)
+         // exclude the 'Others' category in the row chart.
+        .othersGrouper(false)
         .cap(10);
 
 }
