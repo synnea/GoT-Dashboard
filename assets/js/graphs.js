@@ -445,9 +445,21 @@ function show_percentage_of_deaths_per_season(ndx) {
 function show_top_deathly_episodes(ndx) {
     
     var episodeDim = ndx.dimension(dc.pluck('episode'));
-    var deathGroup = episodeDim.group().reduceSum('deaths');
+    var deathGroup = episodeDim.group().reduceSum(dc.pluck('deaths'));
 
     dc.rowChart("#topDeathlyEps")
         .dimension(episodeDim)
         .group(deathGroup)
+        .width(500)
+        .height(300)
+        .margins({
+            top: 10,
+            right: 60,
+            bottom: 30,
+            left: 50
+        })
+        .transitionDuration(500)
+        .renderTitleLabel(true)
+        .cap(10);
+
 }
