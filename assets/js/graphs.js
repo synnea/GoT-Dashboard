@@ -1,7 +1,9 @@
 queue()
     .defer(d3.json, "data/got_json.json")
     .await(remove_blanks)
+    .await(show_slice_percent)
     .await(makeGraphs);
+    
 
 function makeGraphs(error, gotData) {
     var ndx = crossfilter(gotData);
@@ -39,6 +41,7 @@ gotData.forEach(function(d){
     show_percentage_of_deaths_per_season(ndx);
     show_deaths_over_time(ndx);
     show_top_deathly_episodes(ndx);
+    show_deathly_writers(ndx);
     
 
     dc.renderAll();
@@ -59,7 +62,18 @@ function remove_blanks(group, value_to_remove) {
     };
 }
 
-
+function show_slice_percent(key, endAngle, startAngle) {
+    // Return the % of each pie slice as a string to be displayed
+    // on the slice itself.
+    // To save space, %'s below 9% display only the % and no other text.
+    var percent = dc.utils.printSingleValue((endAngle - startAngle) / (2 * Math.PI) * 100);
+    if (percent > 9) {
+        return key + ' | ' + Math.round(percent) + '%';
+    }
+    else if (percent > 0) {
+        return Math.round(percent) + '%';
+    }
+}
 // ------------------ INDIVIDUAL GRAPH FUNCTIONS ----------------
 
 function show_total_viewership_by_season(ndx) {
@@ -424,8 +438,11 @@ function show_percentage_of_deaths_per_season(ndx) {
 
     dc.pieChart("#deathPercentage")
     .height(300)
-    .radius(250)
+    .width(400)
+    .radius(100)
     .transitionDuration(500)
+    .drawPaths(true)
+    .externalLabels(40)
     .title(function (d){
         return 'Season ' + d.key + ' accounted for approximately ' +   (d.value/230*100) + "% of total deaths"
     })
@@ -436,8 +453,8 @@ function show_percentage_of_deaths_per_season(ndx) {
     .dimension(seasonDim)
     .on('pretransition', function(chart) {
         chart.selectAll('text.pie-slice').text(function(d) {
-            return dc.utils.printSingleValue((d.endAngle - d.startAngle) / ( 2*Math.PI)*100) + "%";
-        })
+            return 'Season ' + show_slice_percent(d.data.key, d.endAngle, d.startAngle);
+        });
     })
     .group(num_death_group);
 }
@@ -456,11 +473,39 @@ function show_top_deathly_episodes(ndx) {
             top: 10,
             right: 60,
             bottom: 30,
-            left: 50
+            left: 20
+        })
+        .title(function (d){
+            return 'Episode ' + d.key[3] + d.key[4] + ' of Season ' + d.key[1] + ' killed ' + d.value + ' notable characters';
         })
         .transitionDuration(500)
          // exclude the 'Others' category in the row chart.
         .othersGrouper(false)
         .cap(10);
 
+}
+
+function show_deathly_writers(ndx) {
+
+    var writerDim = ndx.dimension(dc.pluck('writer'));
+    var deathGroup = writerDim.group().reduceSum(dc.pluck('deaths'));
+
+    dc.pieChart("#topDeathlyWriters")
+    .height(320)
+    .width(400)
+    .radius(80)
+    .transitionDuration(500)
+    .dimension(writerDim)
+    .on('pretransition', function(chart) {
+        chart.selectAll('text.pie-slice').text(function(d) {
+            return show_slice_percent(d.data.key, d.endAngle, d.startAngle);
+        });
+    })
+  
+    .group(deathGroup)
+    .minAngleForLabel(0)
+    .drawPaths(true)
+    .othersGrouper(false)
+    .externalLabels(30)
+    .cap(4);
 }
