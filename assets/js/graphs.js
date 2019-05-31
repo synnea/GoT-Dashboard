@@ -38,6 +38,7 @@ gotData.forEach(function(d){
     show_number_of_deaths_per_season(ndx);
     show_percentage_of_deaths_per_season(ndx);
     show_deaths_over_time(ndx);
+    show_top_deathly_episodes(ndx);
     
 
     dc.renderAll();
@@ -441,4 +442,12 @@ function show_percentage_of_deaths_per_season(ndx) {
     .group(num_death_group);
 }
 
+function show_top_deathly_episodes(ndx) {
+    
+    var episodeDim = ndx.dimension(dc.pluck('episode'));
+    var deathGroup = episodeDim.group().reduceSum('deaths');
 
+    dc.rowChart("#topDeathlyEps")
+        .dimension(episodeDim)
+        .group(deathGroup)
+}
