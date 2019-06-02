@@ -43,6 +43,7 @@ gotData.forEach(function(d){
     show_top_deathly_episodes(ndx);
     show_deathly_writers(ndx);
     show_avg_score(ndx);
+    show_avg_score_per_season(ndx);
     
 
     dc.renderAll();
@@ -551,5 +552,71 @@ function show_avg_score(ndx) {
             .valueAccessor(function (d) {
                 return d.average;
         })
+
+}
+
+function  show_avg_score_per_season(ndx) {
+
+    var seasonDim = ndx.dimension(dc.pluck('season'));
+    var avg_ratings_group = seasonDim.group().reduce(
+
+        // Add a Fact
+        function (p, v) {
+            p.count++;
+            p.total += v.rating;
+            p.average = p.total / p.count;
+            return p;
+        },
+        // Remove a Fact
+        function (p, v) {
+            p.count--;
+            if (p.count == 0) {
+                p.total = 0;
+                p.average = 0;
+            } else {
+                p.total -= v.rating;
+                p.average = p.total / p.count;
+            }
+            return p;
+        },
+        // Initialise the Reducer
+        function () {
+            return {
+                count: 0,
+                total: 0,
+                average: 0
+            };
+        }
+
+
+    );
+
+
+    dc.barChart('#avgIMDBSeason')
+        .width(500)
+        .height(300)
+        .margins({
+            top: 10,
+            right: 60,
+            bottom: 30,
+            left: 50
+        })
+        .dimension(seasonDim)
+        .group(avg_ratings_group)
+        .title(function (d){
+            return 'Season ' + d.key + ' had an average ' + d.value + ' IMDB rating';
+        })
+        .transitionDuration(500)
+        .valueAccessor(function (d) {
+            return d.value.average;
+        })
+        .x(d3.scale.ordinal())
+        .y(d3.scale.linear()
+            .domain([0, 10]))
+        .xUnits(dc.units.ordinal)
+        .xAxisLabel("Season")
+        .yAxisLabel("IMDB Rating")
+        .renderLabel(true)
+        .yAxis().ticks(4);
 
 }
