@@ -46,6 +46,7 @@ gotData.forEach(function(d){
     show_avg_score_per_season(ndx);
     show_top_rated_episodes(ndx);
     show_score_by_writer(ndx);
+    show_score_by_director(ndx);
     
 
     dc.renderAll();
@@ -718,3 +719,7 @@ function show_score_by_writer(ndx) {
                 })
             .renderLabel(true);
     }
+
+function show_score_by_director(ndx) {
+    
+}    
