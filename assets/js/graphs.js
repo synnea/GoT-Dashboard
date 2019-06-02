@@ -44,6 +44,7 @@ gotData.forEach(function(d){
     show_deathly_writers(ndx);
     show_avg_score(ndx);
     show_avg_score_per_season(ndx);
+    show_top_rated_episodes(ndx);
     
 
     dc.renderAll();
@@ -594,7 +595,7 @@ function  show_avg_score_per_season(ndx) {
 
     dc.barChart('#avgIMDBSeason')
         .width(500)
-        .height(300)
+        .height(350)
         .margins({
             top: 10,
             right: 60,
@@ -618,5 +619,33 @@ function  show_avg_score_per_season(ndx) {
         .yAxisLabel("IMDB Rating")
         .renderLabel(true)
         .yAxis().ticks(4);
+
+}
+
+function show_top_rated_episodes(ndx) {
+
+    var episodeDim = ndx.dimension(dc.pluck('episode'));
+    var ratingGroup = episodeDim.group().reduceSum(dc.pluck('rating'));
+
+    dc.rowChart("#topRatedEps")
+        .dimension(episodeDim)
+        .group(ratingGroup)
+        .width(500)
+        .height(300)
+        .margins({
+            top: 10,
+            right: 60,
+            bottom: 30,
+            left: 20
+        })
+        .title(function (d){
+            return 'Episode ' + d.key[3] + d.key[4] + ' of Season ' + d.key[1] + ' had an IMDB rating of ' + d.value;
+        })
+        .transitionDuration(500)
+         // exclude the 'Others' category in the row chart.
+        .othersGrouper(false)
+        .elasticX(true)
+        .cap(10);
+
 
 }
