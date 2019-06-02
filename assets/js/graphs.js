@@ -45,6 +45,7 @@ gotData.forEach(function(d){
     show_avg_score(ndx);
     show_avg_score_per_season(ndx);
     show_top_rated_episodes(ndx);
+    show_top_rated_writers(ndx);
     
 
     dc.renderAll();
@@ -648,4 +649,8 @@ function show_top_rated_episodes(ndx) {
         .cap(10);
 
 
+}
+
+function show_top_rated_writers(ndx) {
+    
 }
