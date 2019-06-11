@@ -42,15 +42,10 @@
     <!-- Begin Navbar -->
 
     <div class="container-fluid navbar-container">
-        <nav class="navbar navbar-light bg-light fixed-top navbar-expand-sm" id="navbar">
+        <nav class="navbar navbar-light bg-light fixed-top navbar-expand" id="navbar">
 
 
             <!-- Dropdown Button -->
-
-            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"><span
-                    class="navbar-toggler-icon"></span></button>
-
 
 
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -65,9 +60,11 @@
                                 alt="home-icon"></div>
                     </li>
 
-                    <li class="active nav-item mr-2 mt-0 mb-0" id="navGen">
+                    <div class="d-none d-md-block">
+                    <li class="active nav-item mr-2 mt-0 mb-0 d-xs-none d-m-inline" id="navGen">
                         <a class="nav-link hvr-bounce-in" id="navGenLink">The Dashboard</a>
                     </li>
+                </div>
 
                     <li class="active nav-item mr-2" id="Navreset">
                         <a class="hvr-bounce-in btn-lg nav-link active d-inline-block"

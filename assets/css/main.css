@@ -7,8 +7,18 @@
 }
 
 .home-img {
-  width: 15vh;
+  width: 8vh;
 }
+
+/* Home logo shows up in a larger relative size on larger devices */
+
+@media (min-width: 768px) {
+  .home-img {
+    width: 15vh;
+  }
+}
+
+
 
  /* Links in the navbar are targeted by ID due to override strong Bootstrap presets and use the IDs with jQuery */
 
@@ -37,9 +47,17 @@
 }
 
 #resetLink {
-font-size: 1.3em !important;
+font-size: 1em !important;
 color: #7FB7BE !important;
 }
+
+@media (min-width: 768px)  {
+  #resetLink {
+    font-size: 1.3em;
+  }
+}
+
+
 
 /* -----------------------------------------------------LANDING PAGE-------------------------------------------- */
 
@@ -81,9 +99,6 @@ color: #7FB7BE !important;
   background-color:r(245, 245, 245, 0.904)gba;
 }
 
-@media (max-width:780px) {
-  
-}
 .main-container {
   position: relative;
   height:100vh;
