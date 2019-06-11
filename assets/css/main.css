@@ -61,20 +61,17 @@
 /* -----------------------------------------------------LANDING PAGE-------------------------------------------- */
 
 .db-img-lp {
-  width: 80%;
-  height: 12vh;
+  max-width: 100%;
+  height: auto;
   margin-bottom: 10vh;
-
 }
 
 @media (min-width: 768px) {
-  .db-imglp {
+  .db-img-lp {
     max-width: 70%;
-    height: auto;
     margin-bottom: 10vh;
   }
 }
-
 
 
 
