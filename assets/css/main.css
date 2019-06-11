@@ -21,15 +21,6 @@
  }
 
 
-#navCharaLink {
-  color: #6E403A !important;
-}
-
-#navCharaLink:active {
-  color: #7FB7BE !important;
-}
-
-
 .nav-item {
   font-family: 'MedievalSharp', cursive;
   font-size: 1.2em;
@@ -67,11 +58,23 @@ color: #7FB7BE !important;
 }
 
 .background {
-  background: url("../img/bg-img.jpg") no-repeat center center scroll;
+  background: url("../img/bg-img.jpg") no-repeat top right scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+/* ----------------- The following media query re-positions the background picture to the center */
+
+@media (min-width: 768px) {
+  .background {
+    background: url("../img/bg-img.jpg") no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
 }
 
 .background-alt {
