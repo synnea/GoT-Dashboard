@@ -58,14 +58,14 @@ color: #7FB7BE !important;
 }
 
 .background {
-  background: url("../img/bg-img.jpg") no-repeat top right scroll;
+  background: url("../img/bg-img.jpg") no-repeat 70% scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
 
-/* ----------------- The following media query re-positions the background picture to the center */
+/* ----------------- The following media query re-positions the background picture to the center for tablet and larger devices */
 
 @media (min-width: 768px) {
   .background {
