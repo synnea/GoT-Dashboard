@@ -93,8 +93,6 @@ function show_total_viewership_by_season(ndx) {
     var barchartTotalViews = dc.barChart('#viewsSeason');
 
 
-
-
     barchartTotalViews
         .width(500)
         .height(300)
@@ -114,7 +112,7 @@ function show_total_viewership_by_season(ndx) {
         .xAxisLabel("Season")
         .yAxisLabel("Viewership (in millions)")
         .title(function (d) {
-            return 'Season ' + d.key + ' had a total of ' + d.value + ' million viewers';
+            return 'Season ' + d.key + ' had a total of ~ ' + Math.round(d.value * 100 + Number.EPSILON) / 100 + ' million viewers';
         })
         .renderLabel(true)
         .yAxis().ticks(4);
@@ -170,7 +168,7 @@ function show_avg_viewership_by_season(ndx) {
         .dimension(seasonDim)
         .group(avg_views_group)
         .title(function (d) {
-            return 'Season ' + d.key + ' had an average of ' + d.value + ' million viewers';
+            return 'Season ' + d.key + ' had an average of  ' + Math.round(d.value.average * 100 + Number.EPSILON) / 100 + ' million viewers';
         })
         .transitionDuration(500)
         .valueAccessor(function (d) {
@@ -233,6 +231,14 @@ function show_season_selector(ndx) {
         });
 
     dc.selectMenu("#seasonSelector-deaths")
+        .dimension(seasonDim)
+        .group(seasonGroup)
+        .promptText('Season Selector')
+        .title(function (d) {
+            return 'Season ' + d.key + ': ' + d.value + ' Episodes';
+        });
+
+    dc.selectMenu("#seasonSelector-IMDB")
         .dimension(seasonDim)
         .group(seasonGroup)
         .promptText('Season Selector')
@@ -352,7 +358,7 @@ function show_number_of_deaths_per_season(ndx) {
         .dimension(seasonDim)
         .group(num_death_group)
         .title(function (d) {
-            return 'Season ' + d.key + ' had an total of ' + d.value + ' notable deaths';
+            return 'Season ' + d.key + ' had an total of ' + d.value + ' notable deaths.';
         })
         .transitionDuration(500)
         .x(d3.scale.ordinal())
@@ -461,7 +467,7 @@ function show_percentage_of_deaths_per_season(ndx) {
         .drawPaths(true)
         .externalLabels(40)
         .title(function (d) {
-            return 'Season ' + d.key + ' accounted for approximately ' + (d.value / 230 * 100) + "% of total deaths"
+            return 'Season ' + d.key + ' killed ' + d.value + " notable characters."
         })
         .colorAccessor(function (d) {
             return d.key;
@@ -518,7 +524,9 @@ function show_deathly_writers(ndx) {
                 return show_slice_percent(d.data.key, d.endAngle, d.startAngle);
             });
         })
-
+        .title(function (d) {
+            return d.key + ' killed ' + d.value + ' notable characters.';
+        })
         .group(deathGroup)
         .minAngleForLabel(0)
         .drawPaths(true)
@@ -619,7 +627,7 @@ function show_avg_score_per_season(ndx) {
         .dimension(seasonDim)
         .group(avg_ratings_group)
         .title(function (d) {
-            return 'Season ' + d.key + ' had an average ' + d.value + ' IMDB rating';
+            return 'Season ' + d.key + ' had an average ' + Math.round(d.value.average * 100 + Number.EPSILON) / 100 + ' IMDB rating';
         })
         .transitionDuration(500)
         .valueAccessor(function (d) {
@@ -713,7 +721,7 @@ function show_score_by_writer(ndx) {
         .dimension(writerDim)
         .group(avg_ratings_group)
         .title(function (d) {
-            return 'Season ' + d.key + ' had an average ' + d.value + ' IMDB rating';
+            return d.key + '\'s episodes had an average ' + Math.round(d.value.average * 100 + Number.EPSILON) / 100 + ' IMDB rating.';
         })
         .transitionDuration(500)
         .valueAccessor(function (d) {
@@ -736,7 +744,7 @@ function show_score_by_writer(ndx) {
 function show_correlation_between_rating_and_viewership(ndx) {
 
     var IMDBViewDim = ndx.dimension(function (d) {
-        return [d.viewers, d.rating, d.episode];
+        return [d.viewers, d.rating, d.episode, d.season];
     });
 
     viewerDim = ndx.dimension(function (d) {
@@ -749,25 +757,31 @@ function show_correlation_between_rating_and_viewership(ndx) {
     var IMDBViewGroup = IMDBViewDim.group();
 
     var seasonColors = d3.scale.ordinal()
-    .domain(["1", "2", "3", "4", "5", "6", "7", "8"])
-    .range(['#6E403A ', '#855A5C', '#8A8E91', '#DACC3E', '#7FB7BE', '#bee592', '#020202', '#705D56']);
+        .domain(["1", "2", "3", "4", "5", "6", "7", "8"])
+        .range(['#6E403A ', '#855A5C', '#8A8E91', '#DACC3E', '#7FB7BE', '#bee592', '#020202', '#705D56']);
 
-dc.scatterPlot("#corrIMDBandViews")
-    .dimension(IMDBViewDim)
-    .group(IMDBViewGroup)
-    .width(700)
-    .height(400)
-    .colorAccessor(function (d) {
-        return d.key;
-    })
+    dc.scatterPlot("#corrIMDBandViews")
+        .dimension(IMDBViewDim)
+        .group(IMDBViewGroup)
+        .width(700)
+        .height(400)
+        .colorAccessor(function (d) {
+            return d.key[3];
+        })
 
-    .colors(seasonColors)
-    .y(d3.scale.linear()
-    .domain([0,10]))
-    .x(d3.scale.linear()
-    .domain([viewerMin, viewerMax]))
-    .brushOn(false)
-    .symbolSize(8)
-    .clipPadding(5);
+        .colors(seasonColors)
+        .y(d3.scale.linear()
+            .domain([0, 10]))
+        .x(d3.scale.linear()
+            .domain([viewerMin, viewerMax]))
+        .brushOn(false)
+        .legend(dc.legend().x(80).y(20).itemHeight(10).gap(5))
+        .symbolSize(8)
+        .xAxisLabel("Viewers (in million)")
+        .yAxisLabel("IMDB Rating")
+        .title(function (d) {
+            return d.key[2] + " was rated a " + d.key[1] + " and had a viewership of " + d.key[0] + " million.";
+        })
+        .clipPadding(5);
 
 }

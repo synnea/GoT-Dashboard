@@ -173,6 +173,7 @@ body {
 h1 {
   font-family: 'MedievalSharp', cursive;
   font-size: 3em;
+  padding-top: 10vh;
 }
 
 .db-img-db {
@@ -195,10 +196,6 @@ h1 {
 
 .db-logo {
   margin-top: 15vh;
-}
-
-#gen-header {
-  padding-top: 10vh;
 }
 
 .dashboard-container {
@@ -251,6 +248,51 @@ h1 {
 .death-container {
   margin-top: 20vh;
 }
+
+
+
+
+
+
+/* -------------------------------------------------- FOOOTER ------------------------------------------------*/
+
+.footer {
+  height: 10vh;
+  background-color: rgb(26, 22, 22);
+  color: #7FB7BE;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+}
+
+.github-logo {
+  color: #fff;
+  font-size: 1.5em;
+  transition: all .2s ease-in-out
+}
+
+.github-logo:focus,
+.github-logo:hover {
+  color: #7FB7BE;
+}
+
+@media (min-width: 768px) {
+  .github-logo {
+      font-size: 2em;
+  }
+}
+
+
+
+
+
+
+
+
 
 /* Animista classes and keyframes */
 
