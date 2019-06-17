@@ -202,6 +202,20 @@ h1 {
   margin-top: 0;
 }
 
+.number-box {
+
+margin: 1rem;
+font-size: 1.5rem;
+}
+
+.number-display {
+
+  margin: 1.5 rem;
+  font-size: 1.8rem;
+}
+
+
+
 /* -----------------------------------------------------Arrow -------------------------------------------- */
 
 .arrow-container {
