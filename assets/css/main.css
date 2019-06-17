@@ -206,7 +206,7 @@ h1 {
 .number-box {
 
 margin: 1rem;
-font-size: 1.5rem;
+font-size: 1rem;
 border: 2px solid  #d9d9d9;
 background-color:  #d9d9d9;
 color: #1a1616;
@@ -216,7 +216,7 @@ padding: 0.5rem;
 .number-display {
 
   margin: 1.5 rem;
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   padding: 0.5rem;
   font-weight: 500;
   color: #6E403A;
@@ -235,9 +235,15 @@ padding: 0.5rem;
   border-radius: 0.8em;
   background-color: #d9d9d9;
   opacity: 0.9;
-  margin: 0.8em;
+  margin-left: 10%;
+  margin-top: 5vh;
   text-align: center;
   color: #1a1616;
+}
+
+.column-height {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 
