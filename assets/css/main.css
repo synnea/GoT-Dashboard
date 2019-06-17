@@ -231,12 +231,13 @@ padding: 0.5rem;
 /* -----------------------------------------------------GEN DASHBOARD GRAPHS STYLING-------------------------------------------- */
 
 .graph-wrapper {
-  padding: 15px 10px;
-  border-radius: 10px;
+  padding: 0.8em;
+  border-radius: 0.8em;
   background-color: #d9d9d9;
   opacity: 0.9;
-  margin: 12.5px 0;
+  margin: 0.8em;
   text-align: center;
+  color: #1a1616;
 }
 
 
