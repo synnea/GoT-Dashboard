@@ -39,7 +39,8 @@
 </head>
 
 <body>
-    <!-- Begin Navbar -->
+    
+    <!-- BEGIN NAVBAR -->
 
     <div class="container-fluid navbar-container">
         <nav class="navbar navbar-light bg-light fixed-top navbar-expand" id="navbar">
@@ -50,7 +51,7 @@
 
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
-                <!-- Navbar Menu Items -->
+            <!-- Navbar Menu Items -->
 
 
                 <ul class="navbar-nav nav-fill w-100" id="menuButtons">
@@ -77,9 +78,8 @@
         </nav>
     </div>
 
-    <!--- End Navbar-->
 
-    <!-- Begin Landing Page -->
+    <!-- BEGIN LANDING PAGE -->
 
     <div class="content-container background">
 
@@ -88,6 +88,8 @@
             <div class="container-fluid mt-1 main-container">
 
                 <div class="img-overlay">&nbsp;</div>
+
+            <!-- Main descriptor as image -->
 
                 <div class="row">
                     <div class="col-sm-12">
@@ -102,7 +104,7 @@
                         <div class="col-12">
 
 
-                            <!-- Begin Button-->
+            <!-- Main button that redirects to the dashboard section -->
 
                             <button type="button"
                                 class="btn btn-outline-primary flicker-in-1 hvr-bounce-in mx-auto d-block"
@@ -114,14 +116,12 @@
                     </div>
                 </article>
 
-                <!-- End Jumbotron -->
-
 
             </div>
 
         </section>
 
-        <!--- Begin General Dashboard section -->
+        <!--- BEGIN DASHBOARD SECTION -->
 
         <div class="dashboard-container">
             <section class="gen-dash">
@@ -135,6 +135,8 @@
                     </div>
                 </div>
 
+            <!--- Buttons to skip to other parts of the dashboard -->        
+
                 <div class="row justify-content-center">
                     <div class="col-xs-12-sm-6 mt-1">
                         <a href="#death-dash" class="btn btn-dark death-btn hvr-bounce-in btn-lg active" role="button"
@@ -142,13 +144,13 @@
                             on deaths</a>
                     </div>
                     <div class="col-xs-12-sm-6 mt-1">
-                        <a href="#pop-dash" class="btn btn-dark pop-btn hvr-bounce-in btn-lg active" role="button"
+                        <a href="#rating-dash" class="btn btn-dark rating-btn hvr-bounce-in btn-lg active" role="button"
                             aria-pressed="true"><i class="fas fa-star-half-alt"></i> Skip to stats on IMDB
                             ratings</a>
                     </div>
                 </div>
 
-                <!-------- Arrow animation ----------->
+            <!-------- Arrow animation which auto-scrolls down to the beginning of the general information section ----------->
 
                 <div class="arrow-container">
                     <div class="row">
@@ -160,7 +162,7 @@
                     </div>
                 </div>
 
-                <!-------- General information dashboard ----------->
+        <!-------- BEGIN GENERAL INFORMATION DASHBOARD ----------->
 
                 <div class="row justify-content-center my-4" id="gen-header">
                     <div class="col-md-offset-5">
@@ -168,8 +170,9 @@
                     </div>
                 </div>
 
-                <div class="row justify-content-center my-4">
+                <!-------- General information number displays ----------->  
 
+                <div class="row justify-content-center my-4">
 
                      <span class="number-box" id="numSeasons">
                         <i class="fas fa-hashtag fas-display"></i> of Seasons:
@@ -178,9 +181,10 @@
                    <span class="number-box" id="numEps"> <i class="fas fa-hashtag fas-display"></i> of Episodes:
 
                     </span>
-
-
                 </div>
+
+                 <!-------- Total Viewership Bar Chart ----------->  
+
 
                 <div class="row justify-content-center my-4">
                     <div>
@@ -188,11 +192,16 @@
                         <div id="viewsSeason"></div>
                     </div>
 
+                 <!-------- Average Viewership Bar Chart ----------->  
+
                     <div>
                         <h3>Average Viewership by Season</h3>
                         <div id="avgViewsSeason"></div>
                     </div>
                 </div>
+
+               <!-------- Viewership Over Time Line Chart ----------->  
+
 
                 <div class="row justify-content-center my-4 mx-2">
 
@@ -201,6 +210,8 @@
 
                     </div>
                 </div>
+
+                   <!-------- Season Selector belonging to the line chart ----------->  
 
                 <div class="row justify-content-center my-4">
                     <div class="col-md-offset-5 d-block">
@@ -219,7 +230,8 @@
 
             </section>
 
-            <!--- Begin Death Dashboard section -->
+        <!--- BEGIN DEATH INFORMATON DASHBOARD -->
+
 
             <section id="death-dash">
                 <div class="death-container">
@@ -232,30 +244,47 @@
                     <div class="row justify-content-center my-4">
 
 
+                <!--- Death dashboard number display -->
+
+
                         <span class="number-box" id="numDeaths">  
                             <i class="fas fa-hashtag fas-display"></i> of Overall <i class="fas fa-skull-crossbones fas-display"></i>:
                         </span>
 
                     </div>
 
+
+                <!--- Number of Deaths per Season Bar Chart -->
+                
+                
                     <div class="row justify-content-center my-4">
                         <div class="col-xs-12 col-sm-6 col-md-4">
                             <h3>Number of Deaths per Season</h3>
                             <div id="numDeathsSeason"></div>
                         </div>
 
+
+                <!--- Deaths per Season Pie Chart-->        
+
                         <div class="col-xs-12 col-sm-6 col-md-4">
-                            <h3>Average Deaths per Episode</h3>
+                            <h3>Percentage of Deaths per Season</h3>
                             <div id="deathPercentage"></div>
                         </div>
 
                     </div>
                     <div class="row justify-content-center my-4 mx-2">
 
+
+                <!--- Mortality over Time Line Chart-->  
+
+
                         <div class="col-md-offset-5 d-block">
                             <h3 class="compChartHeader">Mortality over Time</h3>
                         </div>
                     </div>
+
+
+                     <!-------- Season Selector belonging to the line chart ----------->  
 
                     <div class="row justify-content-center my-4">
                         <div class="col-md-offset-5 d-block">
@@ -270,11 +299,16 @@
                         </div>
                     </div>
 
+                <!-------- Top 10 Deadly Episodes Row Chart ----------->  
+
                     <div class="row justify-content-center my-4 ">
 
                         <div id="topDeathlyEps">
                             <h3>Top Ten Deathly Episodes</h3>
                         </div>
+
+
+                <!-------- Top Deathly Writers Pie Chart ----------->  
 
 
                         <div id="topDeathlyWriters">
@@ -286,16 +320,18 @@
 
             </section>
 
-            <!--- Begin Popularity Dashboard section -->
+        <!--- BEGIN RATINGS DASHBOARD -->
 
-            <section id="pop-dash">
-                <div class="pop-container">
+            <section id="rating-dash">
+                <div class="rating-container">
                     <div class="row justify-content-center my-4">
                         <div class="col-md-offset-5">
                             <h1>IMDB Ratings</h1>
                         </div>
                     </div>
 
+
+                <!--- Ratings dashbord number display  -->
 
                     <div class="row justify-content-center my-4">
 
@@ -306,11 +342,16 @@
 
                     </div>
 
+                <!--- Average IMDB Ratings per Season Bar Chart  -->
+
+
                     <div class="row justify-content-center my-4">
 
                         <div id="avgIMDBSeason">
                             <h3>Average IMDB Rating per Season</h3>
                         </div>
+
+                <!--- Top 10 Rated Episodes Row Chart  -->
 
                         <div id="topRatedEps">
                             <h3>Top 10 Rated Episodes</h3>
@@ -318,6 +359,9 @@
                         </div>
 
                     </div>
+
+
+                <!--- Top Rated Writers Bar Chart  -->
 
                     <div class="row justify-content-center my-4">
 
@@ -327,6 +371,10 @@
 
 
                     </div>
+
+
+                 <!--- Correlation between Ratings and Viewership Scatterplot -->    
+
 
                     <div class="row justify-content-center my-4">
 
@@ -352,22 +400,36 @@
 
             </section>
 
-            <!--- End dashboard container -->
+
 
         </div>
+
+      <!--- END DASHBOARD SECTION -->  
+
     </div>
 
-    <!--- Footer -->
+    <!--- BEGIN FOOTER -->
 
     <footer class="container-fluid footer">
         <div class="container">
+
+
+         <!--- Copyright -->
+
             <div class="row footer-content">
                 <div class="col-xs-12 col-sm-4">
                     <div>&copy;2019 Carina Poell</div>
                 </div>
+
+            <!--- Github link & logo -->
+
                 <div class="col-xs-12 col-sm-4">
                     <a href="https://github.com/synnea" target="_blank"><i class="fab fa-github github-logo"></i></a>
                 </div>
+            
+                <!--- Link to data source from Kaggle -->
+
+
                 <div class="col-xs-12 col-sm-4">
                     <div>Original unmodified dataset sourced from <span><a
                                 href="https://www.kaggle.com/dasbootstrapping/game-of-thrones-episode-data/version/1"
