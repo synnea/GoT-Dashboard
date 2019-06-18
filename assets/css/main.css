@@ -243,6 +243,11 @@ svg {
   color: #1a1616;
 }
 
+#seasonSelector {
+  margin-left: 40%;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+}
 
 
 /* ----------------------------------------------------- Downward pointing Arrow -------------------------------------------- */

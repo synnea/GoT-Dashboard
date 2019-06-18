@@ -306,7 +306,7 @@ function show_viewership_over_time(ndx) {
             .colors('#8A8E91')
             .group(S2Group, 'Season 2'),
             dc.lineChart(compositeChart)
-            .colors('#bee592')
+            .colors('#545a2c')
             .group(S3Group, 'Season 3'),
             dc.lineChart(compositeChart)
             .colors('#855A5C')
@@ -428,7 +428,7 @@ function show_deaths_over_time(ndx) {
             .colors('#8A8E91')
             .group(S2Group, 'Season 2'),
             dc.lineChart(compositeChart)
-            .colors('#bee592')
+            .colors('#545a2c')
             .group(S3Group, 'Season 3'),
             dc.lineChart(compositeChart)
             .colors('#855A5C')
@@ -457,7 +457,7 @@ function show_percentage_of_deaths_per_season(ndx) {
     var num_death_group = seasonDim.group().reduceSum(dc.pluck('deaths'));
 
     var seasonColors = d3.scale.ordinal()
-        .range(['#6E403A ', '#855A5C', '#8A8E91', '#DACC3E', '#7FB7BE', '#bee592', '#020202', '#705D56']);
+        .range(['#6E403A ', '#855A5C', '#8A8E91', '#DACC3E', '#7FB7BE', '#545a2c', '#020202', '#705D56']);
 
     dc.pieChart("#deathPercentage")
         .height(300)
@@ -758,7 +758,7 @@ function show_correlation_between_rating_and_viewership(ndx) {
 
     var seasonColors = d3.scale.ordinal()
         .domain(["1", "2", "3", "4", "5", "6", "7", "8"])
-        .range(['#6E403A ', '#855A5C', '#8A8E91', '#DACC3E', '#7FB7BE', '#bee592', '#020202', '#705D56']);
+        .range(['#6E403A ', '#855A5C', '#8A8E91', '#DACC3E', '#7FB7BE', '#545a2c', '#020202', '#705D56']);
 
     dc.scatterPlot("#corrIMDBandViews")
         .dimension(IMDBViewDim)
