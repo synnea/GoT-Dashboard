@@ -45,7 +45,6 @@ function makeGraphs(error, gotData) {
     show_num_deaths(ndx);
     show_number_of_deaths_per_season(ndx);
     show_percentage_of_deaths_per_season(ndx);
-    show_deaths_over_time(ndx);
     show_top_deathly_episodes(ndx);
     show_deathly_writers(ndx);
     show_avg_score(ndx);
@@ -324,7 +323,7 @@ function show_viewership_over_time(ndx) {
             .colors('#020202')
             .group(S8Group, 'Season 8'),
         ])
-        .brushOn(true)
+        .brushOn(false)
         .elasticX(true)
         .render();
 }
@@ -372,85 +371,6 @@ function show_number_of_deaths_per_season(ndx) {
 }
 
 
-function show_deaths_over_time(ndx) {
-
-    var dateDim = ndx.dimension(function (d) {
-        return d.airdate;
-    });
-
-    function deaths_by_season(season) {
-        return function (d) {
-            if (d.season === season) {
-                return +d.deaths;
-            } else {
-                return 0;
-            }
-        }
-    };
-
-    var minDate = dateDim.bottom(1)[0].airdate;
-    var maxDate = dateDim.top(1)[0].airdate;
-
-    var S1Deaths = dateDim.group().reduceSum(deaths_by_season(1));
-    var S2Deaths = dateDim.group().reduceSum(deaths_by_season(2));
-    var S3Deaths = dateDim.group().reduceSum(deaths_by_season(3));
-    var S4Deaths = dateDim.group().reduceSum(deaths_by_season(4));
-    var S5Deaths = dateDim.group().reduceSum(deaths_by_season(5));
-    var S6Deaths = dateDim.group().reduceSum(deaths_by_season(6));
-    var S7Deaths = dateDim.group().reduceSum(deaths_by_season(7));
-    var S8Deaths = dateDim.group().reduceSum(deaths_by_season(8));
-
-    S1Group = remove_blanks(S1Deaths, 0);
-    S2Group = remove_blanks(S2Deaths, 0);
-    S3Group = remove_blanks(S3Deaths, 0);
-    S4Group = remove_blanks(S4Deaths, 0);
-    S5Group = remove_blanks(S5Deaths, 0);
-    S6Group = remove_blanks(S6Deaths, 0);
-    S7Group = remove_blanks(S7Deaths, 0);
-    S8Group = remove_blanks(S8Deaths, 0);
-
-    var compositeChart = dc.compositeChart('#deathsOverTime');
-    compositeChart
-        .width(1000)
-        .height(400)
-        .dimension(dateDim)
-        .x(d3.time.scale().domain([minDate, maxDate]))
-        .xAxisLabel("Time")
-        .yAxisLabel("Deaths")
-        .renderHorizontalGridLines(true)
-        .mouseZoomable(true)
-        .legend(dc.legend().x(80).y(20).itemHeight(13).gap(5))
-        .compose([
-            dc.lineChart(compositeChart)
-            .group(S1Group, 'Season 1')
-            .colors('#DACC3E'),
-            dc.lineChart(compositeChart)
-            .colors('#8A8E91')
-            .group(S2Group, 'Season 2'),
-            dc.lineChart(compositeChart)
-            .colors('#545a2c')
-            .group(S3Group, 'Season 3'),
-            dc.lineChart(compositeChart)
-            .colors('#855A5C')
-            .group(S4Group, 'Season 4'),
-            dc.lineChart(compositeChart)
-            .colors('#7FB7BE')
-            .group(S5Group, 'Season 5'),
-            dc.lineChart(compositeChart)
-            .colors('#6E403A')
-            .group(S6Group, 'Season 6'),
-            dc.lineChart(compositeChart)
-            .colors('#705D56')
-            .group(S7Group, 'Season 7'),
-            dc.lineChart(compositeChart)
-            .colors('#020202')
-            .group(S8Group, 'Season 8'),
-        ])
-        .brushOn(true)
-        .elasticX(true)
-        .render();
-}
-
 function show_percentage_of_deaths_per_season(ndx) {
 
     var seasonDim = ndx.dimension(dc.pluck('season'));
@@ -461,7 +381,7 @@ function show_percentage_of_deaths_per_season(ndx) {
 
     dc.pieChart("#deathPercentage")
         .height(300)
-        .width(400)
+        .width(500)
         .radius(100)
         .transitionDuration(500)
         .drawPaths(true)
@@ -514,8 +434,8 @@ function show_deathly_writers(ndx) {
     var deathGroup = writerDim.group().reduceSum(dc.pluck('deaths'));
 
     dc.pieChart("#topDeathlyWriters")
-        .height(320)
-        .width(400)
+        .height(300)
+        .width(500)
         .radius(80)
         .transitionDuration(500)
         .dimension(writerDim)
@@ -617,7 +537,7 @@ function show_avg_score_per_season(ndx) {
 
     dc.barChart('#avgIMDBSeason')
         .width(500)
-        .height(350)
+        .height(300)
         .margins({
             top: 10,
             right: 60,
@@ -711,7 +631,7 @@ function show_score_by_writer(ndx) {
 
     dc.barChart('#topRatedWriters')
         .width(500)
-        .height(350)
+        .height(300)
         .margins({
             top: 10,
             right: 60,

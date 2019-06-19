@@ -221,7 +221,7 @@
 
 
                         <div class="col-md-offset-5 d-block">
-                            <div id="seasonSelector">
+                            <div id="seasonSelector" class="season-selector">
                             </div>
 
                         </div>
@@ -231,6 +231,13 @@
 
                             <div id="viewsOverTime"></div>
                         </div>
+
+                        <div class="col-md-offset-5 d-block">
+
+                            <p>The line chart above shows the viewership development of each season over time. Try
+                                selecting a season!</p>
+                        </div>
+
                     </div>
                 </div>
 
@@ -265,7 +272,7 @@
 
 
                     <div class="row justify-content-center my-4">
-                        <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="graph-wrapper">
                             <h3>Number of Deaths per Season</h3>
                             <div id="numDeathsSeason"></div>
                         </div>
@@ -273,7 +280,7 @@
 
                         <!--- Deaths per Season Pie Chart-->
 
-                        <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="graph-wrapper">
                             <h3>Percentage of Deaths per Season</h3>
                             <div id="deathPercentage"></div>
                         </div>
@@ -281,49 +288,26 @@
                     </div>
                     <div class="row justify-content-center my-4 mx-2">
 
+                        <!-------- Top 10 Deadly Episodes Row Chart ----------->
 
-                        <!--- Mortality over Time Line Chart-->
+                        <div class="row justify-content-center my-4 ">
+
+                            <div class="graph-wrapper">
+                                <h3>Top Ten Deathly Episodes</h3>
+                                <div id="topDeathlyEps"></div>
+
+                            </div>
 
 
-                        <div class="col-md-offset-5 d-block">
-                            <h3 class="compChartHeader">Mortality over Time</h3>
+                            <!-------- Top Deathly Writers Pie Chart ----------->
+
+                            <div class="graph-wrapper">
+                                <h3>Top Lethal Writers</h3>
+                                <div id="topDeathlyWriters"></div>
+                            </div>
                         </div>
+
                     </div>
-
-
-                    <!-------- Season Selector belonging to the line chart ----------->
-
-                    <div class="row justify-content-center my-4">
-                        <div class="col-md-offset-5 d-block">
-                            <div id="seasonSelector-deaths"></div>
-
-                        </div>
-                    </div>
-
-                    <div class="row justify-content-center my-4 ">
-
-                        <div id="deathsOverTime">
-                        </div>
-                    </div>
-
-                    <!-------- Top 10 Deadly Episodes Row Chart ----------->
-
-                    <div class="row justify-content-center my-4 ">
-
-                        <div id="topDeathlyEps">
-                            <h3>Top Ten Deathly Episodes</h3>
-                        </div>
-
-
-                        <!-------- Top Deathly Writers Pie Chart ----------->
-
-
-                        <div id="topDeathlyWriters">
-                            <h3>Top Lethal Writers</h3>
-                        </div>
-                    </div>
-
-                </div>
 
             </section>
 
@@ -354,14 +338,17 @@
 
                     <div class="row justify-content-center my-4">
 
-                        <div id="avgIMDBSeason">
-                            <h3>Average IMDB Rating per Season</h3>
-                        </div>
+                        <div class="graph-wrapper">
 
+                            <h3>Average IMDB Rating per Season</h3>
+                            <div id="avgIMDBSeason"></div>
+                        </div>
                         <!--- Top 10 Rated Episodes Row Chart  -->
 
-                        <div id="topRatedEps">
+                        <div class="graph-wrapper">
+
                             <h3>Top 10 Rated Episodes</h3>
+                            <div id="topRatedEps"></div>
 
                         </div>
 
@@ -372,8 +359,9 @@
 
                     <div class="row justify-content-center my-4">
 
-                        <div id="topRatedWriters">
+                        <div class="graph-wrapper">
                             <h3>Top Rated Writers</h3>
+                            <div id="topRatedWriters"></div>
                         </div>
 
 
@@ -385,27 +373,30 @@
 
                     <div class="row justify-content-center my-4">
 
-                        <div id="corrIMDBandViews">
-                            <h3>Correlation between IMDB Rating and Viewership</h3>
-
-                        </div>
-                        <div class="row justify-content-center my-4">
+                        <div class="graph-wrapper">
                             <div class="col-md-offset-5 d-block">
-                                <div id="seasonSelector-IMDB"></div>
+                                <h3>Correlation between IMDB Rating and Viewership</h3>
 
+
+                                <div class="col-md-offset-5 d-block">
+                                    <div id="seasonSelector-IMDB" class="season-selector"></div>
+
+                                </div>
+
+                                <div class="col-md-offset-5 d-block">
+                                    <div id="corrIMDBandViews">
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-
                     </div>
 
-                </div>
+                    <div class="row justify-content-center my-4">
 
-                <div class="row justify-content-center my-4">
+                        <a href="#begin-dash" class="to-top">Back to top</a>
 
-                    <a href="#begin-dash" class="to-top">Back to top</a>
-
-                </div>
+                    </div>
 
             </section>
         </div>
