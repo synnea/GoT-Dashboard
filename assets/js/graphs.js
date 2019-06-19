@@ -35,6 +35,7 @@ function makeGraphs(error, gotData) {
     });
 
 
+    // Call the functions for each individual graph
 
     show_total_viewership_by_season(ndx);
     show_avg_viewership_by_season(ndx);
@@ -53,6 +54,8 @@ function makeGraphs(error, gotData) {
     show_score_by_writer(ndx);
     show_correlation_between_rating_and_viewership(ndx);
 
+
+    // Render all the graphs
 
     dc.renderAll();
 }
@@ -105,27 +108,24 @@ function show_num_eps(ndx) {
 
 function show_num_seasons(ndx) {
 
-
-    function bin_counter(group) {
-        return {
-            value: function() {
-                return group.all().filter(function(kv) {
-                   return kv.value > 0;
-                }).length;
-            }
-        };
-    }
     var seasonDim = ndx.dimension(dc.pluck('season'));
     var numSeasonGroup = seasonDim.group();
 
     // this function, generated with the reductio.js library counts the number of unique seasons
 
+    var reducer = reductio()
+        .exception(function (d) {
+            return d.season;
+        })
+        .exceptionCount(true)
+
+    reducer(numSeasonGroup);
 
     dc.numberDisplay("#numSeasons")
-        .group(bin_counter(numSeasonGroup))
+        .group(numSeasonGroup)
         .formatNumber(d3.format(".1"))
         .valueAccessor(function (d) {
-            return d.value;
+            return d.key;
         })
 }
 
@@ -219,10 +219,14 @@ function show_total_viewership_by_season(ndx) {
         .xUnits(dc.units.ordinal)
         .xAxisLabel("Season")
         .yAxisLabel("Viewership (in millions)")
+        .valueAccessor(function (d) {
+            return d.value;
+        })
         .title(function (d) {
-            return 'Season ' + d.key + ' had a total of ~ ' + Math.round(d.value * 100 + Number.EPSILON) / 100 + ' million viewers';
+            return 'Season ' + d.key + ' had a total of ' + Math.round(d.value * 100 + Number.EPSILON) / 100 + ' million viewers';
         })
         .renderLabel(true)
+        .elasticX(true)
         .yAxis().ticks(4);
 
 }
@@ -395,7 +399,7 @@ function show_viewership_over_time(ndx) {
             .colors('#545a2c')
             .group(S3Group, 'Season 3'),
             dc.lineChart(compositeChart)
-            .colors('#855A5C')
+            .colors('#175ac6')
             .group(S4Group, 'Season 4'),
             dc.lineChart(compositeChart)
             .colors('#7FB7BE')
@@ -460,7 +464,7 @@ function show_percentage_of_deaths_per_season(ndx) {
     var num_death_group = seasonDim.group().reduceSum(dc.pluck('deaths'));
 
     var seasonColors = d3.scale.ordinal()
-        .range(['#6E403A ', '#855A5C', '#8A8E91', '#DACC3E', '#7FB7BE', '#545a2c', '#020202', '#705D56']);
+        .range(['#6E403A ', '#175ac6', '#8A8E91', '#DACC3E', '#7FB7BE', '#545a2c', '#020202', '#705D56']);
 
     dc.pieChart("#deathPercentage")
         .height(300)
@@ -606,11 +610,12 @@ function show_avg_score_per_season(ndx) {
         })
         .x(d3.scale.ordinal())
         .y(d3.scale.linear()
-            .domain([5, 10]))
+            .domain([5, 10.5]))
         .xUnits(dc.units.ordinal)
         .xAxisLabel("Season")
         .yAxisLabel("IMDB Rating")
         .renderLabel(true)
+        .elasticX(true)
         .yAxis().ticks(4);
 
 }
@@ -706,7 +711,7 @@ function show_score_by_writer(ndx) {
         })
         .x(d3.scale.ordinal())
         .y(d3.scale.linear()
-            .domain([5, 10]))
+            .domain([5, 10.5]))
         .xUnits(dc.units.ordinal)
         .xAxisLabel("Writer")
         .yAxisLabel("IMDB Rating")
@@ -727,18 +732,12 @@ function show_correlation_between_rating_and_viewership(ndx) {
         return [d.viewers, d.rating, d.episode, d.season];
     });
 
-    viewerDim = ndx.dimension(function (d) {
-        return d.viewers
-    });
-
-    var viewerMin = viewerDim.bottom(1)[0].viewers;
-    var viewerMax = viewerDim.top(1)[0].viewers;
 
     var IMDBViewGroup = IMDBViewDim.group();
 
     var seasonColors = d3.scale.ordinal()
         .domain(["1", "2", "3", "4", "5", "6", "7", "8"])
-        .range(['#6E403A ', '#855A5C', '#8A8E91', '#DACC3E', '#7FB7BE', '#545a2c', '#020202', '#705D56']);
+        .range(['#6E403A ', '#175ac6', '#8A8E91', '#DACC3E', '#7FB7BE', '#545a2c', '#020202', '#705D56']);
 
     dc.scatterPlot("#corrIMDBandViews")
         .dimension(IMDBViewDim)
@@ -752,8 +751,9 @@ function show_correlation_between_rating_and_viewership(ndx) {
         .colors(seasonColors)
         .y(d3.scale.linear()
             .domain([0, 10]))
+
         .x(d3.scale.linear()
-            .domain([viewerMin, viewerMax]))
+            .domain([1, 14]))
         .brushOn(false)
         .legend(dc.legend().x(80).y(20).itemHeight(10).gap(5))
         .symbolSize(8)

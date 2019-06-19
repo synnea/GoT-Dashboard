@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         type="text/css" />
 
+
+    <!-- Load stylesheets -->
+
+
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.min.css" />
     <link href="https://fonts.googleapis.com/css?family=MedievalSharp" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
@@ -22,19 +26,6 @@
             clear: left;
         }
     </style>
-
-    <script src="https://code.jquery.com/jquery-3.4.1.js"
-        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reductio/0.6.3/reductio.min.js"></script>
-    <script type="text/javascript" src="assets/js/scripts.js"></script>
-    <script type="text/javascript" src="assets/js/graphs.js"></script>
-    <script type="text/javascript" src="assets/js/moment.min.js"></script>
-
-
 
 </head>
 
@@ -192,8 +183,7 @@
                         <h3>Total Viewership by Season</h3>
                         <div id="viewsSeason"></div><br />
                         <p>This bar chart shows the total US viewers per season, in millions.</p>
-                        <p>The series started at just over 25 million for season 1.</p>
-                        <p>The zenith was reached in season 6, with nearly 77 million.</p>
+                        <p>The series started at just over 25 million for season 1, <br /> grew steadily and reached its zenith in season 6.</p>
                     </div>
 
                     <!-------- Average Viewership Bar Chart ----------->
@@ -234,7 +224,7 @@
 
                         <div class="col-md-offset-5 d-block">
 
-                            <p>The line chart above shows the viewership development of each season over time. Try
+                            <p>The line chart above shows the viewership development of each episode in each season over time. Try
                                 selecting a season!</p>
                         </div>
 
@@ -275,6 +265,11 @@
                         <div class="graph-wrapper">
                             <h3>Number of Deaths per Season</h3>
                             <div id="numDeathsSeason"></div>
+                            <p>This bar chart shows the total numbers of notable deaths per season.</p>
+                            <p>Many fans voices their subjective concern that the series, once known <br /> 
+                            for killing off beloved characters, grew 'softer' over time</p>
+                            <p>The data supports this view. The final two seasons saw a notable drop <br />
+                            in the number of notable characters killed.</p>
                         </div>
 
 
@@ -283,6 +278,9 @@
                         <div class="graph-wrapper">
                             <h3>Percentage of Deaths per Season</h3>
                             <div id="deathPercentage"></div>
+                            <p>The pie chart illustrates the distribution of deaths across seasons.</p>
+                            <p>Of the 230 notable characters killed in the entire series, 20% died <br />
+                            in season 6, while the final season killed just 5%.</p>
                         </div>
 
                     </div>
@@ -295,7 +293,9 @@
                             <div class="graph-wrapper">
                                 <h3>Top Ten Deathly Episodes</h3>
                                 <div id="topDeathlyEps"></div>
-
+                                <p>Ever wondered which episode had the highest body count?</p>
+                                <p>Number 1 of the deadliest episodes is the final episode of season 6, <br />
+                                the Winds of Winter, which featured a certain scene in a sept...</p>
                             </div>
 
 
@@ -304,6 +304,10 @@
                             <div class="graph-wrapper">
                                 <h3>Top Lethal Writers</h3>
                                 <div id="topDeathlyWriters"></div>
+                                <p>Unsurprisingly, showrunners David Benioff and D.B. Weiss killed <br />
+                                the most characters on the show. They killed a total of 183 characters.</p>
+                                <p>Number 1 of the deadliest episodes is the final episode of season 6, <br />
+                                the Winds of Winter, which featured a certain scene in a sept...</p>
                             </div>
                         </div>
 
@@ -342,6 +346,9 @@
 
                             <h3>Average IMDB Rating per Season</h3>
                             <div id="avgIMDBSeason"></div>
+                            <p>We've seen that the viewership steadily grew, but what about <br />the critical acclaim?</p>
+                            <p>You've probably already heard of it in various news outlets, but many fans <br /> were unhappy with the direction the show took in its final season.</p>
+                            <p>This is perfectly reflected in the trajectory of the IMDB ratings, which<br /> nosedived spectulacularly in season 8.</p>
                         </div>
                         <!--- Top 10 Rated Episodes Row Chart  -->
 
@@ -349,6 +356,9 @@
 
                             <h3>Top 10 Rated Episodes</h3>
                             <div id="topRatedEps"></div>
+                            <p>This row chart displays the top 10 best rated episodes.</p>
+                            <p>The best rated episode was season 5's episode 8, "Hardhome".<br /> This episode featured one of the series' most stunning battle sequences.</p>
+                            <p>Season 4 is the season with the most episodes in the top 10,<br />featuring a total of 3 of them.</p>
 
                         </div>
 
@@ -362,6 +372,8 @@
                         <div class="graph-wrapper">
                             <h3>Top Rated Writers</h3>
                             <div id="topRatedWriters"></div>
+                            <p>Following the end of the season, much criticism was levied at<br /> showrunners Benioff and Weiss.</p>
+                            <p>On average, the episodes they penned reached an excellent 8.92 rating,<br /> but their average is notably lower than that of book creator George R. R. Martin.
                         </div>
 
 
@@ -384,13 +396,18 @@
                                 </div>
 
                                 <div class="col-md-offset-5 d-block">
-                                    <div id="corrIMDBandViews">
-                                    </div>
+                                    <div id="corrIMDBandViews"></div>
+                                    <p>Are the best-rated episodes also the most-watched episodes?</p>
+                                    <p>Unfortunately, there is no meaningful correlation between rating and viewership. Episodes <br />in each season cluster together in both viewership and rating.</p>
+                                    <p>Notably, the correlation turns negative toward season 8, which was both the <br />most-watched and worst-rated season.</p>
                                 </div>
                             </div>
                         </div>
 
                     </div>
+
+
+                     <!--- Back to Top CSS Animation  -->
 
                     <div class="row justify-content-center my-4">
 
@@ -437,6 +454,18 @@
             </div>
         </div>
     </footer>
+
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reductio/0.6.3/reductio.min.js"></script>
+    <script type="text/javascript" src="assets/js/scripts.js"></script>
+    <script type="text/javascript" src="assets/js/graphs.js"></script>
+    <script type="text/javascript" src="assets/js/moment.min.js"></script>
 
 </body>
 
