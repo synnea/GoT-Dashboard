@@ -387,7 +387,7 @@ function show_viewership_over_time(ndx) {
         .title(function (d) {
             return d.value + ' million people watched this episode.'
         })
-        .legend(dc.legend().x(80).y(20).horizontal(true).itemHeight(13).gap(10))
+        .legend(dc.legend().x(100).y(30).horizontal(true).itemWidth(70).gap(15))
         .compose([
             dc.lineChart(compositeChart)
             .group(S1Group, 'Season 1')
@@ -755,7 +755,6 @@ function show_correlation_between_rating_and_viewership(ndx) {
         .x(d3.scale.linear()
             .domain([1, 14]))
         .brushOn(false)
-        .legend(dc.legend().x(80).y(20).itemHeight(10).gap(5))
         .symbolSize(8)
         .xAxisLabel("Viewers (in million)")
         .yAxisLabel("IMDB Rating")

@@ -231,23 +231,7 @@ svg {
   margin-bottom: 5vh;
 }
 
-/* -----------------------------------------------------GEN DASHBOARD GRAPHS STYLING-------------------------------------------- */
 
-.graph-wrapper {
-  padding: 0.8em;
-  border-radius: 0.8em;
-  background-color: #d9d9d9;
-  opacity: 0.9;
-  margin: 0.8em;
-  text-align: center;
-  color: #1a1616;
-}
-
-.season-selector {
-  margin-left: 40%;
-  margin-top: 3vh;
-  margin-bottom: 3vh;
-}
 
 
 /* ----------------------------------------------------- Downward pointing Arrow -------------------------------------------- */
@@ -289,6 +273,35 @@ svg {
   animation-iteration-count: infinite;
   animation-name: arrow;
 }
+
+/* -----------------------------------------------------GRAPH STYLING-------------------------------------------- */
+
+.graph-wrapper {
+  padding: 0.8em;
+  border-radius: 0.8em;
+  background-color: #d9d9d9;
+  opacity: 0.9;
+  margin: 0.8em;
+  text-align: center;
+  color: #1a1616;
+}
+
+.season-selector {
+  margin-left: 40%;
+  margin-bottom: 4vh;
+}
+
+h3{
+  font-family: 'MedievalSharp', cursive;
+  margin-bottom:4vh;
+  margin-top: 2vh;
+}
+
+.dc-legend-item {
+  font-size: 1.1em;
+
+}
+
 
 
 /* -----------------------------------------------------DEATH DASHBOARD-------------------------------------------- */
