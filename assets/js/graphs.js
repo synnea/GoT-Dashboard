@@ -83,7 +83,116 @@ function show_slice_percent(key, endAngle, startAngle) {
         return Math.round(percent) + '%';
     }
 }
-// ------------------ INDIVIDUAL GRAPH FUNCTIONS ----------------
+
+
+
+// ------------------ NUMBER DISPLAY FUNCTIONS ----------------
+
+// ------------- Number of Episodes Number Display -----------
+
+function show_num_eps(ndx) {
+
+    var numEpGroup = ndx.groupAll();
+
+    dc.numberDisplay("#numEps")
+        .group(numEpGroup)
+        .valueAccessor(function (d) {
+            return d;
+        })
+};
+
+// ------------- Number of Seasons Number Display -----------
+
+function show_num_seasons(ndx) {
+
+
+    function bin_counter(group) {
+        return {
+            value: function() {
+                return group.all().filter(function(kv) {
+                   return kv.value > 0;
+                }).length;
+            }
+        };
+    }
+    var seasonDim = ndx.dimension(dc.pluck('season'));
+    var numSeasonGroup = seasonDim.group();
+
+    // this function, generated with the reductio.js library counts the number of unique seasons
+
+
+    dc.numberDisplay("#numSeasons")
+        .group(bin_counter(numSeasonGroup))
+        .formatNumber(d3.format(".1"))
+        .valueAccessor(function (d) {
+            return d.value;
+        })
+}
+
+// ------------- Number of Deaths Number Display -----------
+
+function show_num_deaths(ndx) {
+
+    deathDim = ndx.dimension(dc.pluck('deaths'));
+    deathGroup = deathDim.groupAll().reduceSum(dc.pluck('deaths'));
+
+    dc.numberDisplay("#numDeaths")
+        .group(deathGroup)
+        .valueAccessor(function (d) {
+            return d;
+        })
+}
+
+// ------------- Average IMDB Rating for the entire Series Number Display -----------
+
+function show_avg_score(ndx) {
+
+    var ratingDim = ndx.dimension(dc.pluck('rating'));
+    var avgScore = ratingDim.groupAll().reduce(
+
+        // Add a Fact
+        function (p, v) {
+            p.count++;
+            p.total += v.rating;
+            p.average = p.total / p.count;
+            return p;
+        },
+        // Remove a Fact
+        function (p, v) {
+            p.count--;
+            if (p.count == 0) {
+                p.total = 0;
+                p.average = 0;
+            } else {
+                p.total -= v.rating;
+                p.average = p.total / p.count;
+            }
+            return p;
+        },
+        // Initialise the Reducer
+        function () {
+            return {
+                count: 0,
+                total: 0,
+                average: 0
+            };
+        }
+    );
+
+
+    dc.numberDisplay("#avgIMDB")
+        .group(avgScore)
+        .valueAccessor(function (d) {
+            return d.average;
+        })
+
+}
+
+
+// ------------------ GENERAL DASHBOARD GRAPH FUNCTIONS ----------------
+
+// ------------- Total Viewership per Season Bar Chart -----------
+
 
 function show_total_viewership_by_season(ndx) {
 
@@ -117,6 +226,8 @@ function show_total_viewership_by_season(ndx) {
         .yAxis().ticks(4);
 
 }
+
+// ------------- Average Episode Viewership per Season Bar Chart -----------
 
 function show_avg_viewership_by_season(ndx) {
 
@@ -183,39 +294,8 @@ function show_avg_viewership_by_season(ndx) {
         .yAxis().ticks(4);
 }
 
-function show_num_eps(ndx) {
 
-    var numEpGroup = ndx.groupAll();
-
-    dc.numberDisplay("#numEps")
-        .group(numEpGroup)
-        .valueAccessor(function (d) {
-            return d;
-        })
-};
-
-function show_num_seasons(ndx) {
-
-    var seasonDim = ndx.dimension(dc.pluck('season'));
-    var numSeasonGroup = seasonDim.group();
-
-    // this function, generated with the reductio.js library counts the number of unique seasons
-
-    var reducer = reductio()
-        .exception(function (d) {
-            return d.season;
-        })
-        .exceptionCount(true)
-
-    reducer(numSeasonGroup);
-
-    dc.numberDisplay("#numSeasons")
-        .group(numSeasonGroup)
-        .formatNumber(d3.format(".1"))
-        .valueAccessor(function (d) {
-            return d.key;
-        })
-}
+// ------------- Season Selector -----------
 
 function show_season_selector(ndx) {
     var seasonDim = ndx.dimension(dc.pluck('season'));
@@ -246,6 +326,8 @@ function show_season_selector(ndx) {
         });
 }
 
+
+// ------------- Viewership over Time Composite Line Chart -----------
 
 function show_viewership_over_time(ndx) {
 
@@ -286,9 +368,11 @@ function show_viewership_over_time(ndx) {
     S7Group = remove_blanks(S7Views, 0);
     S8Group = remove_blanks(S8Views, 0);
 
+    console.log(S1Group);
+
     var compositeChart = dc.compositeChart('#viewsOverTime');
     compositeChart
-        .width(1000)
+        .width(1100)
         .height(400)
         .dimension(dateDim)
         .x(d3.time.scale().domain([minDate, maxDate]))
@@ -296,7 +380,10 @@ function show_viewership_over_time(ndx) {
         .yAxisLabel("Viewership (in million)")
         .renderHorizontalGridLines(true)
         .mouseZoomable(true)
-        .legend(dc.legend().x(80).y(20).itemHeight(13).gap(5))
+        .title(function (d) {
+            return d.value + ' million people watched this episode.'
+        })
+        .legend(dc.legend().x(80).y(20).horizontal(true).itemHeight(13).gap(10))
         .compose([
             dc.lineChart(compositeChart)
             .group(S1Group, 'Season 1')
@@ -328,17 +415,11 @@ function show_viewership_over_time(ndx) {
         .render();
 }
 
-function show_num_deaths(ndx) {
 
-    deathDim = ndx.dimension(dc.pluck('deaths'));
-    deathGroup = deathDim.groupAll().reduceSum(dc.pluck('deaths'));
+// ------------------ DEATH DASHBOARD GRAPH FUNCTIONS ----------------
 
-    dc.numberDisplay("#numDeaths")
-        .group(deathGroup)
-        .valueAccessor(function (d) {
-            return d;
-        })
-}
+// ------------- Number of Deaths per Season Bar Chart -----------
+
 
 function show_number_of_deaths_per_season(ndx) {
 
@@ -371,6 +452,8 @@ function show_number_of_deaths_per_season(ndx) {
 }
 
 
+// ------------- Percentage of Death per Season Pie Chart -----------
+
 function show_percentage_of_deaths_per_season(ndx) {
 
     var seasonDim = ndx.dimension(dc.pluck('season'));
@@ -402,6 +485,9 @@ function show_percentage_of_deaths_per_season(ndx) {
         .group(num_death_group);
 }
 
+
+// ------------- Top Deathly Episodes Row Chart -----------
+
 function show_top_deathly_episodes(ndx) {
 
     var episodeDim = ndx.dimension(dc.pluck('episode'));
@@ -427,6 +513,8 @@ function show_top_deathly_episodes(ndx) {
         .cap(10);
 
 }
+
+// ------------- Top Deathly Writers Pie  -----------
 
 function show_deathly_writers(ndx) {
 
@@ -455,48 +543,11 @@ function show_deathly_writers(ndx) {
         .cap(4);
 }
 
-function show_avg_score(ndx) {
 
-    var ratingDim = ndx.dimension(dc.pluck('rating'));
-    var avgScore = ratingDim.groupAll().reduce(
-
-        // Add a Fact
-        function (p, v) {
-            p.count++;
-            p.total += v.rating;
-            p.average = p.total / p.count;
-            return p;
-        },
-        // Remove a Fact
-        function (p, v) {
-            p.count--;
-            if (p.count == 0) {
-                p.total = 0;
-                p.average = 0;
-            } else {
-                p.total -= v.rating;
-                p.average = p.total / p.count;
-            }
-            return p;
-        },
-        // Initialise the Reducer
-        function () {
-            return {
-                count: 0,
-                total: 0,
-                average: 0
-            };
-        }
-    );
+// ------------------ DEATH IMDB RATINGS GRAPH FUNCTIONS ----------------
 
 
-    dc.numberDisplay("#avgIMDB")
-        .group(avgScore)
-        .valueAccessor(function (d) {
-            return d.average;
-        })
-
-}
+// ------------- Average IMDB Score per Season Bar Chart -----------
 
 function show_avg_score_per_season(ndx) {
 
@@ -564,6 +615,9 @@ function show_avg_score_per_season(ndx) {
 
 }
 
+
+// ------------- Top Rated Episodes Row Chart -----------
+
 function show_top_rated_episodes(ndx) {
 
     var episodeDim = ndx.dimension(dc.pluck('episode'));
@@ -591,6 +645,9 @@ function show_top_rated_episodes(ndx) {
 
 
 }
+
+// ------------- Average IMDB Score per Writer Bar Chart -----------
+
 
 function show_score_by_writer(ndx) {
 
@@ -659,6 +716,9 @@ function show_score_by_writer(ndx) {
         })
         .renderLabel(true);
 }
+
+
+// ------------- Correlation between Rating and Viewership Scatterplot -----------
 
 
 function show_correlation_between_rating_and_viewership(ndx) {
