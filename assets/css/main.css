@@ -286,6 +286,17 @@ svg {
   color: #1a1616;
 }
 
+.graph-wrapper-rowchart {
+  padding: 0.8em;
+  border-radius: 0.8em;
+  background-color: #696969;
+  opacity: 0.9;
+  margin: 0.8em;
+  text-align: center;
+  color: #1a1616;
+}
+
+
 .season-selector {
   margin-left: 40%;
   margin-bottom: 4vh;
@@ -300,6 +311,11 @@ h3{
 .dc-legend-item {
   font-size: 1.1em;
 
+}
+
+
+.dc-chart .pie-slice.external {
+  fill: #000;
 }
 
 

@@ -85,6 +85,9 @@ function show_slice_percent(key, endAngle, startAngle) {
     } else if (percent > 0) {
         return Math.round(percent) + '%';
     }
+    else {
+        return " Percentages ";
+    }
 }
 
 
@@ -119,12 +122,10 @@ function show_num_seasons(ndx) {
         })
         .exceptionCount(true)
 
-    const totalS = ndx.groupAll();
-    
-    console.log('totalS', totalS);
+    reducer(numSeasonGroup);
 
     dc.numberDisplay("#numSeasons")
-        .group(totalS)
+        .group(numSeasonGroup)
         .formatNumber(d3.format(".1"))
         .valueAccessor(function (d) {
             return d.key;
@@ -202,7 +203,6 @@ function show_total_viewership_by_season(ndx) {
     var total_viewership_per_season = seasonDim.group().reduceSum(dc.pluck('viewers'));
     var barchartTotalViews = dc.barChart('#viewsSeason');
 
-
     barchartTotalViews
         .width(500)
         .height(300)
@@ -212,6 +212,10 @@ function show_total_viewership_by_season(ndx) {
             bottom: 30,
             left: 50
         })
+        .colorAccessor(function (d) {
+            return d.key;
+          })
+       .ordinalColors(['#6E403A', '#175ac6', '#E57687', '#DACC3E', '#7FB7BE', '#545a2c', '#020202', '#705D56'])
         .dimension(seasonDim)
         .group(total_viewership_per_season)
         .transitionDuration(500)
@@ -283,6 +287,10 @@ function show_avg_viewership_by_season(ndx) {
         })
         .dimension(seasonDim)
         .group(avg_views_group)
+        .colorAccessor(function (d) {
+            return d.key;
+          })
+        .ordinalColors(['#6E403A', '#175ac6', '#E57687', '#DACC3E', '#7FB7BE', '#545a2c', '#020202', '#705D56'])
         .title(function (d) {
             return 'Season ' + d.key + ' had an average of  ' + Math.round(d.value.average * 100 + Number.EPSILON) / 100 + ' million viewers';
         })
@@ -393,27 +401,27 @@ function show_viewership_over_time(ndx) {
         .compose([
             dc.lineChart(compositeChart)
             .group(S1Group, 'Season 1')
-            .colors('#DACC3E'),
-            dc.lineChart(compositeChart)
-            .colors('#8A8E91')
-            .group(S2Group, 'Season 2'),
-            dc.lineChart(compositeChart)
-            .colors('#545a2c')
-            .group(S3Group, 'Season 3'),
+            .colors('#6E403A'),
             dc.lineChart(compositeChart)
             .colors('#175ac6')
+            .group(S2Group, 'Season 2'),
+            dc.lineChart(compositeChart)
+            .colors('#E57687')
+            .group(S3Group, 'Season 3'),
+            dc.lineChart(compositeChart)
+            .colors('#DACC3E')
             .group(S4Group, 'Season 4'),
             dc.lineChart(compositeChart)
             .colors('#7FB7BE')
             .group(S5Group, 'Season 5'),
             dc.lineChart(compositeChart)
-            .colors('#6E403A')
+            .colors('#545a2c')
             .group(S6Group, 'Season 6'),
             dc.lineChart(compositeChart)
-            .colors('#705D56')
+            .colors('#020202')
             .group(S7Group, 'Season 7'),
             dc.lineChart(compositeChart)
-            .colors('#020202')
+            .colors('#705D56')
             .group(S8Group, 'Season 8'),
         ])
         .brushOn(false)
@@ -450,6 +458,10 @@ function show_number_of_deaths_per_season(ndx) {
         .x(d3.scale.ordinal())
         .y(d3.scale.linear()
             .domain([0, 50]))
+        .colorAccessor(function (d) {
+                return d.key;
+              })
+        .ordinalColors(['#6E403A', '#175ac6', '#E57687', '#DACC3E', '#7FB7BE', '#545a2c', '#020202', '#705D56'])
         .xUnits(dc.units.ordinal)
         .xAxisLabel("Season")
         .yAxisLabel("Deaths")
@@ -465,9 +477,6 @@ function show_percentage_of_deaths_per_season(ndx) {
     var seasonDim = ndx.dimension(dc.pluck('season'));
     var num_death_group = seasonDim.group().reduceSum(dc.pluck('deaths'));
 
-    var seasonColors = d3.scale.ordinal()
-        .range(['#6E403A ', '#175ac6', '#8A8E91', '#DACC3E', '#7FB7BE', '#545a2c', '#020202', '#705D56']);
-
     dc.pieChart("#deathPercentage")
         .height(300)
         .width(500)
@@ -481,11 +490,12 @@ function show_percentage_of_deaths_per_season(ndx) {
         .colorAccessor(function (d) {
             return d.key;
         })
-        .colors(seasonColors)
+       .ordinalColors(['#545a2c', '#DACC3E', '#175ac6', '#6E403A', '#7FB7BE', '#E57687', '#705D56', '#020202'])
         .dimension(seasonDim)
         .on('pretransition', function (chart) {
             chart.selectAll('text.pie-slice').text(function (d) {
                 return 'Season ' + show_slice_percent(d.data.key, d.endAngle, d.startAngle);
+
             });
         })
         .group(num_death_group);
@@ -739,7 +749,7 @@ function show_correlation_between_rating_and_viewership(ndx) {
 
     var seasonColors = d3.scale.ordinal()
         .domain(["1", "2", "3", "4", "5", "6", "7", "8"])
-        .range(['#6E403A ', '#175ac6', '#8A8E91', '#DACC3E', '#7FB7BE', '#545a2c', '#020202', '#705D56']);
+        .range(['#6E403A ', '#175ac6', '#E57687', '#DACC3E', '#7FB7BE', '#545a2c', '#020202', '#705D56']);
 
     dc.scatterPlot("#corrIMDBandViews")
         .dimension(IMDBViewDim)
