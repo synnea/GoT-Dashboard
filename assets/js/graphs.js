@@ -119,10 +119,12 @@ function show_num_seasons(ndx) {
         })
         .exceptionCount(true)
 
-    reducer(numSeasonGroup);
+    const totalS = ndx.groupAll();
+    
+    console.log('totalS', totalS);
 
     dc.numberDisplay("#numSeasons")
-        .group(numSeasonGroup)
+        .group(totalS)
         .formatNumber(d3.format(".1"))
         .valueAccessor(function (d) {
             return d.key;
