@@ -63,6 +63,7 @@ function makeGraphs(error, gotData) {
 // ----------------- HELPER FUNCTION ----------------------
 
 //  Function that removes blank values so the line chart doesn't nosedive
+// Credit for this function goes to Code Institute student Dave Laffan.
 
 function remove_blanks(group, value_to_remove) {
     // Filter out specified values from passed group
@@ -77,10 +78,9 @@ function remove_blanks(group, value_to_remove) {
 
 function show_slice_percent(key, endAngle, startAngle) {
     // Return the % of each pie slice as a string to be displayed
-    // on the slice itself.
-    // To save space, %'s below 9% display only the % and no other text.
+    // To save space, %'s below 8% display only the % and no other text.
     var percent = dc.utils.printSingleValue((endAngle - startAngle) / (2 * Math.PI) * 100);
-    if (percent > 9) {
+    if (percent > 8) {
         return key + ' | ' + Math.round(percent) + '%';
     } else if (percent > 0) {
         return Math.round(percent) + '%';

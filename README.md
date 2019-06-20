@@ -104,6 +104,9 @@ The books on which Game of Thrones are based have an [API](https://anapioficeand
 
 #### Libraries
 
+[jQuery.js, version 3.4.1](https://jquery.com/)
+    - The project uses **jQuery.js**, a JavaScript library used for event handling.
+
 [D3.js, version 3.5.17](https://d3js.org/)
     - The project uses **D3.js**, a JavaScript library for manipulating documents, to bind data to the DOM.
 
@@ -114,27 +117,22 @@ The books on which Game of Thrones are based have an [API](https://anapioficeand
     - The project uses **crossfilter.js**, a JavaScript library, used to filter data and allow for easy interconnectivity.
 
 [queue.js, version 1.0.7](https://github.com/d3/d3-queue)
-    - The project uses **queue.js**, a JavaScript library, used to filter data and allow for easy interconnectivity.    
+    - The project uses **queue.js**, a JavaScript library, used to handle asynchronous tasks.    
+    
+[reductio.js, version 0.6.3](https://github.com/crossfilter/reductio)
+    - The project uses **reductio.js**, a helper library for crossfilter.js, used to simplify custom reduce functions.
 
+#### Other
 
+[Font Awesome](https://fontawesome.com/)
+    - The project uses **Font Awesome**, free icons for improved UI.
 
-Cloud9 - This developer used Cloud9 for their IDE while building the website.
-BootstrapCDN
-The project uses Bootstrap4 to simplify the structure of the website and make the website responsive easily.
-The project also uses BootstrapCDN to provide icons from FontAwesome
-fancybox
-The project uses Fancybox for a gallery modal popup to view gallery images.
-Google Fonts
-The project uses Google fonts to style the website fonts.
-Vimeo
-The project used Vimeo to host the promotional video.
-jQuery
-The project uses jQuery to reference Javascript needed for the responsive navbar, Vimeo video and Fancybox gallery modal.
-Popper.js
-The project uses Popper,js reference Javascript needed for the responsive navbar.
-AutoPrefixer
-This project used AutoPrefixer to make sure the css code is valid for all browsers.
-All external images are stored and linked from a Wordpress Media library owned by the artist.
+[Animista](http://animista.net/)
+    - The project uses **Animista**, free CSS animations used to improve intuitive UX.
+
+[Google Fonts](https://developers.google.com/fonts/)
+     - The project uses **Google Fonts** for its typography.  
+
 
 
 ## Deployment
@@ -150,3 +148,40 @@ To initially deploy the project on Github Pages, the following steps were taken:
 * Use Cmd + F to open up a search window. Type in "GitHub Pages" and scroll automatically to the relevant section.
 * Under Source, click the drop-down menu labelled None and select the master branch.
 * Upon selecting the master branch, t the page refreshes automatically. The website is now deployed.
+
+
+## Content
+
+The data in the dashboard is based on [this dataset](https://www.kaggle.com/dasbootstrapping/game-of-thrones-episode-data/version/1) sourced from Kaggle.
+
+
+## Credits
+
+### Content Source
+
+Many thanks go to Code Institute student Dave Laffan, whose remove_blanks function, taken from his github repository [here](https://github.com/steview-d/superhero-dashboard/blob/master/static/js/data-vis.js) here and edited slightly.
+
+The print_filter helper function was taken from [here](https://gist.github.com/xhinking/9341806).
+
+The source for the background image used on the landing page can be found [here](https://wallpapertag.com/wallpaper/full/1/5/5/449781-gorgerous-house-stark-wallpaper-1920x1080-for-hd-1080p.jpg
+).
+
+Several images were created using the game of thrones font on [fontmeme.com](https://fontmeme.com/fonts/game-of-thrones-font/).
+
+The downward pointing arrow animation was taken from [here](https://freefrontend.com/css-arrows/).
+
+The back to top arrow was found [here](https://codepen.io/melissacabral/pen/NvmJwx).
+
+### Bugs
+
+Displaying data in the graphs rounded to two decimals was a challenge at first. [This](https://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-only-if-necessary) Stack Overflow thread solved the problem.
+
+### Inspiration & Acknowledgements
+
+[Chris Quinn's](https://github.com/10xOXR) Exoplanets project serves as an inspiration to use the jQuery hide method.
+
+Many thanks also to [Tim Nelson](https://github.com/TravelTimN), whose advice on the Code Institute Slack channel was invaluable!
+
+
+
+
