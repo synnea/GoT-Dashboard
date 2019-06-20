@@ -2,31 +2,12 @@ queue()
     .defer(d3.json, "data/got_json.json")
     .await(remove_blanks)
     .await(show_slice_percent)
+    .await(print_filter)
     .await(makeGraphs);
 
 
 function makeGraphs(error, gotData) {
     var ndx = crossfilter(gotData);
-
-    // The following function enables the printing of crossfilter data. This function was used extensively to look inside crossfilter groups.
-
-    function print_filter(filter) {
-        var f = eval(filter);
-        if (typeof (f.length) != "undefined") {} else {}
-        if (typeof (f.top) != "undefined") {
-            f = f.top(Infinity);
-        } else {}
-        if (typeof (f.dimension) != "undefined") {
-            f = f.dimension(function (d) {
-                return "";
-            }).top(Infinity);
-        } else {}
-        console.log(filter + "(" + f.length + ") = " + JSON.stringify(f).replace("[", "[\n\t").replace(/}\,/g, "},\n\t").replace("]", "\n]"));
-    }
-
-
-    // Convert airdates to a valid date data type
-
 
 
     gotData.forEach(function (d) {
@@ -76,6 +57,27 @@ function remove_blanks(group, value_to_remove) {
     };
 }
 
+// The following function enables the printing of crossfilter data. This function was used extensively to look inside crossfilter groups.
+
+function print_filter(filter) {
+    var f = eval(filter);
+    if (typeof (f.length) != "undefined") {} else {}
+    if (typeof (f.top) != "undefined") {
+        f = f.top(Infinity);
+    } else {}
+    if (typeof (f.dimension) != "undefined") {
+        f = f.dimension(function (d) {
+            return "";
+        }).top(Infinity);
+    } else {}
+    console.log(filter + "(" + f.length + ") = " + JSON.stringify(f).replace("[", "[\n\t").replace(/}\,/g, "},\n\t").replace("]", "\n]"));
+}
+
+
+// Convert airdates to a valid date data type
+
+
+
 function show_slice_percent(key, endAngle, startAngle) {
     // Return the % of each pie slice as a string to be displayed
     // To save space, %'s below 8% display only the % and no other text.
@@ -84,8 +86,7 @@ function show_slice_percent(key, endAngle, startAngle) {
         return key + ' | ' + Math.round(percent) + '%';
     } else if (percent > 0) {
         return Math.round(percent) + '%';
-    }
-    else {
+    } else {
         return " Percentages ";
     }
 }
@@ -214,8 +215,10 @@ function show_total_viewership_by_season(ndx) {
         })
         .colorAccessor(function (d) {
             return d.key;
-          })
-       .ordinalColors(['#6E403A', '#175ac6', '#E57687', '#DACC3E', '#7FB7BE', '#545a2c', '#020202', '#705D56'])
+        })
+
+        .colors('#6E403A')
+        //.ordinalColors(['#6E403A', '#175ac6', '#E57687', '#DACC3E', '#7FB7BE', '#545a2c', '#020202', '#705D56'])
         .dimension(seasonDim)
         .group(total_viewership_per_season)
         .transitionDuration(500)
@@ -285,12 +288,13 @@ function show_avg_viewership_by_season(ndx) {
             bottom: 30,
             left: 50
         })
+        .colors('#6E403A')
         .dimension(seasonDim)
         .group(avg_views_group)
         .colorAccessor(function (d) {
             return d.key;
-          })
-        .ordinalColors(['#6E403A', '#175ac6', '#E57687', '#DACC3E', '#7FB7BE', '#545a2c', '#020202', '#705D56'])
+        })
+        // .ordinalColors(['#6E403A', '#175ac6', '#E57687', '#DACC3E', '#7FB7BE', '#545a2c', '#020202', '#705D56'])
         .title(function (d) {
             return 'Season ' + d.key + ' had an average of  ' + Math.round(d.value.average * 100 + Number.EPSILON) / 100 + ' million viewers';
         })
@@ -364,8 +368,9 @@ function show_viewership_over_time(ndx) {
     var maxDate = dateDim.top(1)[0].airdate;
 
 
-    var S1Views = dateDim.group().reduceSum(views_by_season(1));
+
     var S2Views = dateDim.group().reduceSum(views_by_season(2));
+    var S1Views = dateDim.group().reduceSum(views_by_season(1));
     var S3Views = dateDim.group().reduceSum(views_by_season(3));
     var S4Views = dateDim.group().reduceSum(views_by_season(4));
     var S5Views = dateDim.group().reduceSum(views_by_season(5));
@@ -384,6 +389,9 @@ function show_viewership_over_time(ndx) {
 
     console.log(S1Group);
 
+    print_filter("S1Group");
+    print_filter(S1Views);
+
     var compositeChart = dc.compositeChart('#viewsOverTime');
     compositeChart
         .width(1100)
@@ -400,8 +408,8 @@ function show_viewership_over_time(ndx) {
         .legend(dc.legend().x(100).y(30).horizontal(true).itemWidth(70).gap(15))
         .compose([
             dc.lineChart(compositeChart)
-            .group(S1Group, 'Season 1')
-            .colors('#6E403A'),
+            .colors('#6E403A')
+            .group(S1Group, 'Season 1'),
             dc.lineChart(compositeChart)
             .colors('#175ac6')
             .group(S2Group, 'Season 2'),
@@ -454,14 +462,15 @@ function show_number_of_deaths_per_season(ndx) {
         .title(function (d) {
             return 'Season ' + d.key + ' had an total of ' + d.value + ' notable deaths.';
         })
+        .colors('#6E403A')
         .transitionDuration(500)
         .x(d3.scale.ordinal())
         .y(d3.scale.linear()
             .domain([0, 50]))
         .colorAccessor(function (d) {
-                return d.key;
-              })
-        .ordinalColors(['#6E403A', '#175ac6', '#E57687', '#DACC3E', '#7FB7BE', '#545a2c', '#020202', '#705D56'])
+            return d.key;
+        })
+        //.ordinalColors(['#6E403A', '#175ac6', '#E57687', '#DACC3E', '#7FB7BE', '#545a2c', '#020202', '#705D56'])
         .xUnits(dc.units.ordinal)
         .xAxisLabel("Season")
         .yAxisLabel("Deaths")
@@ -490,7 +499,7 @@ function show_percentage_of_deaths_per_season(ndx) {
         .colorAccessor(function (d) {
             return d.key;
         })
-       .ordinalColors(['#545a2c', '#DACC3E', '#175ac6', '#6E403A', '#7FB7BE', '#E57687', '#705D56', '#020202'])
+        .ordinalColors(['#545a2c', '#DACC3E', '#175ac6', '#6E403A', '#7FB7BE', '#E57687', '#705D56', '#020202'])
         .dimension(seasonDim)
         .on('pretransition', function (chart) {
             chart.selectAll('text.pie-slice').text(function (d) {

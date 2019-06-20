@@ -286,6 +286,8 @@ svg {
   color: #1a1616;
 }
 
+/* The following gives a darker background to row charts */
+
 .graph-wrapper-rowchart {
   padding: 0.8em;
   border-radius: 0.8em;
@@ -293,7 +295,7 @@ svg {
   opacity: 0.9;
   margin: 0.8em;
   text-align: center;
-  color: #1a1616;
+  color: #fff;
 }
 
 
