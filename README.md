@@ -33,52 +33,120 @@ The following user stories were used to design the website:
 
 ### Wireframes
 
-Handdrawn wireframes were created to plan the project:
+Handdrawn wireframes were created to plan the project. The following wireframes date back to the beginning of the project.
 
 ![wireframe 1](https://github.com/synnea/GoT-Dashboard/blob/master/wireframes/wf1.jpg)
+![wireframe 2](https://github.com/synnea/GoT-Dashboard/blob/master/wireframes/wf2.jpg)
+![wireframe 3](https://github.com/synnea/GoT-Dashboard/blob/master/wireframes/wf3.jpg)
+![wireframe 4](https://github.com/synnea/GoT-Dashboard/blob/master/wireframes/wf4.jpg)
 
-Features
-Current Features
-Feature 1 - Top title bar with Reset Filters button
-The top bar contains the name of the site and also a button that when clicked, resets all the filters back to their default values.
-The bar is fixed to the top of the page so even when the user scrolls down, the user can quickly and easily reset the filters at any point. This avoids the need for constant scrolling up and down the page.
+A commented .pdf file is also available on [my Github repository](https://github.com/synnea/GoT-Dashboard/blob/master/wireframes/wf1-commented.pdf).
 
-Feature 2 - Footer
+The finished project differs quite a bit from the wireframes. For one thing, the names of the links, which at inception stage still were named after series references were made more general and user-friendly. Also, the three dashboards were combined to one, but are still accessible separately via the shortcut buttons. Additionally, a 'redraw graphs' function was added to the navbar later, as it became clear that this was the most user-friendly way to reset graphs.
+
+Additionally, a color palette was created early on, using the colors found in the background image as the basic point of reference. The palette was created using https://coolors.co/.
+
+![colors](https://github.com/synnea/GoT-Dashboard/blob/master/wireframes/colorpalette1.png)
+
+
+## Features
+
+### Current Features
+
+#### Feature 1 - jQuery hide function
+Upon loading, jQuery hides the dashboard. Clicking on either the prominently places 'see the stats' button or clicking on the 'dashboard' link in the navbar unhides the link.
+
+#### Feature 2 - CSS animations
+The website features several CSS animations. The 'see the stats' button shivers into view using http://animista.net/. 
+
+### Feature 3 - Smooth scrolling 
+A smooth, animated scrolling feature was implemented using jQuery.
+
+#### Feature 3 - Navigation Arrows
+The navigation arrows in the dashboard were found on codepen and freefrontend. Sources can be found in the 'Credits' section of this Readme.md.
+
+#### Feature 4 - Fixed navbar with redraw function
+The navbar is fixed and offers a prominently placed redraw button, preceded by an intuitive icon. 
+
+#### Feature 5 - Footer
 A simple footer with a link to the original dataset on kaggle. Also contains a copyright notice and a link to my GitHub page.
 
-Feature 5 - Pie Charts
-There are 4 pie charts, all displaying different data, they are - alignment, alter-ego, hair color, and eye color. As instructed in the introduction, the user can click on the individual pie slices to filter the data how they choose.
-To avoid clutter and improve readability, the pie charts only shows the most common entries for hair and eye color. The ones that are not shown are grouped into their own section at the end, called others.
-Feature 6 - Line Charts
-There is 1 line chart, comprised of 6 different sources, each one relating to an attribute of the super-heroes. They are - Intelligence, Strength, Speed, Durability, Power, and Combat. This chart allows the user to see the spread of these attributes across the dataset. The user can hover over the data-point to see the exact values and can also hover over the legend to view just that attribute in isolation.
-Feature 7 - Row & Bar Charts
-The row chart is used to show the breakdown of heroes by their publisher. As with the other charts, the user can select 1 or more publishers to filter the rest of the data.
-As with the hair and eye color pie charts, the row chart contains an 'other' section to group lots of individual publishers to avoid the list being too long and impacting readability.
-There are 2 similar bar charts, for weight and height. Again, these are fully interactive, and the specific ranges can be selected to apply filters to the rest of the data.
+#### Feature 6 - Graphs 
+The heart of the website is, of course, the graphs. In total, the dashboard features 11 graphs of 4 different types, split into 3 categories. All graphs except for the scatterplot are interconnected, and selecting a specific season will give information on it throughout the entire dashboard. This interconnectivity was achieved using the crossfilter.js library in conjunction with DC.js.
 
 
-Technologies Used
-The dashboard relies:
 
-HTML
-For markup
-CSS3
-For dashboard styles and grid layout
-SCSS
-For splitting the stylesheets into partials for ease of development. My first time using SCSS and I do need to find a work flow that suits me.
-Javascript
-All three charting libraries are based on Javascript.
-Bootstrap (version 4.3.1)
-Used for all cards, font styles and modal.
-D3.js (version 3.5.17)
-JavaScript library for manipulating documents based on data and the backbone of the dashbaord.
-Dc.js (version 2.1.8)
-Leveraging d3.js to render charts in CSS-friendly SVG format.
-Crossfilter.js (version 1.3.12)
-A dependency of dc.js to provide linked filtering and aggregation of large datasets.
-Queue.js (version 1.0.7)
-Used to load in csv and geoJson data
-Jquery (version 3.3.1)
-For the welcome/info modal.
-Font Awesome (version v5.7.2)
-For number display icons and info icon.
+### Features Left to Implement
+
+#### Additional page with character information
+Given the time, I would like to add an additional page with information on the characters appearing in the show.
+
+#### Inclusion of an API
+The books on which Game of Thrones are based have an [API](https://anapioficeandfire.com/). I would like to include the API in some form. At present, the project is only really relevant to show fans. The inclusion of the API and book information, though, would also make it interesting to readers.
+
+
+## Technologies Used
+
+### Programming Languages
+
+ [HTML5](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5)
+    - The project uses **HTML5** to build the structure of the content.
+    
+ [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS3)
+    - The project uses **CSS3** to style the content.
+
+ [JavaScript](https://developer.mozilla.org/de/docs/Web/JavaScript)
+    - The project uses **JavaScript** for interactive elements as well as the graphs.    
+    
+### Framework
+[Bootstrap](https://getbootstrap.com/)
+    - The project uses **Bootstrap**, a CSS3 and JavaScript framework, to simplify and empower the CSS3.
+
+#### Libraries
+
+[D3.js, version 3.5.17](https://d3js.org/)
+    - The project uses **D3.js**, a JavaScript library for manipulating documents, to bind data to the DOM.
+
+[DC.js, version 2.1.8](https://dc-js.github.io/dc.js/)
+    - The project uses **DC.js**, a JavaScript charting library, to create the graphs in the dashboard section.
+
+[crossfilter.js, version 1.3.12](https://square.github.io/crossfilter/)
+    - The project uses **crossfilter.js**, a JavaScript library, used to filter data and allow for easy interconnectivity.
+
+[queue.js, version 1.0.7](https://github.com/d3/d3-queue)
+    - The project uses **queue.js**, a JavaScript library, used to filter data and allow for easy interconnectivity.    
+
+
+
+Cloud9 - This developer used Cloud9 for their IDE while building the website.
+BootstrapCDN
+The project uses Bootstrap4 to simplify the structure of the website and make the website responsive easily.
+The project also uses BootstrapCDN to provide icons from FontAwesome
+fancybox
+The project uses Fancybox for a gallery modal popup to view gallery images.
+Google Fonts
+The project uses Google fonts to style the website fonts.
+Vimeo
+The project used Vimeo to host the promotional video.
+jQuery
+The project uses jQuery to reference Javascript needed for the responsive navbar, Vimeo video and Fancybox gallery modal.
+Popper.js
+The project uses Popper,js reference Javascript needed for the responsive navbar.
+AutoPrefixer
+This project used AutoPrefixer to make sure the css code is valid for all browsers.
+All external images are stored and linked from a Wordpress Media library owned by the artist.
+
+
+## Deployment
+This project was developed locally using VS Code. A repository was created on github and named 'GoT-Dashboard.' Regular commits were made and pushed to my Github repository.
+
+Very early on, I hosted the website on Github Pages. It was then regularly updated with my commits.
+
+To initially deploy the project on Github Pages, the following steps were taken:
+
+* Log into Github
+* Select the repository synnea/GoT-Dashboard.
+* Select the 'Settings' tab, which is the last tab in the top row.
+* Use Cmd + F to open up a search window. Type in "GitHub Pages" and scroll automatically to the relevant section.
+* Under Source, click the drop-down menu labelled None and select the master branch.
+* Upon selecting the master branch, t the page refreshes automatically. The website is now deployed.
