@@ -491,7 +491,7 @@ function show_percentage_of_deaths_per_season(ndx) {
         .width(500)
         .radius(100)
         .transitionDuration(500)
-        .drawPaths(true)
+        .drawPaths(false)
         .externalLabels(40)
         .title(function (d) {
             return 'Season ' + d.key + ' killed ' + d.value + " notable characters."

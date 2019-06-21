@@ -59,7 +59,7 @@ Upon loading, jQuery hides the dashboard. Clicking on either the prominently pla
 #### Feature 2 - CSS animations
 The website features several CSS animations. The 'see the stats' button shivers into view using http://animista.net/. 
 
-### Feature 3 - Smooth scrolling 
+#### Feature 3 - Smooth scrolling 
 A smooth, animated scrolling feature was implemented using jQuery.
 
 #### Feature 3 - Navigation Arrows
@@ -102,7 +102,7 @@ The books on which Game of Thrones are based have an [API](https://anapioficeand
 [Bootstrap](https://getbootstrap.com/)
     - The project uses **Bootstrap**, a CSS3 and JavaScript framework, to simplify and empower the CSS3.
 
-#### Libraries
+### Libraries
 
 [jQuery.js, version 3.4.1](https://jquery.com/)
     - The project uses **jQuery.js**, a JavaScript library used for event handling.
@@ -122,7 +122,7 @@ The books on which Game of Thrones are based have an [API](https://anapioficeand
 [reductio.js, version 0.6.3](https://github.com/crossfilter/reductio)
     - The project uses **reductio.js**, a helper library for crossfilter.js, used to simplify custom reduce functions.
 
-#### Other
+### Other
 
 [Font Awesome](https://fontawesome.com/)
     - The project uses **Font Awesome**, free icons for improved UI.
