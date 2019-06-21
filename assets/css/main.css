@@ -140,7 +140,7 @@ article {
   height: 13vh;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 600px) {
   #winter-btn {
     max-width: 50%;
     height: 15vh;
@@ -162,6 +162,7 @@ body {
   background-color:   #262626;
   max-width: 100vw !important;
   overflow-x: hidden !important;
+  overflow-y: hidden !important;
   height: auto !important;
 }
 
