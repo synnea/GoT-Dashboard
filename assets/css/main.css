@@ -178,20 +178,10 @@ body {
   font-size: 1rem !important;
 }
 
- /*@media (min-width: 1000px) { 
-
-  .introjs-tooltip{
-      margin-top: 40px!important;
-  }
-}*/
-
-
 .introjs-helperLayer {
 background-color: #fff;
-}
-
-.introjs-helperLayer {
-  background: transparent;
+margin-top: 2px;
+background: transparent;
 }
 
 .introjs-overlay {
@@ -250,6 +240,8 @@ h1 {
 
 .db-logo {
   margin-top: 15vh;
+  padding-left: 5vw;
+  padding-right: 5vw;
 }
 
 .dashboard-container {
@@ -373,6 +365,7 @@ h3{
 .dc-chart .pie-slice.external {
   fill: #000;
 }
+
 
 
 

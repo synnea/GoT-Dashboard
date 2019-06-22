@@ -606,6 +606,10 @@ function show_avg_score_per_season(ndx) {
         .valueAccessor(function (d) {
             return d.value.average;
         })
+        .colorAccessor(function (d) {
+            return d.key;
+        })
+        .colors('#6E403A')
         .x(d3.scale.ordinal())
         .y(d3.scale.linear()
             .domain([5, 10.5]))
@@ -700,6 +704,11 @@ function show_score_by_writer(ndx) {
             bottom: 55,
             left: 50
         })
+        .colorAccessor(function (d) {
+            return d.key;
+        })
+        .colors('#6E403A')
+        .ordering(function(d){ return -d.value.average })
         .dimension(writerDim)
         .group(avg_ratings_group)
         .title(function (d) {
