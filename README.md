@@ -154,6 +154,15 @@ To initially deploy the project on Github Pages, the following steps were taken:
 
 The data in the dashboard is based on [this dataset](https://www.kaggle.com/dasbootstrapping/game-of-thrones-episode-data/version/1) sourced from Kaggle.
 
+## Data Manipulation
+
+Prior to working on the graphs, the kaggle dataset was edited in several significant ways:
+
+* Data on season 8 was manually added, with information sources from the internet (.e.g the IMDB rating from imdb.com, the episode titles from wikipedia). This was done to offer a more comprehensive website that includes the newest, most relevant information.
+
+* To make the data easier to work with, the .csv file from kaggle.com was converted to a json file.
+
+* To simplify the graph building, several columns were renamed (e.g. "Original Air Date" was changed simply to "airdate").
 
 ## Credits
 

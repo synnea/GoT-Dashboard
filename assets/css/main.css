@@ -346,7 +346,7 @@ svg {
 
 
 .season-selector {
-  margin-left: 40%;
+  margin-left: 42%;
   margin-bottom: 4vh;
 }
 
@@ -355,6 +355,12 @@ h3{
   margin-bottom:4vh;
   margin-top: 2vh;
 }
+
+h4 {
+  margin-bottom: 4vh;
+  margin-left: 1vh;
+}
+
 
 .dc-legend-item {
   font-size: 1.1em;
