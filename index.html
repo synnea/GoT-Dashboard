@@ -59,10 +59,11 @@
                         </li>
                     </div>
 
-                    <li class="active nav-item mr-2" id="Navreset">
+                    <li class="active nav-item mr-2" id="Navreset" >
                         <a class="hvr-bounce-in btn-lg nav-link active d-inline-block"
-                            href="javascript: dc.filterAll(); dc.redrawAll();" data-step="5" data-intro="All graphs on the entire dashboard are connected. To reset them to default, click the redraw button."   aria-pressed="true" id="resetLink"><i
-                                class="fas fa-redo-alt"></i> Reset Graphs</a>
+                            href="javascript: dc.filterAll(); dc.redrawAll();" data-step="5"
+                            data-intro="All graphs on the entire dashboard are connected. To reset them to default, click the redraw button."
+                            aria-pressed="true" id="resetLink"><i class="fas fa-redo-alt"></i> Reset Graphs</a>
                     </li>
                 </ul>
             </div>
@@ -99,8 +100,7 @@
                             <!-- Main button that directs to the dashboard section -->
                             <button type="button"
                                 class="btn btn-outline-primary flicker-in-1 hvr-bounce-in mx-auto d-block"
-                                id="winter-btn"><img
-                                    src="assets/img/seethestats.png"
+                                id="main-btn"><img src="assets/img/seethestats.png"
                                     class="img-fluid winter-pic rounded mx-auto d-block"
                                     alt="linktofirstdashboard" /></button>
 
@@ -120,12 +120,12 @@
 
             <section class="gen-dash">
 
-                <div class="db-logo" data-step="1"
-                data-intro="Welcome to the Game of Thrones dashboard! This dashboard was built to give you a wealth of information on the TV series 'Game of Thrones' in the form of interactive graphs! The graphs are split into the categories general information, death statistics, and IMDB rating statistics.">
-                    <div class="row justify-content-center mt-5">
-                        <div class="col-sm-12">
-                                <img src="assets/img/dashboard.png" class="img-fluid db-img-db rounded mx-auto d-block"
-                                    alt="dashboard-logo">
+                <div class="db-logo"  data-step="1" data-hintPosition="bottom-middle" data-position="bottom-middle"
+                data-intro="Welcome to the Game of Thrones dashboard! Here you can find information on three topics: general information about Game of Thrones, death statistics, and IMDB rating statistics. The graphs render better on <b>desktop</b>, so if you are on mobile, consider switching! Most graphs across all sections are <b>interconnected.</b>">
+                    <div class="col-sm-12">
+                        <img src="assets/img/dashboard.png" class="img-fluid db-img-db rounded mx-auto d-block"
+                            alt="dashboard-logo">
+                        <div class="row justify-content-center mt-5">
 
                         </div>
                     </div>
@@ -143,7 +143,8 @@
                     </div>
                     <div class="col-xs-12-sm-6 mt-1">
                         <a href="#rating-dash" class="btn btn-light rating-btn hvr-bounce-in btn-lg active"
-                            role="button" aria-pressed="true" data-step="3" data-intro="To skip ahead to IMDB ratings, click this button."><i
+                            role="button" aria-pressed="true" data-step="3"
+                            data-intro="To skip ahead to IMDB ratings, click this button."><i
                                 class="fas fa-star-half-alt"></i> Skip to stats on IMDB
                             ratings</a>
                     </div>
@@ -155,7 +156,9 @@
                     <div class="row">
                         <div class="col">
                             <a href="#gen-header">
-                                <div class="arrow"  data-step="4" data-intro="To begin with general information, let this arrow take you to the beginning of the dahsboard!"></div>
+                                <div class="arrow" data-step="4"
+                                    data-intro="To begin with general information, let this arrow take you to the beginning of the dahsboard!">
+                                </div>
                             </a>
                         </div>
                     </div>
@@ -172,10 +175,6 @@
                 <!-------- General information number displays ----------->
 
                 <div class="row justify-content-center my-4">
-
-                    <span class="number-box" id="numSeasons">
-                        Total <i class="fas fa-hashtag fas-display"></i> of Seasons:
-                    </span>
 
                     <span class="number-box" id="numEps"> <i class="fas fa-hashtag fas-display"></i> of Episodes:
 

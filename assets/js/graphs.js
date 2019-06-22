@@ -21,7 +21,6 @@ function makeGraphs(error, gotData) {
     show_total_viewership_by_season(ndx);
     show_avg_viewership_by_season(ndx);
     show_num_eps(ndx);
-    show_num_seasons(ndx);
     show_viewership_over_time(ndx);
     show_season_selector(ndx);
     show_num_deaths(ndx);
@@ -108,30 +107,6 @@ function show_num_eps(ndx) {
         })
 };
 
-// ------------- Number of Seasons Number Display -----------
-
-function show_num_seasons(ndx) {
-
-    var seasonDim = ndx.dimension(dc.pluck('season'));
-    var numSeasonGroup = seasonDim.group();
-
-    // this function, generated with the reductio.js library counts the number of unique seasons
-
-    var reducer = reductio()
-        .exception(function (d) {
-            return d.season;
-        })
-        .exceptionCount(true)
-
-    reducer(numSeasonGroup);
-
-    dc.numberDisplay("#numSeasons")
-        .group(numSeasonGroup)
-        .formatNumber(d3.format(".1"))
-        .valueAccessor(function (d) {
-            return d.key;
-        })
-}
 
 // ------------- Number of Deaths Number Display -----------
 

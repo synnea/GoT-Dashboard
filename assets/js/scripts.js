@@ -34,10 +34,11 @@ $(document).ready(function () {
     // The CTA button takes the user to the first dashboard.
 
     $(function () {
-        $("#winter-btn").on("click", function () {
+        $("#main-btn").on("click", function () {
                 $(".main").hide();
                 $(".dashboard-container").fadeIn(500);
                 $(".content-container").removeClass("background").addClass("background-alt");
+                // The following line starts intro.js upon click of the main button.
                 introJs().start();
             });
         });

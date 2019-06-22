@@ -76,7 +76,6 @@
 
 
 .lp-container {
-  padding-top: 25h;
   margin-top: 0 !important;
   display: flex;
   align-items: center;
@@ -129,19 +128,19 @@ article {
   margin-top: 0 !important;
 }
 
-/* Button Styles */
+/*---------------------------- Button Styles------------------------------------------- */
 
 .btn-outline-primary {
   color: #7FB7BE !important;
   border-color: #D3F3EE !important;
 }
 
-#winter-btn {
+#main-btn {
   height: 13vh;
 }
 
 @media (min-width: 600px) {
-  #winter-btn {
+  #main-btn {
     max-width: 50%;
     height: 15vh;
     border: 2px solid;
@@ -175,9 +174,50 @@ body {
 
 .introjs-tooltip {
   color: #000;
-  position: bottom !important;
+  position: bottom;
+  font-size: 1rem !important;
 }
 
+ /*@media (min-width: 1000px) { 
+
+  .introjs-tooltip{
+      margin-top: 40px!important;
+  }
+}*/
+
+
+.introjs-helperLayer {
+background-color: #fff;
+}
+
+.introjs-helperLayer {
+  background: transparent;
+}
+
+.introjs-overlay {
+  opacity: 0 !important;
+}
+
+.introjs-helperLayer:before {
+  opacity: 0;
+  content: '';
+  position: fixed;
+  width: inherit;
+  height: inherit;
+  border-radius: 0.5em;
+  box-shadow: 0 0 0 1000em rgba(0,0,0, .7);
+  opacity: 1;
+}
+
+.introjs-helperLayer:after {
+  content: '';
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: 1000;
+}
 
 
 /* -----------------------------------------------------GEN DASHBOARD GENERAL STYLING-------------------------------------------- */
@@ -199,10 +239,12 @@ h1 {
 }
 
 .death-btn {
+  margin-top: 2vh;
   margin-right: 2vw;
 }
 
 .rating-btn {
+  margin-top: 2vh;
   margin-left: 2vw;
 }
 
@@ -211,7 +253,7 @@ h1 {
 }
 
 .dashboard-container {
-  margin-top: 0;
+  margin-top: 25vh;
 }
 
 .number-box {
@@ -260,8 +302,8 @@ svg {
 }
 
 .arrow {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   top: 50%;
   margin: -20px 0 0 -20px;
   -webkit-transform: rotate(45deg);
@@ -273,8 +315,8 @@ svg {
 
 .arrow:before {
   content: "";
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   top: 50%;
   margin: -10px 0 0 -10px;
   border-left: none;
@@ -339,9 +381,6 @@ h3{
 .death-container {
   margin-top: 20vh;
 }
-
-
-/* ---------------------------------------------------- RATINGS DASHBOARD-------------------------------------------- */
 
 
 /* -----------------------------------------------------Back to top arrow -------------------------------------------- */
