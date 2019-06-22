@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    // ------------------------------------- NAVBAR -------------------------------------
+    // ------------------------------------- NAVBAR ------------------------------------
 
     // Hide all sections apart from the main one.
 
@@ -38,8 +38,10 @@ $(document).ready(function () {
                 $(".main").hide();
                 $(".dashboard-container").fadeIn(500);
                 $(".content-container").removeClass("background").addClass("background-alt");
+                introJs().start();
             });
         });
+
 
     // ------------------------------------ SMOOTH SCROLLING ---------------------------------------
 

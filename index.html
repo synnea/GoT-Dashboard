@@ -17,8 +17,9 @@
     <link href="https://fonts.googleapis.com/css?family=MedievalSharp" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css"
-        type="text/css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
 
     <style>
@@ -60,7 +61,7 @@
 
                     <li class="active nav-item mr-2" id="Navreset">
                         <a class="hvr-bounce-in btn-lg nav-link active d-inline-block"
-                            href="javascript: dc.filterAll(); dc.redrawAll();" aria-pressed="true" id="resetLink"><i
+                            href="javascript: dc.filterAll(); dc.redrawAll();" data-step="5" data-intro="All graphs on the entire dashboard are connected. To reset them to default, click the redraw button."   aria-pressed="true" id="resetLink"><i
                                 class="fas fa-redo-alt"></i> Reset Graphs</a>
                     </li>
                 </ul>
@@ -96,10 +97,10 @@
 
 
                             <!-- Main button that directs to the dashboard section -->
-
                             <button type="button"
                                 class="btn btn-outline-primary flicker-in-1 hvr-bounce-in mx-auto d-block"
-                                id="winter-btn"><img src="assets/img/seethestats.png"
+                                id="winter-btn"><img
+                                    src="assets/img/seethestats.png"
                                     class="img-fluid winter-pic rounded mx-auto d-block"
                                     alt="linktofirstdashboard" /></button>
 
@@ -115,13 +116,17 @@
         <!--- BEGIN DASHBOARD SECTION -->
 
         <div class="dashboard-container" id="begin-dash">
+
+
             <section class="gen-dash">
 
-                <div class="db-logo">
+                <div class="db-logo" data-step="1"
+                data-intro="Welcome to the Game of Thrones dashboard! This dashboard was built to give you a wealth of information on the TV series 'Game of Thrones' in the form of interactive graphs! The graphs are split into the categories general information, death statistics, and IMDB rating statistics.">
                     <div class="row justify-content-center mt-5">
                         <div class="col-sm-12">
-                            <img src="assets/img/dashboard.png" class="img-fluid db-img-db rounded mx-auto d-block"
-                                alt="dashboard-logo">
+                                <img src="assets/img/dashboard.png" class="img-fluid db-img-db rounded mx-auto d-block"
+                                    alt="dashboard-logo">
+
                         </div>
                     </div>
                 </div>
@@ -131,12 +136,15 @@
                 <div class="row justify-content-center">
                     <div class="col-xs-12-sm-6 mt-1">
                         <a href="#death-dash" class="btn btn-light death-btn hvr-bounce-in btn-lg active" role="button"
-                            aria-pressed="true"><i class="fas fa-skull-crossbones"></i> Skip to stats
+                            aria-pressed="true" data-step="2"
+                            data-intro="To skip ahead to statistics on deaths, click this button."><i
+                                class="fas fa-skull-crossbones"></i> Skip to stats
                             on deaths</a>
                     </div>
                     <div class="col-xs-12-sm-6 mt-1">
                         <a href="#rating-dash" class="btn btn-light rating-btn hvr-bounce-in btn-lg active"
-                            role="button" aria-pressed="true"><i class="fas fa-star-half-alt"></i> Skip to stats on IMDB
+                            role="button" aria-pressed="true" data-step="3" data-intro="To skip ahead to IMDB ratings, click this button."><i
+                                class="fas fa-star-half-alt"></i> Skip to stats on IMDB
                             ratings</a>
                     </div>
                 </div>
@@ -147,7 +155,7 @@
                     <div class="row">
                         <div class="col">
                             <a href="#gen-header">
-                                <div class="arrow"></div>
+                                <div class="arrow"  data-step="4" data-intro="To begin with general information, let this arrow take you to the beginning of the dahsboard!"></div>
                             </a>
                         </div>
                     </div>
@@ -183,7 +191,8 @@
                         <h3>Total Viewership by Season</h3>
                         <div id="viewsSeason"></div><br />
                         <p>This bar chart shows the total US viewers per season, in millions.</p>
-                        <p>The series started at just over 25 million for season 1, <br /> grew steadily and reached its zenith in season 6.</p>
+                        <p>The series started at just over 25 million for season 1, <br /> grew steadily and reached its
+                            zenith in season 6.</p>
                     </div>
 
                     <!-------- Average Viewership Bar Chart ----------->
@@ -224,7 +233,8 @@
 
                         <div class="col-md-offset-5 d-block">
 
-                            <p>The line chart above shows the viewership development of each episode in each season over time. Try
+                            <p>The line chart above shows the viewership development of each episode in each season over
+                                time. Try
                                 selecting a season!</p>
                         </div>
 
@@ -266,10 +276,10 @@
                             <h3>Number of Deaths per Season</h3>
                             <div id="numDeathsSeason"></div>
                             <p>This bar chart shows the total numbers of notable deaths per season.</p>
-                            <p>Many fans voices their subjective concern that the series, once known <br /> 
-                            for killing off beloved characters, grew 'softer' over time.</p>
+                            <p>Many fans voices their subjective concern that the series, once known <br />
+                                for killing off beloved characters, grew 'softer' over time.</p>
                             <p>The data supports this view. The final two seasons saw a notable drop <br />
-                            in the number of notable characters killed.</p>
+                                in the number of notable characters killed.</p>
                         </div>
 
 
@@ -280,7 +290,7 @@
                             <div id="deathPercentage"></div>
                             <p>The pie chart illustrates the distribution of deaths across seasons.</p>
                             <p>Of the 230 notable characters killed in the entire series, 20% died <br />
-                            in season 6, while the final season killed just 5%.</p>
+                                in season 6, while the final season killed just 5%.</p>
                         </div>
 
                     </div>
@@ -295,7 +305,7 @@
                                 <div id="topDeathlyEps"></div>
                                 <p>Ever wondered which episode had the highest body count?</p>
                                 <p>Number 1 of the deadliest episodes is the final episode of season 6, <br />
-                                the Winds of Winter, which featured a certain scene in a sept.</p>
+                                    the Winds of Winter, which featured a certain scene in a sept.</p>
                             </div>
 
 
@@ -305,7 +315,7 @@
                                 <h3>Top Lethal Writers</h3>
                                 <div id="topDeathlyWriters"></div>
                                 <p>Unsurprisingly, showrunners David Benioff and D.B. Weiss killed <br />
-                                the most characters on the show. They killed a total of 183 characters.</p>
+                                    the most characters on the show. They killed a total of 183 characters.</p>
                             </div>
                         </div>
 
@@ -344,9 +354,12 @@
 
                             <h3>Average IMDB Rating per Season</h3>
                             <div id="avgIMDBSeason"></div>
-                            <p>We've seen that the viewership steadily grew, but what about <br />the critical acclaim?</p>
-                            <p>You've probably already heard of it in various news outlets, but many fans <br /> were unhappy with the direction the show took in its final season.</p>
-                            <p>This is perfectly reflected in the trajectory of the IMDB ratings, which<br /> nosedived spectulacularly in season 8.</p>
+                            <p>We've seen that the viewership steadily grew, but what about <br />the critical acclaim?
+                            </p>
+                            <p>You've probably already heard of it in various news outlets, but many fans <br /> were
+                                unhappy with the direction the show took in its final season.</p>
+                            <p>This is perfectly reflected in the trajectory of the IMDB ratings, which<br /> nosedived
+                                spectulacularly in season 8.</p>
                         </div>
                         <!--- Top 10 Rated Episodes Row Chart  -->
 
@@ -355,8 +368,12 @@
                             <h3>Top 10 Rated Episodes</h3>
                             <div id="topRatedEps"></div>
                             <p>This row chart displays the top 10 best rated episodes.</p>
-                            <p>The best rated episode was season 5's episode 8, "Hardhome".<br /> This episode featured one of the series' most stunning battle sequences.</p>
-                            <p>Season 4 is the season with the most episodes in the top 10,<br />featuring a total of 3 of them.</p>
+                            <p>The best rated episode was season 6's episode 9, "Battle of the Bastards".<br /> This
+                                episode featured one of the series' most stunning battle sequences.</p>
+                            <p>Sharing the top spot, the episode "Hardhome" also contains a<br /> stunning battle
+                                sequence.</p>
+                            <p>Season 4 is the season with the most episodes in the top 10,<br />featuring a total of 3
+                                of them.</p>
 
                         </div>
 
@@ -370,8 +387,10 @@
                         <div class="graph-wrapper">
                             <h3>Top Rated Writers</h3>
                             <div id="topRatedWriters"></div>
-                            <p>Following the end of the season, much criticism was levied at<br /> showrunners Benioff and Weiss.</p>
-                            <p>On average, the episodes they penned reached an excellent 8.92 rating,<br /> but their average is notably lower than that of book creator George R. R. Martin.
+                            <p>Following the end of the season, much criticism was levied at<br /> showrunners Benioff
+                                and Weiss.</p>
+                            <p>On average, the episodes they penned reached an excellent 8.92 rating,<br /> but their
+                                average is notably lower than that of book creator George R. R. Martin.
                         </div>
 
 
@@ -396,8 +415,11 @@
                                 <div class="col-md-offset-5 d-block">
                                     <div id="corrIMDBandViews"></div>
                                     <p>Are the best-rated episodes also the most-watched episodes?</p>
-                                    <p>Unfortunately, there is no meaningful correlation between rating and viewership. Episodes <br />in each season cluster together in both viewership and rating.</p>
-                                    <p>Notably, the correlation turns negative toward season 8, which was both the <br />most-watched and worst-rated season.</p>
+                                    <p>Unfortunately, there is no meaningful correlation between rating and viewership.
+                                        Episodes <br />in each season cluster together in both viewership and rating.
+                                    </p>
+                                    <p>Notably, the correlation turns negative toward season 8, which was both the
+                                        <br />most-watched and worst-rated season.</p>
                                 </div>
                             </div>
                         </div>
@@ -405,7 +427,7 @@
                     </div>
 
 
-                     <!--- Back to Top CSS Animation  -->
+                    <!--- Back to Top CSS Animation  -->
 
                     <div class="row justify-content-center my-4">
 
@@ -453,7 +475,7 @@
         </div>
     </footer>
 
-    
+
     <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
@@ -461,6 +483,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reductio/0.6.3/reductio.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.js"></script>
     <script type="text/javascript" src="assets/js/scripts.js"></script>
     <script type="text/javascript" src="assets/js/graphs.js"></script>
 

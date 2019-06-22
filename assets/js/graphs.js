@@ -515,7 +515,9 @@ function show_percentage_of_deaths_per_season(ndx) {
 
 function show_top_deathly_episodes(ndx) {
 
-    var episodeDim = ndx.dimension(dc.pluck('episode'));
+    var episodeDim = ndx.dimension(function (d) {
+        return [d.episode,  " " + d.episodename];
+    });
     var deathGroup = episodeDim.group().reduceSum(dc.pluck('deaths'));
 
     dc.rowChart("#topDeathlyEps")
@@ -530,7 +532,7 @@ function show_top_deathly_episodes(ndx) {
             left: 20
         })
         .title(function (d) {
-            return 'Episode ' + d.key[3] + d.key[4] + ' of Season ' + d.key[1] + ' killed ' + d.value + ' notable characters';
+            return 'Episode ' + d.key[0] + ' entitled' + "'" + d.key[1]  + "'" + ' killed ' + d.value + ' notable characters.'
         })
         .transitionDuration(500)
         // exclude the 'Others' category in the row chart.
@@ -646,7 +648,9 @@ function show_avg_score_per_season(ndx) {
 
 function show_top_rated_episodes(ndx) {
 
-    var episodeDim = ndx.dimension(dc.pluck('episode'));
+    var episodeDim = ndx.dimension(function (d) {
+        return [d.episode,  " " + d.episodename];
+    });
     var ratingGroup = episodeDim.group().reduceSum(dc.pluck('rating'));
 
     dc.rowChart("#topRatedEps")
@@ -661,7 +665,7 @@ function show_top_rated_episodes(ndx) {
             left: 20
         })
         .title(function (d) {
-            return 'Episode ' + d.key[3] + d.key[4] + ' of Season ' + d.key[1] + ' had an IMDB rating of ' + d.value;
+            return 'Episode ' + d.key[0] + ' entitled' + "'" + d.key[1]  + "'" + ' reached a ' + d.value + ' IMDB rating.'
         })
         .transitionDuration(500)
         // exclude the 'Others' category in the row chart.
