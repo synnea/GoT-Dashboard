@@ -174,6 +174,8 @@ Further, the test advised me to use a role with an anchor element in the navbar.
 
 The CSS was validated using the [CSS Validator](https://jigsaw.w3.org/css-validator/validator). In total, 3 issues were found. All were corrected and none remain for the deployed version.
 
+The JavaScript was tested using [JSHint.com](https://jshint.com/). Initially, 14 warnings were detected, many of them about misplaced semicolons.
+
 ### User Story Testing
 
 Here are the results for the user story tests:
@@ -209,6 +211,8 @@ A few bugs remain:
 * The first step of the tutorial sometimes displays across the db-logo div and sometimes to the bottom left. Since both positions look fine, I chose to leave the bug as-is.
 
 * The pie charts will display 'Season Percentages' and 'Percentages' respectively. This is actually a bug because the show_slice_percent function is still displayed when the pie chart is activated through another chart via crossfilter. When the input is undefined or not a percentages, the function is still active and return something. Returning "Percentages" at least makes the bug look like it might have been an intentional design choice.
+
+* In the console, a warning pops up recommending a different syntax for the renderlet function. Since everything works correctly, I ignored the warning.
 
 ## Deployment
 This project was developed locally using VS Code. A repository was created on github and named 'GoT-Dashboard.' Regular commits were made and pushed to my Github repository.
