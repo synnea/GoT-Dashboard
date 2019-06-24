@@ -3,6 +3,8 @@ queue()
     .await(remove_blanks)
     .await(show_slice_percent)
     .await(print_filter)
+    .await(reduceAvg)
+    .await(reduceAvgMultiple)
     .await(makeGraphs);
 
 
@@ -90,6 +92,113 @@ function show_slice_percent(key, endAngle, startAngle) {
     }
 }
 
+   // ----------------- HELPER FUNCTION ----------------------
+
+//  Function that removes blank values so the line chart doesn't nosedive
+// Credit for this function goes to Code Institute student Dave Laffan.
+
+function remove_blanks(group, value_to_remove) {
+    // Filter out specified values from passed group
+    return {
+        all: function () {
+            return group.all().filter(function (d) {
+                return d.value !== value_to_remove;
+            });
+        }
+    };
+}
+
+// The following function enables the printing of crossfilter data. This function was used extensively to look inside crossfilter groups.
+
+function print_filter(filter) {
+    var f = eval(filter);
+    if (typeof (f.length) != "undefined") {} else {}
+    if (typeof (f.top) != "undefined") {
+        f = f.top(Infinity);
+    } else {}
+    if (typeof (f.dimension) != "undefined") {
+        f = f.dimension(function (d) {
+            return "";
+        }).top(Infinity);
+    } else {}
+    console.log(filter + "(" + f.length + ") = " + JSON.stringify(f).replace("[", "[\n\t").replace(/}\,/g, "},\n\t").replace("]", "\n]"));
+}
+
+
+// Convert airdates to a valid date data type
+
+
+
+function show_slice_percent(key, endAngle, startAngle) {
+    // Return the % of each pie slice as a string to be displayed
+    // To save space, %'s below 8% display only the % and no other text.
+    var percent = dc.utils.printSingleValue((endAngle - startAngle) / (2 * Math.PI) * 100);
+    if (percent > 8) {
+        return key + ' | ' + Math.round(percent) + '%';
+    } else if (percent > 0) {
+        return Math.round(percent) + '%';
+    } else {
+        return " Percentages ";
+    }
+}
+
+// Reuseable custom reduce average function for single number averages
+    
+	function reduceAvg(dimension, type) {
+		return dimension.groupAll().reduce(
+			function(p, v) {
+				p.count++;
+				p.total += v[type];
+				p.average = p.total / p.count;
+				return p;
+			},
+
+			function(p, v) {
+				p.count--;
+				p.total -= v[type];
+				p.average = p.total / p.count;
+				return p;
+			},
+
+			function() {
+				return {
+					count: 0,
+					total: 0,
+					average: 0
+				};
+			}
+		);
+	}
+
+
+// Reuseable custom reduce average function for grouping based on averages
+    
+	function reduceAvgMultiple(dimension, type) {
+		return dimension.group().reduce(
+			function(p, v) {
+				p.count++;
+				p.total += v[type];
+				p.average = p.total / p.count;
+				return p;
+			},
+
+			function(p, v) {
+				p.count--;
+				p.total -= v[type];
+				p.average = p.total / p.count;
+				return p;
+			},
+
+			function() {
+				return {
+					count: 0,
+					total: 0,
+					average: 0
+				};
+			}
+		);
+	}
+
 
 
 // ------------------ NUMBER DISPLAY FUNCTIONS ----------------
@@ -127,36 +236,7 @@ function show_num_deaths(ndx) {
 function show_avg_score(ndx) {
 
     var ratingDim = ndx.dimension(dc.pluck('rating'));
-    var avgScore = ratingDim.groupAll().reduce(
-
-        // Add a Fact
-        function (p, v) {
-            p.count++;
-            p.total += v.rating;
-            p.average = p.total / p.count;
-            return p;
-        },
-        // Remove a Fact
-        function (p, v) {
-            p.count--;
-            if (p.count == 0) {
-                p.total = 0;
-                p.average = 0;
-            } else {
-                p.total -= v.rating;
-                p.average = p.total / p.count;
-            }
-            return p;
-        },
-        // Initialise the Reducer
-        function () {
-            return {
-                count: 0,
-                total: 0,
-                average: 0
-            };
-        }
-    );
+    var avgScore = reduceAvg(ratingDim, "rating")
 
 
     dc.numberDisplay("#avgIMDB")
@@ -220,39 +300,8 @@ function show_total_viewership_by_season(ndx) {
 function show_avg_viewership_by_season(ndx) {
 
     var seasonDim = ndx.dimension(dc.pluck('season'));
-    var avg_views_group = seasonDim.group().reduce(
 
-        // Add a Fact
-        function (p, v) {
-            p.count++;
-            p.total += v.viewers;
-            p.average = p.total / p.count;
-            return p;
-        },
-        // Remove a Fact
-        function (p, v) {
-            p.count--;
-            if (p.count == 0) {
-                p.total = 0;
-                p.average = 0;
-            } else {
-                p.total -= v.viewers;
-                p.average = p.total / p.count;
-            }
-            return p;
-        },
-        // Initialise the Reducer
-        function () {
-            return {
-                count: 0,
-                total: 0,
-                average: 0
-            };
-        }
-
-
-    );
-
+    var avg_views_group = reduceAvgMultiple(seasonDim, 'viewers');
 
     dc.barChart('#avgViewsSeason')
         .width(500)
@@ -554,39 +603,7 @@ function show_deathly_writers(ndx) {
 function show_avg_score_per_season(ndx) {
 
     var seasonDim = ndx.dimension(dc.pluck('season'));
-    var avg_ratings_group = seasonDim.group().reduce(
-
-        // Add a Fact
-        function (p, v) {
-            p.count++;
-            p.total += v.rating;
-            p.average = p.total / p.count;
-            return p;
-        },
-        // Remove a Fact
-        function (p, v) {
-            p.count--;
-            if (p.count == 0) {
-                p.total = 0;
-                p.average = 0;
-            } else {
-                p.total -= v.rating;
-                p.average = p.total / p.count;
-            }
-            return p;
-        },
-        // Initialise the Reducer
-        function () {
-            return {
-                count: 0,
-                total: 0,
-                average: 0
-            };
-        }
-
-
-    );
-
+    var avg_ratings_group = reduceAvgMultiple(seasonDim, 'rating');
 
     dc.barChart('#avgIMDBSeason')
         .width(500)
@@ -661,39 +678,7 @@ function show_top_rated_episodes(ndx) {
 function show_score_by_writer(ndx) {
 
     var writerDim = ndx.dimension(dc.pluck('writer'));
-    var avg_ratings_group = writerDim.group().reduce(
-
-        // Add a Fact
-        function (p, v) {
-            p.count++;
-            p.total += v.rating;
-            p.average = p.total / p.count;
-            return p;
-        },
-        // Remove a Fact
-        function (p, v) {
-            p.count--;
-            if (p.count == 0) {
-                p.total = 0;
-                p.average = 0;
-            } else {
-                p.total -= v.rating;
-                p.average = p.total / p.count;
-            }
-            return p;
-        },
-        // Initialise the Reducer
-        function () {
-            return {
-                count: 0,
-                total: 0,
-                average: 0
-            };
-        }
-
-
-    );
-
+    var avg_ratings_group = reduceAvgMultiple(writerDim, 'rating');
 
     dc.barChart('#topRatedWriters')
         .width(500)
