@@ -1,5 +1,8 @@
 queue()
     .defer(d3.json, "data/got_json.json")
+
+    // load helper function up first
+
     .await(remove_blanks)
     .await(show_slice_percent)
     .await(print_filter)
@@ -11,6 +14,7 @@ queue()
 function makeGraphs(error, gotData) {
     var ndx = crossfilter(gotData);
 
+    // Convert the air dates to date data types.
 
     gotData.forEach(function (d) {
         var airDates = new Date(d.airdate);
@@ -18,7 +22,7 @@ function makeGraphs(error, gotData) {
     });
 
 
-    // Call the functions for each individual graph
+    // Call the functions for each individual graph.
 
     show_total_viewership_by_season(ndx);
     show_avg_viewership_by_season(ndx);
@@ -124,10 +128,7 @@ function print_filter(filter) {
     console.log(filter + "(" + f.length + ") = " + JSON.stringify(f).replace("[", "[\n\t").replace(/}\,/g, "},\n\t").replace("]", "\n]"));
 }
 
-
-// Convert airdates to a valid date data type
-
-
+// Display percentages on the slices of pie charts.
 
 function show_slice_percent(key, endAngle, startAngle) {
     // Return the % of each pie slice as a string to be displayed

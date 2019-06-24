@@ -74,6 +74,9 @@ A simple footer with a link to the original dataset on kaggle. Also contains a c
 #### Feature 6 - Graphs 
 The heart of the website is, of course, the graphs. In total, the dashboard features 11 graphs of 4 different types, split into 3 categories. All graphs except for the scatterplot are interconnected, and selecting a specific season will give information on it throughout the entire dashboard. This interconnectivity was achieved using the crossfilter.js library in conjunction with DC.js.
 
+#### Feature 7 - Tutorial
+Upon opening the dashboard via the main button, a 5-step tutorial plays that guides the user through the dashboard.
+
 
 
 ### Features Left to Implement
@@ -121,6 +124,10 @@ The books on which Game of Thrones are based have an [API](https://anapioficeand
     
 [reductio.js, version 0.6.3](https://github.com/crossfilter/reductio)
     - The project uses **reductio.js**, a helper library for crossfilter.js, used to simplify custom reduce functions.
+
+[intro.js, version 2.9.3](https://introjs.com/)
+    - The project uses **intro.js**, a tutorial library.
+
 
 ### Other
 
