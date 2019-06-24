@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description"
+        content="Dashboard with statistics on the HBO series Game of Thrones, featuring graphs made using D3, DC.js, and crossfilter.js">
     <title>A Dashboard of Ice and Fire</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         type="text/css" />
@@ -53,13 +55,12 @@
                                 alt="home-icon"></div>
                     </li>
 
-                    <div class="d-none d-md-block">
-                        <li class="active nav-item mr-2 mt-0 mb-0 d-xs-none d-m-inline" id="navGen">
-                            <a class="nav-link hvr-bounce-in" id="navGenLink">The Dashboard</a>
-                        </li>
-                    </div>
 
-                    <li class="active nav-item mr-2" id="Navreset" >
+                    <li class="active nav-item mr-2 mt-0 mb-0 d-xs-none d-none d-md-block " id="navGen">
+                        <a class="nav-link hvr-bounce-in" id="navGenLink">The Dashboard</a>
+                    </li>
+
+                    <li class="active nav-item mr-2" id="Navreset">
                         <a class="hvr-bounce-in btn-lg nav-link active d-inline-block"
                             href="javascript: dc.filterAll(); dc.redrawAll();" data-step="5"
                             data-intro="All graphs on the entire dashboard are connected. To reset them to default, click the redraw button."
@@ -91,13 +92,13 @@
                     </div>
                 </div>
 
-                <article class="container-fluid mt-3 lp-container">
+                <div class="container-fluid mt-3 lp-container">
 
                     <div class="row">
                         <div class="col-12">
 
 
-                            <!-- Main button that directs to the dashboard section -->
+                            <!--- Main button that directs to the dashboard section -->
                             <button type="button"
                                 class="btn btn-outline-primary flicker-in-1 hvr-bounce-in mx-auto d-block"
                                 id="main-btn"><img src="assets/img/seethestats.png"
@@ -106,7 +107,7 @@
 
                         </div>
                     </div>
-                </article>
+                </div>
 
 
             </div>
@@ -115,13 +116,13 @@
 
         <!--- BEGIN DASHBOARD SECTION -->
 
-        <div class="dashboard-container" id="begin-dash">
+        <div class="dashboard-container">
 
 
             <section class="gen-dash">
 
-                <div class="db-logo"  data-step="1" data-position="bottom"
-                data-intro="Welcome to the Game of Thrones dashboard! Here you can find information on three topics: general information about Game of Thrones, death statistics, and IMDB rating statistics. The graphs render better on <b>desktop</b>, so if you are on mobile, consider switching! Most graphs across all sections are <b>interconnected.</b>">
+                <div class="db-logo" data-step="1" data-position="bottom"
+                    data-intro="Welcome to the Game of Thrones dashboard! Here you can find information on three topics: general information about Game of Thrones, death statistics, and IMDB rating statistics. The graphs render better on <b>desktop</b>, so if you are on mobile, consider switching! Most graphs across all sections are <b>interconnected.</b>">
                     <div class="col-sm-12">
                         <img src="assets/img/dashboard.png" class="img-fluid db-img-db rounded mx-auto d-block"
                             alt="dashboard-logo">
@@ -150,7 +151,7 @@
                     </div>
                 </div>
 
-                <!-------- Arrow animation which auto-scrolls down to the beginning of the general information section ----------->
+                <!--- Arrow animation which auto-scrolls down to the beginning of the general information section -->
 
                 <div class="arrow-container">
                     <div class="row">
@@ -164,7 +165,7 @@
                     </div>
                 </div>
 
-                <!-------- BEGIN GENERAL INFORMATION DASHBOARD ----------->
+                <!--- BEGIN GENERAL INFORMATION DASHBOARD -->
 
                 <div class="row justify-content-center my-4" id="gen-header">
                     <div class="col-md-offset-5">
@@ -172,16 +173,16 @@
                     </div>
                 </div>
 
-                <!-------- General information number displays ----------->
+                <!---  General information number displays -->
 
                 <div class="row justify-content-center my-4">
 
-                    <span class="number-box" id="numEps"> <i class="fas fa-hashtag fas-display"></i> of Episodes:
+                    <span class="number-box" id="numEps"> <i class="fas fa-hashtag fas-display"></i> of Episodes Selected:
 
                     </span>
                 </div>
 
-                <!-------- Total Viewership Bar Chart ----------->
+                <!--- Total Viewership Bar Chart -->
 
 
                 <div class="row justify-content-center my-4">
@@ -194,7 +195,7 @@
                             zenith in season 6.</p>
                     </div>
 
-                    <!-------- Average Viewership Bar Chart ----------->
+                    <!--- Average Viewership Bar Chart -->
 
                     <div class="graph-wrapper">
                         <h3>Average Episode Viewership by Season</h3>
@@ -206,7 +207,7 @@
                     </div>
                 </div>
 
-                <!-------- Viewership Over Time Line Chart ----------->
+                <!--- Viewership Over Time Line Chart -->
 
 
                 <div class="row justify-content-center my-4 mx-2">
@@ -228,7 +229,7 @@
 
                         <div class="col-md-offset-5 d-block">
 
-                            <div id="viewsOverTime"></div>
+                            <div id="viewsOverTime" class="svg"></div>
                         </div>
 
                         <div class="col-md-offset-5 d-block">
@@ -296,7 +297,7 @@
                     </div>
                     <div class="row justify-content-center my-4 mx-2">
 
-                        <!-------- Top 10 Deadly Episodes Row Chart ----------->
+                        <!--- Top 10 Deadly Episodes Row Chart -->
 
                         <div class="row justify-content-center my-4 ">
 
@@ -309,7 +310,7 @@
                             </div>
 
 
-                            <!-------- Top Deathly Writers Pie Chart ----------->
+                            <!--- Top Deathly Writers Pie Chart -->
 
                             <div class="graph-wrapper">
                                 <h3>Top Lethal Writers</h3>
@@ -320,7 +321,7 @@
                         </div>
 
                     </div>
-
+                </div>
             </section>
 
             <!--- BEGIN RATINGS DASHBOARD -->
@@ -431,10 +432,10 @@
 
                     <div class="row justify-content-center my-4">
 
-                        <a href="#begin-dash" class="to-top">Back to top</a>
+                        <a href="#gen-header" class="to-top">Back to top</a>
 
                     </div>
-
+                </div>
             </section>
         </div>
 

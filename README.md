@@ -160,6 +160,20 @@ At this stage, the positioning of the footer and background image was tested on 
 * iPad portrait
 * iPad landscape
 
+While the landing page is fully responsive, the dashboard is *not*, and does not display properly on mobile devices. This is in line with the requirements of the project, which is in line with the project requirements, which state, "Please note that if you are building a data dashboard, only your chart containers are expected to be responsive. Charts using D3.js are not responsive as they are designed for desktop or large-screen viewing."
+
+### Code Testing
+
+The HTML was validated using the [HTML Validator](https://www.freeformatter.com/html-validator.html).
+
+Initially, 16 issues were found. Many of the errors related to using too many hyphens for commenting, so I fixed that.
+
+At the time of deployment, only two issues remain. One advised me to use a h2-6 element in my sections. I chose not to change it because instead of headings, the images serve as headings.
+
+Further, the test advised me to use a role with an anchor element in the navbar. However, adding the role of "link" was then judged unnecessary by the same validator. Thus, I chose to ignore it.
+
+
+
 
 
 ## Deployment

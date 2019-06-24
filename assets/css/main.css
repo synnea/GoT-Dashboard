@@ -102,10 +102,6 @@
   }
 }
 
-.background-alt {
-  background-color: r(245, 245, 245, 0.904)gba;
-}
-
 .main-container {
   position: relative;
   height: 100vh;
@@ -174,7 +170,6 @@ body {
 
 .introjs-tooltip {
   color: #000;
-  position: bottom;
   font-size: 1rem !important;
 }
 
@@ -239,13 +234,13 @@ h1 {
 }
 
 .db-logo {
-  margin-top: 15vh;
+  margin-top: 25vh;
   padding-left: 5vw;
   padding-right: 5vw;
 }
 
 .dashboard-container {
-  margin-top: 25vh;
+  margin-top: 15vh;
 }
 
 .number-box {
@@ -260,8 +255,6 @@ padding: 0.5rem;
 }
 
 .number-display {
-
-  margin: 1.5 rem;
   font-size: 1.3rem;
   padding: 0.5rem;
   font-weight: 500;
@@ -373,8 +366,9 @@ h4 {
 }
 
 svg {
-  max-width: 100%;
+  max-width: 90%;
 }
+
 
 
 
