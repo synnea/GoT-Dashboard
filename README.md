@@ -141,6 +141,26 @@ The books on which Game of Thrones are based have an [API](https://anapioficeand
      - The project uses **Google Fonts** for its typography.  
 
 
+## Testing
+
+### Responsiveness Testing
+
+The responsiveness of the website was tested on [Responsinator](https://www.responsinator.com/?url=https%3A%2F%2Fsynnea.github.io%2FGoT-Dashboard%2F).
+
+At this stage, the positioning of the footer and background image was tested on the following devices:
+
+* iPhone eXpensive portrait
+* iPhone eXpensive landscape
+* Android portrait
+* Android landscape
+* iPhone 6-8 portrait
+* iPhone 6-8 landscape
+* iPhone 6-8 Plump landscape
+* iPhone 6-8 Plump landscape
+* iPad portrait
+* iPad landscape
+
+
 
 ## Deployment
 This project was developed locally using VS Code. A repository was created on github and named 'GoT-Dashboard.' Regular commits were made and pushed to my Github repository.

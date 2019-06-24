@@ -92,7 +92,7 @@
 
 /* ----------------- The following media query re-positions the background picture to the center for tablet and larger devices */
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .background {
     background: url("../img/bg-img.jpg") no-repeat center center scroll;
     -webkit-background-size: cover;
