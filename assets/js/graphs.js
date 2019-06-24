@@ -412,11 +412,6 @@ function show_viewership_over_time(ndx) {
     S7Group = remove_blanks(S7Views, 0);
     S8Group = remove_blanks(S8Views, 0);
 
-    console.log(S1Group);
-
-    print_filter("S1Group");
-    print_filter(S1Views);
-
     var compositeChart = dc.compositeChart('#viewsOverTime');
     compositeChart
         .width(1100)

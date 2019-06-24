@@ -172,9 +172,43 @@ At the time of deployment, only two issues remain. One advised me to use a h2-6 
 
 Further, the test advised me to use a role with an anchor element in the navbar. However, adding the role of "link" was then judged unnecessary by the same validator. Thus, I chose to ignore it.
 
+The CSS was validated using the [CSS Validator](https://jigsaw.w3.org/css-validator/validator). In total, 3 issues were found. All were corrected and none remain for the deployed version.
 
+### User Story Testing
 
+Here are the results for the user story tests:
 
+#### Story 1
+
+* I know nothing about the series Game of Thrones, but want to find out some basic information.
+
+- Solution: Upon opening the website, the prominent 'see the stats' button leads the user to the dashboard. The tutorial pops up to explain what the dashboard is all about. The user clicks on the arrow to begin reading the information.
+
+#### Story 2
+
+* I am a casual fan of the series, and want to learn more about it in a visually pleasing, easily digestible manner.
+
+- Solution: upon opening the website, the prominent 'see the stats' button leads the user to the dashboard. The tutorial gives an overview of what kind of information is available on the website. The casual fan can then click on on one of three buttons to skip to the section he or she is most interested in.
+
+#### Story 3
+
+* I have not seen the series yet, but I am considering to watch it.
+
+- Solution: upon opening the website, the prominent 'see the stats' button leads the user to the dashboard. The tutorial gives an overview of what kind of information is available on the website. To someone who is considering to watch the series, they will want to start with general information. He or she will thus click on the downward pointing arrow button to begin reading.
+
+#### Story 4 
+
+* As a casual fan disappointed in the series finale, I want to find out if my sentiment is shared among critics and other fans.
+
+- Solution: upon opening the website, the prominent 'see the stats' button leads the user to the dashboard. The tutorial gives an overview of what kind of information is available on the website. As a fan disappointed in the finale, the IMDB ratings section is most relevant. He or she will thus click on the 'skip to stats on IMDB ratings' section.
+
+### Known Bugs
+
+A few bugs remain:
+
+* The first step of the tutorial sometimes displays across the db-logo div and sometimes to the bottom left. Since both positions look fine, I chose to leave the bug as-is.
+
+* The pie charts will display 'Season Percentages' and 'Percentages' respectively. This is actually a bug because the show_slice_percent function is still displayed when the pie chart is activated through another chart via crossfilter. When the input is undefined or not a percentages, the function is still active and return something. Returning "Percentages" at least makes the bug look like it might have been an intentional design choice.
 
 ## Deployment
 This project was developed locally using VS Code. A repository was created on github and named 'GoT-Dashboard.' Regular commits were made and pushed to my Github repository.
