@@ -313,6 +313,7 @@ function show_avg_viewership_by_season(ndx) {
             bottom: 30,
             left: 50
         })
+        .rescale()
         .colors('#6E403A')
         .dimension(seasonDim)
         .group(avg_views_group)
