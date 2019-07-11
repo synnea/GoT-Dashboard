@@ -174,7 +174,7 @@ Further, the test advised me to use a role with an anchor element in the navbar.
 
 The CSS was validated using the [CSS Validator](https://jigsaw.w3.org/css-validator/validator). In total, 3 issues were found. All were corrected and none remain for the deployed version.
 
-The JavaScript was tested using [JSHint.com](https://jshint.com/). Initially, 14 warnings were detected, many of them about misplaced semicolons.
+The JavaScript was tested using [JSHint.com](https://jshint.com/). Initially, 14 warnings were detected, many of them about misplaced semicolons. No errors remain at time of deployment.
 
 ### User Story Testing
 
@@ -248,9 +248,6 @@ Prior to working on the graphs, the kaggle dataset was edited in several signifi
 ### Content Source
 
 Many thanks go to Code Institute student Dave Laffan, whose remove_blanks function, taken from his github repository [here](https://github.com/steview-d/superhero-dashboard/blob/master/static/js/data-vis.js) here and edited slightly.
-
-The print_filter helper function was taken from [here](https://gist.github.com/xhinking/9341806).
-
 The source for the background image used on the landing page can be found [here](https://wallpapertag.com/wallpaper/full/1/5/5/449781-gorgerous-house-stark-wallpaper-1920x1080-for-hd-1080p.jpg
 ).
 

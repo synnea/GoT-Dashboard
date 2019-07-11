@@ -214,8 +214,8 @@ function show_num_eps(ndx) {
         .group(numEpGroup)
         .valueAccessor(function (d) {
             return d;
-        });
-}
+        })
+};
 
 
 // ------------- Number of Deaths Number Display -----------
@@ -229,7 +229,7 @@ function show_num_deaths(ndx) {
         .group(deathGroup)
         .valueAccessor(function (d) {
             return d;
-        });
+        })
 }
 
 // ------------- Average IMDB Rating for the entire Series Number Display -----------
@@ -237,14 +237,14 @@ function show_num_deaths(ndx) {
 function show_avg_score(ndx) {
 
     var ratingDim = ndx.dimension(dc.pluck('rating'));
-    var avgScore = reduceAvg(ratingDim, "rating");
+    var avgScore = reduceAvg(ratingDim, "rating")
 
 
     dc.numberDisplay("#avgIMDB")
         .group(avgScore)
         .valueAccessor(function (d) {
-            return d.average
-        });
+            return d.average;
+        })
 
 }
 
@@ -382,8 +382,8 @@ function show_viewership_over_time(ndx) {
             } else {
                 return 0;
             }
-        };
-    }
+        }
+    };
 
     var dateDim = ndx.dimension(function (d) {
         return d.airdate;
@@ -423,7 +423,7 @@ function show_viewership_over_time(ndx) {
         .renderHorizontalGridLines(true)
         .mouseZoomable(true)
         .title(function (d) {
-            return d.value + ' million people watched this episode.';
+            return d.value + ' million people watched this episode.'
         })
         .legend(dc.legend().x(100).y(30).horizontal(true).itemWidth(70).gap(15))
         .compose([
@@ -514,7 +514,7 @@ function show_percentage_of_deaths_per_season(ndx) {
         .drawPaths(false)
         .externalLabels(40)
         .title(function (d) {
-            return 'Season ' + d.key + ' killed ' + d.value + " notable characters.";
+            return 'Season ' + d.key + ' killed ' + d.value + " notable characters."
         })
         .colorAccessor(function (d) {
             return d.key;
@@ -552,7 +552,7 @@ function show_top_deathly_episodes(ndx) {
             left: 20
         })
         .title(function (d) {
-            return 'Episode ' + d.key[0] + ' entitled' + "'" + d.key[1]  + "'" + ' killed ' + d.value + ' notable characters.';
+            return 'Episode ' + d.key[0] + ' entitled' + "'" + d.key[1]  + "'" + ' killed ' + d.value + ' notable characters.'
         })
         .transitionDuration(500)
         // exclude the 'Others' category in the row chart.
@@ -657,7 +657,7 @@ function show_top_rated_episodes(ndx) {
             left: 20
         })
         .title(function (d) {
-            return 'Episode ' + d.key[0] + ' entitled' + "'" + d.key[1]  + "'" + ' reached a ' + d.value + ' IMDB rating.';
+            return 'Episode ' + d.key[0] + ' entitled' + "'" + d.key[1]  + "'" + ' reached a ' + d.value + ' IMDB rating.'
         })
         .transitionDuration(500)
         // exclude the 'Others' category in the row chart.
@@ -689,7 +689,7 @@ function show_score_by_writer(ndx) {
             return d.key;
         })
         .colors('#6E403A')
-        .ordering(function(d){ return -d.value.average; })
+        .ordering(function(d){ return -d.value.average })
         .dimension(writerDim)
         .group(avg_ratings_group)
         .title(function (d) {
