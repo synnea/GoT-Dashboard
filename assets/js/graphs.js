@@ -278,7 +278,6 @@ function show_total_viewership_by_season(ndx) {
         })
 
         .colors('#6E403A')
-        //.ordinalColors(['#6E403A', '#175ac6', '#E57687', '#DACC3E', '#7FB7BE', '#545a2c', '#020202', '#705D56'])
         .dimension(seasonDim)
         .group(total_viewership_per_season)
         .transitionDuration(500)
@@ -299,9 +298,6 @@ function show_total_viewership_by_season(ndx) {
         .elasticX(true)
         .yAxis().ticks(4);
 
-
-
-        print_filter("seasonDim");
 }
 
 // ------------- Average Episode Viewership per Season Bar Chart -----------
@@ -329,7 +325,6 @@ function show_avg_viewership_by_season(ndx) {
         .colorAccessor(function (d) {
             return d.key;
         })
-        // .ordinalColors(['#6E403A', '#175ac6', '#E57687', '#DACC3E', '#7FB7BE', '#545a2c', '#020202', '#705D56'])
         .title(function (d) {
             return 'Season ' + d.key + ' had an average of  ' + Math.round(d.value.average * 100 + Number.EPSILON) / 100 + ' million viewers';
         })
@@ -500,7 +495,6 @@ function show_number_of_deaths_per_season(ndx) {
         .colorAccessor(function (d) {
             return d.key;
         })
-        //.ordinalColors(['#6E403A', '#175ac6', '#E57687', '#DACC3E', '#7FB7BE', '#545a2c', '#020202', '#705D56'])
         .xUnits(dc.units.ordinal)
         .xAxisLabel("Season")
         .yAxisLabel("Deaths")
