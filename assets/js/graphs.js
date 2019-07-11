@@ -237,7 +237,9 @@ function show_num_deaths(ndx) {
 function show_avg_score(ndx) {
 
     var ratingDim = ndx.dimension(dc.pluck('rating'));
-    var avgScore = reduceAvg(ratingDim, "rating")
+    var avgScore = reduceAvg(ratingDim, "rating");
+
+  
 
 
     dc.numberDisplay("#avgIMDB")
@@ -259,6 +261,8 @@ function show_total_viewership_by_season(ndx) {
     var seasonDim = ndx.dimension(dc.pluck('season'));
     var total_viewership_per_season = seasonDim.group().reduceSum(dc.pluck('viewers'));
     var barchartTotalViews = dc.barChart('#viewsSeason');
+
+ 
 
     barchartTotalViews
         .width(500)
@@ -295,6 +299,9 @@ function show_total_viewership_by_season(ndx) {
         .elasticX(true)
         .yAxis().ticks(4);
 
+
+
+        print_filter("seasonDim");
 }
 
 // ------------- Average Episode Viewership per Season Bar Chart -----------
