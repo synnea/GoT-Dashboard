@@ -28,6 +28,13 @@ $(document).ready(function () {
         });
     });
 
+    // The following prevents the graphs from breaking by clicking on bar labels.
+
+    $(function () {
+        $(".barLabel").on("click", function () {
+            dc.redrawAll();
+        });
+    });
 
     // ------------------------------------ LANDING PAGE ---------------------------------------
 

@@ -290,6 +290,7 @@ function show_total_viewership_by_season(ndx) {
         .title(function (d) {
             return 'Season ' + d.key + ' had a total of ' + Math.round(d.value * 100 + Number.EPSILON) / 100 + ' million viewers';
         })
+        .brushOn(true)
         .renderLabel(true)
         .elasticX(true)
         .yAxis().ticks(4);
@@ -308,12 +309,13 @@ function show_avg_viewership_by_season(ndx) {
         .width(500)
         .height(300)
         .margins({
-            top: 10,
+            top: 20,
             right: 60,
             bottom: 30,
             left: 50
         })
         .rescale()
+        .brushOn(true)
         .colors('#6E403A')
         .dimension(seasonDim)
         .group(avg_views_group)
